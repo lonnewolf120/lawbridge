@@ -1,8 +1,6 @@
 'use client'
 import { LawyerSearch } from '@/components/lawyer-search'
-import dynamic from 'next/dynamic'
-const FindLawyersMap = dynamic(() => import('@/components/find-lawyers-map').then((mod) => mod.FindLawyersMap), { ssr: false })
-
+import { FindLawyersMap } from '@/components/find-lawyers-map'
 export default function FindLawyersPage() {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -14,4 +12,3 @@ export default function FindLawyersPage() {
     </div>
   )
 }
-
