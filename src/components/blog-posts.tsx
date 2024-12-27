@@ -4,15 +4,15 @@ import Link from 'next/link'
 const posts = [
   {
     title: 'How to file a lawsuit against a company',
-    image: '/placeholder.svg?text=Blog1'
+    image: '/file.png'
   },
   {
     title: 'Legal System related to business',
-    image: '/placeholder.svg?text=Blog2'
+    image: '/business.jpeg'
   },
   {
     title: 'How to become a lawyer',
-    image: '/placeholder.svg?text=Blog3'
+    image: '/lawyer2.jpg'
   }
 ]
 

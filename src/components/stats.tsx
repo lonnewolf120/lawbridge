@@ -4,7 +4,7 @@ export default function Stats() {
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-serif text-center mb-12">Our Experience</h2>
         <p className="text-center text-muted-foreground mb-12">
-          We've helped and served our users for their legal cases successfully for a long time now and you can trust us
+          We&apos;ve helped and served our users for their legal cases successfully for a long time now and you can trust us
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>

@@ -1,4 +1,6 @@
 import './globals.css'
+import '../styles/carousel.css'
+import 'leaflet/dist/leaflet.css'
 import { Inter } from 'next/font/google'
 import Layout from '@/components/layout'
 
