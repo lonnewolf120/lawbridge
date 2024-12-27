@@ -1,9 +1,7 @@
 'use client'
-import { FindLawyersMap } from '@/components/find-lawyers-map'
 import { LawyerSearch } from '@/components/lawyer-search'
 import dynamic from 'next/dynamic'
-
-// import {FindLawyersMap} from '@/components/find-lawyers-map'
+const FindLawyersMap = dynamic(() => import('@/components/find-lawyers-map').then((mod) => mod.FindLawyersMap), { ssr: false })
 
 export default function FindLawyersPage() {
   return (

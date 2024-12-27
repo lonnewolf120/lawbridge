@@ -23,13 +23,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <span className="font-serif">LawBridge</span></Link>
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
-            <Link href="/about" className="hover:text-blue-600">About</Link>
+          <Link href="/" className="hover:text-blue-600">Home</Link>
+            <Link href="/find-lawyers" className="hover:text-blue-600">Find Lawyers</Link>
+            <Link href="/legal-assistant" className="hover:text-blue-600">Legal Assistant</Link>
             <Link href="/progress" className="hover:text-blue-600">Progress Tracker</Link>
             <Link href="/education" className="hover:text-blue-600">Education Hub</Link>
-            <Link href="/legal-assistant" className="hover:text-blue-600">Legal Assistant</Link>
           </nav>
-          <Button>Login</Button>
+            <Button className="bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
         </div>
       </header>
       <main className="flex-1">{children}</main>

@@ -11,7 +11,7 @@ type Message = {
   content: string
 }
 
-export default function Chatbot() {
+export default function Chatbot({ category }: { category: string | null }) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -21,10 +21,9 @@ export default function Chatbot() {
     if (input.trim() && !isLoading) {
       setIsLoading(true)
       setMessages((prevMessages) => [...prevMessages, { role: 'user', content: input }])
-      
+
       try {
-        // Here you would call the Gemini API to get a response
-        // For now, we'll just simulate a response
+        // Simulate AI response
         await new Promise((resolve) => setTimeout(resolve, 1000))
         setMessages((prevMessages) => [
           ...prevMessages,
@@ -46,14 +45,22 @@ export default function Chatbot() {
   return (
     <Card className="h-[600px] flex flex-col">
       <CardHeader>
-        <CardTitle>Chat with Legal Assistant</CardTitle>
+        <CardTitle>Chat with Legal Assistant 
+        
+        </CardTitle>
       </CardHeader>
-      <CardContent className="flex-grow overflow-hidden">
-        <ScrollArea className="h-full pr-4">
+      <CardContent className="flex-grow overflow-hidden relative">
+      {category && (
+          <div className="m-2 p-2 bg-blue-100 text-blue-800 rounded-md text-sm">
+            Assistant will now speak in context to {category!=='other'? category : 'all'} Laws
+          </div>
+        )}
+        <ScrollArea className="h-full pr-4 pt-2">
+        
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`mb-4 p-3 rounded-lg ${
+              className={`m-2 p-3 rounded-lg ${
                 message.role === 'user' ? 'bg-primary text-primary-foreground ml-auto' : 'bg-muted'
               } max-w-[80%]`}
             >
@@ -70,8 +77,11 @@ export default function Chatbot() {
             placeholder="Type your message..."
             className="flex-grow"
           />
-          <Button className='bg-amber-100 hover:bg-amber-200 border-amber-200 text-black text-base'
-          type="submit" disabled={isLoading}>
+          <Button
+            className="bg-amber-100 hover:bg-amber-200 border-amber-200 text-black text-base"
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? 'Sending...' : 'Send'}
           </Button>
         </form>

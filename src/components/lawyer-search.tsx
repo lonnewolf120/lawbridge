@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import Link from 'next/link'
 
 const practiceAreas = [
   'Criminal Law',
@@ -20,11 +21,11 @@ const practiceAreas = [
 ]
 
 const lawyers = [
-  { id: 1, name: 'Aminul Islam', practiceAreas: ['Criminal Law', 'Civil Law'], rating: 4.5, location: 'Dhaka' },
-  { id: 2, name: 'Farhana Rahman', practiceAreas: ['Family Law', 'Immigration Law'], rating: 4.8, location: 'Chittagong' },
-  { id: 3, name: 'Kamal Hossain', practiceAreas: ['Corporate Law', 'Tax Law'], rating: 4.2, location: 'Dhaka' },
-  { id: 4, name: 'Nasreen Akter', practiceAreas: ['Intellectual Property', 'Corporate Law'], rating: 4.6, location: 'Sylhet' },
-  { id: 5, name: 'Rafiqul Islam', practiceAreas: ['Real Estate Law', 'Civil Law'], rating: 4.3, location: 'Khulna' },
+  { id: 1, name: 'Aminul Islam', image: 'https://avatar.iran.liara.run/public/boy', practiceAreas: ['Criminal Law', 'Civil Law'], rating: 4.5, location: 'Dhaka', bio: 'Aminul Islam is a seasoned lawyer with over 15 years of experience in Criminal and Civil Law. He has successfully handled numerous high-profile cases and is known for his strategic approach to legal challenges.', education: 'LLB, University of Dhaka', contact: { email: 'aminul.islam@lawbridge.com', phone: '+880 1700 000001' } },
+  { id: 2, name: 'Farhana Rahman', image: 'https://avatar.iran.liara.run/public/girl', practiceAreas: ['Family Law', 'Immigration Law'], rating: 4.8, location: 'Chittagong', bio: 'Farhana Rahman specializes in Family and Immigration Law. With her compassionate approach and extensive knowledge, she has helped countless families navigate complex legal situations.', education: 'LLM, University of Chittagong', contact: { email: 'farhana.rahman@lawbridge.com', phone: '+880 1700 000002' } },
+  { id: 3, name: 'Kamal Hossain', image: 'https://avatar.iran.liara.run/public/boy', practiceAreas: ['Corporate Law', 'Tax Law'], rating: 4.2, location: 'Dhaka', bio: 'Kamal Hossain is a corporate law expert with a strong background in tax law. He advises major corporations and has played a key role in several landmark business cases in Bangladesh.', education: 'LLB, London School of Economics', contact: { email: 'kamal.hossain@lawbridge.com', phone: '+880 1700 000003' } },
+  { id: 4, name: 'Nasreen Akter', image: 'https://avatar.iran.liara.run/public/girl', practiceAreas: ['Intellectual Property', 'Corporate Law'], rating: 4.6, location: 'Sylhet', bio: 'Nasreen Akter is at the forefront of Intellectual Property law in Bangladesh. Her expertise in both IP and Corporate Law makes her a valuable asset for businesses protecting their innovations.', education: 'LLM, Harvard Law School', contact: { email: 'nasreen.akter@lawbridge.com', phone: '+880 1700 000004' } },
+  { id: 5, name: 'Rafiqul Islam', image: 'https://avatar.iran.liara.run/public/boy', practiceAreas: ['Real Estate Law', 'Civil Law'], rating: 4.3, location: 'Khulna', bio: 'Rafiqul Islam has extensive experience in Real Estate and Civil Law. He has successfully resolved numerous property disputes and is known for his thorough approach to complex civil cases.', education: 'LLB, University of Rajshahi', contact: { email: 'rafiqul.islam@lawbridge.com', phone: '+880 1700 000005' } },
 ]
 
 export function LawyerSearch() {
@@ -74,7 +75,7 @@ export function LawyerSearch() {
               ))}
             </ScrollArea>
           </div>
-          <Button className="w-full">Search</Button>
+          <Button className="w-full bg-orange-200 hover:bg-orange-400 text-black text-base">Search</Button>
         </div>
         <div className="mt-6">
           <h3 className="font-semibold mb-2">Results</h3>
@@ -82,13 +83,27 @@ export function LawyerSearch() {
             {filteredLawyers.map((lawyer) => (
               <Card key={lawyer.id} className="mb-4">
                 <CardContent className="p-4">
+                  <div className='flex flex-row items-start'>
+                  <img
+                    src={lawyer.image}
+                    alt={lawyer.name}
+                    className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                  />
+                  <div className='flex flex-col ml-4'>
                   <h4 className="font-medium text-lg">{lawyer.name}</h4>
+                  
                   <p className="text-sm text-muted-foreground">
                     {lawyer.practiceAreas.join(', ')}
-                  </p>
+                  </p> 
+                  
                   <p className="text-sm">Location: {lawyer.location}</p>
                   <p className="text-sm">Rating: {lawyer.rating}/5</p>
-                  <Button variant="outline" size="sm" className="mt-2">View Profile</Button>
+                  <Link href={`/lawyer/${lawyer.id}`}>
+                    <Button variant="outline" size="sm" className="mt-2 bg-amber-200 hover:bg-amber-500">View Profile</Button>
+                  </Link> 
+                  </div>
+                  </div>
+                  
                 </CardContent>
               </Card>
             ))}
