@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LawyerCardProps } from "../types";
+import { LawyerCardProps } from "../app/types";
 
 export const LawyerCard: React.FC<LawyerCardProps> = ({
   image,

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SocialLinkProps } from "../types";
+import { SocialLinkProps } from "../app/types";
 
 export const SocialLink: React.FC<SocialLinkProps> = ({
   icon,

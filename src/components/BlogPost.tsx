@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BlogPostProps } from "../types";
+import { BlogPostProps } from "../app/types";
 
 export const BlogPost: React.FC<BlogPostProps> = ({
   image,

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { NavItem } from "./components/NavItem";
-import { Statistic } from "./components/Statistic";
-import { LawyerCard } from "./components/LawyerCard";
-import { BlogPost } from "./components/BlogPost";
-import { SocialLink } from "./components/SocialLink";
+import { NavItem } from "./NavItem";
+import { Statistic } from "./Statistic";
+import { LawyerCard } from "./LawyerCard";
+import { BlogPost } from "./BlogPost";
+import { SocialLink } from "./SocialLink";
 
 const navItems = [
   { text: "Home", isActive: false },

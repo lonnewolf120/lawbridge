@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavItemProps } from "../types";
+import { NavItemProps } from "../app/types";
 
 export const NavItem: React.FC<NavItemProps> = ({ text, isActive }) => {
   return (
