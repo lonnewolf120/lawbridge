@@ -8,14 +8,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="border-b">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
+            <Link
+            href={'/'}
+            >
             <Image
-              src="/placeholder.svg?text=Logo"
+              src="/logo2.png"
               alt="LawBridge Logo"
               width={40}
               height={40}
               className="rounded"
             />
-            <span className="font-serif">LawBridge</span>
+            </Link>
+            <Link href='/'>
+            <span className="font-serif">LawBridge</span></Link>
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className="hover:text-blue-600">Home</Link>
@@ -42,7 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <h4 className="font-medium text-white mb-4">Address</h4>
-              <p className="text-sm">123 Legal Street</p>
+              <p className="text-sm">688/9A Mirpur DOHS, Mirpur</p>
               <p className="text-sm">Dhaka, Bangladesh</p>
             </div>
             <div>
