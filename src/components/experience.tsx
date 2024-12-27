@@ -19,10 +19,10 @@ export default function Experience() {
             <h2 className="text-3xl font-serif">
               Navigate the Legal Labyrinth with Confidence.
               <br />
-              <span className="text-amber-400">We're Your Sherpas.</span>
+              <span className="text-amber-400">We&apos;re Your Sherpas.</span>
             </h2>
             <p className="text-gray-300">
-              From the boardroom to the courtroom, we've seen it all.  Our seasoned legal experts provide battle-tested counsel for businesses, individuals, and everyone in between.  Whether you're facing a complex contract dispute, navigating a difficult divorce, securing your intellectual property, or just need a trusted advisor, we're here to help you conquer your legal challenges. Don't let legal complexities hold you back—let our experience be your advantage.
+              From the boardroom to the courtroom, we&apos;ve seen it all.  Our seasoned legal experts provide battle-tested counsel for businesses, individuals, and everyone in between.  Whether you&apos;re facing a complex contract dispute, navigating a difficult divorce, securing your intellectual property, or just need a trusted advisor, we&apos;re here to help you conquer your legal challenges. Don&apos;t let legal complexities hold you back—let our experience be your advantage.
             </p>
             <p className="text-gray-300">
                We specialize in a wide range of legal areas, including: Business Law, Family Law, Real Estate, Intellectual Property, Criminal Defense, and more.  Contact us today for a confidential consultation and discover how we can empower you to achieve your goals.
