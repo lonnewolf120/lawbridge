@@ -13,8 +13,8 @@ const navItems = [
   { href: '/find-lawyers', label: 'Find Lawyers' },
   { href: '/legal-assistant', label: 'Legal Assistant' },
   { href: '/blog', label: 'Blog' },
-  { href: '/progress', label: 'Progress Tracker' },
-  { href: '/education-hub', label: 'Education Hub' },
+  { href: '/cases', label: 'Cases' },
+  { href: '/courses', label: 'Courses' },
   { href: '/about', label: 'About' },
 ]
 
@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`text-sm font-medium transition-colors hover:text-primary hover:border-black transition duration-300 ${
                     pathname === item.href ? 'text-primary' : 'text-muted-foreground'
                   }`}
                 >
@@ -60,7 +60,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
             <div className="flex items-center gap-4">
-              <Button className="hidden md:inline-flex">Login</Button>
+              <Link href='/auth/login'><Button className="hidden md:inline-flex bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button></Link>
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" className="md:hidden p-2">
@@ -94,7 +94,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       ))}
                     </nav>
                     <div className="mt-auto">
-                      <Button className="w-full">Login</Button>
+                     <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+                     </Link>
                     </div>
                   </div>
                 </SheetContent>

@@ -31,7 +31,7 @@ const posts = [
       
       <p>Remember, legal proceedings can be time-consuming and costly. It's advisable to seek professional legal counsel to guide you through this process and represent your interests effectively.</p>
     `,
-    image: '/placeholder.svg?text=Blog1',
+    image: '/business2.webp',
     date: '2023-05-15',
     author: 'Jane Doe',
     category: 'Legal Procedures'
@@ -62,7 +62,7 @@ const posts = [
       
       <p>It's important to note that laws and regulations can change. Always consult with a qualified legal professional for the most up-to-date and specific advice for your business situation in Bangladesh.</p>
     `,
-    image: '/placeholder.svg?text=Blog2',
+    image: '/business.jpeg',
     date: '2023-05-20',
     author: 'John Smith',
     category: 'Business Law'
@@ -96,7 +96,7 @@ const posts = [
       
       <p>Remember, becoming a lawyer requires not just academic excellence, but also strong analytical, communication, and interpersonal skills. It's a challenging but rewarding career path for those passionate about law and justice.</p>
     `,
-    image: '/placeholder.svg?text=Blog3',
+    image: '/lawyer2.jpg',
     date: '2023-05-25',
     author: 'Aminul Islam',
     category: 'Legal Career'

@@ -8,7 +8,7 @@ const posts = [
     id: 1,
     title: 'How to file a lawsuit against a company',
     excerpt: 'Learn the step-by-step process of filing a lawsuit against a company, including necessary documentation and legal procedures.',
-    image: '/placeholder.svg?text=Blog1',
+    image: '/business2.webp',
     date: '2023-05-15',
     author: 'Jane Doe',
     category: 'Legal Procedures'
@@ -17,7 +17,7 @@ const posts = [
     id: 2,
     title: 'Understanding business law in Bangladesh',
     excerpt: 'An overview of key business laws and regulations that every entrepreneur in Bangladesh should be aware of.',
-    image: '/placeholder.svg?text=Blog2',
+    image: '/business.jpeg',
     date: '2023-05-20',
     author: 'John Smith',
     category: 'Business Law'
@@ -26,7 +26,7 @@ const posts = [
     id: 3,
     title: 'The path to becoming a lawyer in Bangladesh',
     excerpt: 'Explore the educational requirements, exams, and steps needed to pursue a career in law in Bangladesh.',
-    image: '/placeholder.svg?text=Blog3',
+    image: '/lawyer2.jpg',
     date: '2023-05-25',
     author: 'Aminul Islam',
     category: 'Legal Career'
