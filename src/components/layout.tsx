@@ -23,11 +23,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <span className="font-serif">LawBridge</span></Link>
           </div>
           <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="hover:text-blue-600">Home</Link>
-            <Link href="/find-lawyers" className="hover:text-blue-600">Find Lawyers</Link>
-            <Link href="/legal-assistant" className="hover:text-blue-600">Legal Assistant</Link>
-            <Link href="/progress" className="hover:text-blue-600">Progress Tracker</Link>
-            <Link href="/education" className="hover:text-blue-600">Education Hub</Link>
+          <Link href="/" className="relative hover:text-black-600 transition duration-300">
+            <span className="border-b-2 border-transparent hover:border-black transition duration-300">Home</span>
+          </Link>
+          <Link href="/find-lawyers" className="relative hover:text-black transition duration-300">
+            <span className="border-b-2 border-transparent hover:border-black transition duration-300">Find Lawyers</span>
+          </Link>
+          <Link href="/legal-assistant" className="relative hover:text-black transition duration-300">
+            <span className="border-b-2 border-transparent hover:border-black transition duration-300">Legal Assistant</span>
+          </Link>
+          <Link href="/progress" className="relative hover:text-black transition duration-300">
+            <span className="border-b-2 border-transparent hover:border-black transition duration-300">Progress Tracker</span>
+          </Link>
+          <Link href="/education" className="relative hover:text-black transition duration-300">
+            <span className="border-b-2 border-transparent hover:border-black transition duration-300">Education Hub</span>
+          </Link>
           </nav>
             <Button className="bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
         </div>
