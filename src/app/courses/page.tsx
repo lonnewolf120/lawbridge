@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 // import { Nav } from "@/components/nav"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 const categories = [
   { name: "Personal Law", description: "Marriage, divorce, inheritance" },
@@ -112,18 +113,23 @@ export default function Page() {
 
       {/* Progress Tracker Preview */}
       <section className="px-4 py-12 bg-brown-50">
-        <div className="container max-w-6xl mx-auto text-center">
+        <div className="flex flex-col items-center container max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Track Your Progress</h2>
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Your Learning Journey</CardTitle>
-              <CardDescription>Sign in to track your progress and earn certificates</CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Button className="w-full bg-yellow-500 text-black hover:bg-yellow-400">
+              <CardDescription className="mb-6">Sign in to track your progress and earn certificates
+
+                
+                <Link href={'/auth/login'}> 
+              <Button className="w-1/2  bg-yellow-500 text-black hover:bg-yellow-400">
                 Sign In to Start Learning
               </Button>
-            </CardFooter>
+              </Link>  
+              </CardDescription>
+            </CardHeader>
+            {/* <CardFooter> */} 
+            {/* </CardFooter> */}
           </Card>
         </div>
       </section>

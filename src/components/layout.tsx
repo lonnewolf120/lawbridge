@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-white'}`}>
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-400/80 backdrop-blur-md shadow-md' : 'bg-slate-100'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
@@ -51,8 +51,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary hover:border-black transition duration-300 ${
-                    pathname === item.href ? 'text-primary' : 'text-muted-foreground'
+                  className={`text-md font-medium transition-colors hover:text-primary hover:border-black hover:text-xl transition duration-300 ${
+                    pathname === item.href ? 'text-primary text-xl' : 'text-muted-foreground'
                   }`}
                 >
                   {item.label}

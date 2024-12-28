@@ -43,12 +43,15 @@ const dhakaPosition: [number, number] = [23.8103, 90.4125];
 export function FindLawyersMap() {
   const [selectedLocation, setSelectedLocation] = useState<[number,number]>(dhakaPosition)
   return (
-    <MapContainer center={selectedLocation} zoom={13} style={{ height: '600px', width: '100%' }} className="rounded-lg shadow-md">
+    <div className="relative"> {/* Added relative positioning to the container */}
+    <MapContainer center={selectedLocation} zoom={13} style={{ height: '600px', width: '100%' }} className="relative rounded-lg shadow-md">
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; <Link href="https://www.openstreetmap.org/copyright">OpenStreetMap</Link> contributors'
       />
+      {/* if map not generating replace Link with a */}
       <LocationMarker />
     </MapContainer>
+    </div>
   );
 }

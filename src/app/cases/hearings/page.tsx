@@ -1,5 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { CalendarDays, MapPin, Clock } from 'lucide-react'
 
 const mockHearings = [
   { id: 1, caseTitle: "Divorce Proceedings", date: "2023-12-15", time: "10:00 AM", location: "Court Room 3" },
@@ -9,32 +11,36 @@ const mockHearings = [
 
 export default function HearingsPage() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">Upcoming Hearings</h1>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Case Title</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Time</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {mockHearings.map((hearing) => (
-            <TableRow key={hearing.id}>
-              <TableCell>{hearing.caseTitle}</TableCell>
-              <TableCell>{hearing.date}</TableCell>
-              <TableCell>{hearing.time}</TableCell>
-              <TableCell>{hearing.location}</TableCell>
-              <TableCell>
-                <Button variant="outline" size="sm">View Details</Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
+      <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
+      <div className="grid gap-6">
+        {mockHearings.map((hearing) => (
+          <Card key={hearing.id} className="overflow-hidden border-orange-200">
+            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+              <CardTitle>{hearing.caseTitle}</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="flex items-center">
+                  <CalendarDays className="w-5 h-5 mr-2 text-amber-600" />
+                  <span>{hearing.date}</span>
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-5 h-5 mr-2 text-amber-600" />
+                  <span>{hearing.time}</span>
+                </div>
+                <div className="flex items-center">
+                  <MapPin className="w-5 h-5 mr-2 text-amber-600" />
+                  <span>{hearing.location}</span>
+                </div>
+              </div>
+              <div className="mt-4">
+                <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">View Details</Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   )
 }
