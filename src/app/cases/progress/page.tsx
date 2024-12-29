@@ -26,7 +26,7 @@ export default function FindLawyersPage() {
   const progressWidth = (completedSteps / steps.length) * 100;
 
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-serif mb-8">Track Progress</h1>
       <div>
         <div className="flex flex-col items-center space-y-4 w-full">

@@ -41,14 +41,14 @@ export default function MyCasesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
       <h1 className="text-3xl font-bold mb-8 text-amber-900">My Cases</h1>
-      <div className="grid gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {mockCases.map((case_) => (
           <Card key={case_.id} className="overflow-hidden border-orange-200">
             <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
               <CardTitle>{case_.title}</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center gap-4">
                 <Badge variant="secondary" className="bg-amber-100 text-amber-800">{case_.category}</Badge>
                 <Badge className={`flex items-center ${getStatusColor(case_.status)}`}>
                   {getStatusIcon(case_.status)}
