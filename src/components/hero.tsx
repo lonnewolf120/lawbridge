@@ -5,6 +5,7 @@ import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
 
 const images = [
   '/1.png',
@@ -50,11 +51,13 @@ export default function Hero() {
               shouldn't be overwhelming or expensive
             </p>
             <Button className="bg-amber-100 text-black hover:bg-amber-200 border border-amber-200">
-              Start Up
+              Get started
             </Button>
             <div className="mt-8">
-              <p className="text-sm text-muted-foreground">Have any question?</p>
-              <p className="text-lg">+8801311962091</p>
+              <p className="text-sm text-muted-foreground mb-2">Have any question?</p>
+              <Link href={`tel:+8801311962091`}>
+              <Button className="text-amber-200 hover:text-amber-300">Call now</Button>
+               </Link>
             </div>
           </div>
           <div className="embla overflow-hidden" ref={emblaRef}>

@@ -12,10 +12,10 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/find-lawyers', label: 'Find Lawyers' },
   { href: '/legal-assistant', label: 'Legal Assistant' },
-  { href: '/blog', label: 'Blog' },
   { href: '/cases', label: 'Cases' },
   { href: '/courses', label: 'Courses' },
-  { href: '/about', label: 'About' },
+  { href: '/templates', label: 'Templates' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -26,22 +26,22 @@ export default function FileCasePage() {
   }
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">File a New Case</h1>
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100 p-12">
+      <h1 className="text-5xl font-bold mb-12 text-gray-800">File a New Case</h1>
+      <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl w-full">
         <div>
-          <Label htmlFor="title">Case Title</Label>
-          <Input id="title" placeholder="Enter case title" />
+          <Label htmlFor="title" className="text-lg font-medium">Case Title</Label>
+          <Input id="title" placeholder="Enter case title" className="mt-2 w-full p-4 text-lg border rounded-md" />
         </div>
         <div>
-          <Label htmlFor="category">Case Category</Label>
+          <Label htmlFor="category" className="text-lg font-medium">Case Category</Label>
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger>
+            <SelectTrigger className="mt-2 w-full p-4 border rounded-md text-lg">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white">
               {caseCategories.map((cat) => (
-                <SelectItem key={cat.name} value={cat.name}>
+                <SelectItem key={cat.name} value={cat.name} className="text-lg py-3">
                   {cat.name}
                 </SelectItem>
               ))}
@@ -49,10 +49,10 @@ export default function FileCasePage() {
           </Select>
         </div>
         <div>
-          <Label htmlFor="description">Case Description</Label>
-          <Textarea id="description" placeholder="Describe your case" />
+          <Label htmlFor="description" className="text-lg font-medium">Case Description</Label>
+          <Textarea id="description" placeholder="Describe your case" className="mt-2 w-full p-4 text-lg border rounded-md h-60" />
         </div>
-        <Button type="submit">File Case</Button>
+        <Button type="submit" className="w-full py-4 text-lg font-medium rounded-md bg-blue-500 hover:bg-blue-600 text-white">File Case</Button>
       </form>
     </div>
   )

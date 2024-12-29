@@ -6,12 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
 const categories = [
-  { name: "Personal Law", description: "Marriage, divorce, inheritance" },
-  { name: "Business Law", description: "Contracts, compliance, IP" },
-  { name: "Criminal Law", description: "Procedures, rights, defenses" },
-  { name: "Civil Law", description: "Property disputes, tenant rights" },
-  { name: "Legal Writing", description: "Documentation and reports" },
-  { name: "International Law", description: "Immigration, cross-border" },
+  { name: "Personal Law", description: "Marriage, divorce, inheritance", link: "/courses/1" }, 
+  { name: "Business Law", description: "Contracts, compliance, IP" , link: "/courses/2"},
+  { name: "Criminal Law", description: "Procedures, rights, defenses", link: "/courses/3" },
+  { name: "Civil Law", description: "Property disputes, tenant rights" , link: "/courses/4"},
+  { name: "Legal Writing", description: "Documentation and reports" , link: "/courses/5"},
+  { name: "International Law", description: "Immigration, cross-border" , link: "/courses/6"},
 ]
 
 const featuredCourses = [
@@ -76,7 +76,11 @@ export default function Page() {
                   <CardDescription>{category.description}</CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button variant="outline" className="w-full">Browse Courses</Button>
+                  <div className='flex justify-center'>
+                  <Link href={category.link}>
+                  <Button variant="outline" className="w-full flex items-center">Browse Courses</Button>
+                  </Link>
+                  </div> 
                 </CardFooter>
               </Card>
             ))}
