@@ -1,10 +1,13 @@
 'use client'
 import React from 'react'
+import Link from 'next/link'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { ProgressBar } from '@/components/progress-bar-round'
 
 export default function ProgressPage() {
-  const username = "John Doe"; // Example username
-  const actualName = "Johnathan Doe"; // Example actual name
+  const username = "John Doe"; 
+  const actualName = "Johnathan Doe"; 
 
   return (
     <div className="bg-gray-100 text-gray-800 font-sans p-4">
@@ -28,26 +31,42 @@ export default function ProgressPage() {
         </Card>
         <Card className="col-span-1">
           <CardHeader>
-            <CardTitle>Tile 1</CardTitle>
+            <CardTitle>Bail Hearings</CardTitle>
+            <Link href="/checklist">
+
+<p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+</Link>
           </CardHeader>
           <CardContent>
-            {/* Add tile 1 content here */}
+          <ProgressBar progress={12} />
+          
           </CardContent>
         </Card>
         <Card className="col-span-1">
           <CardHeader>
-            <CardTitle>Tile 2</CardTitle>
+            <CardTitle>Probation Hearings</CardTitle>
+            <Link href="/checklist">
+
+<p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+</Link>
           </CardHeader>
           <CardContent>
-            {/* Add tile 2 content here */}
+            <ProgressBar progress={30}/>
+           
           </CardContent>
         </Card>
         <Card className="col-span-1">
           <CardHeader>
-            <CardTitle>Tile 3</CardTitle>
+            <CardTitle>Class Action</CardTitle>
+            <Link href="/checklist">
+
+<p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+</Link>
+
           </CardHeader>
           <CardContent>
-            {/* Add tile 3 content here */}
+            <ProgressBar progress={40} />
+           
           </CardContent>
         </Card>
         <Card className="col-span-1">
@@ -55,41 +74,36 @@ export default function ProgressPage() {
             <CardTitle>Tile 4</CardTitle>
           </CardHeader>
           <CardContent>
-            {/* Add tile 4 content here */}
+          <ProgressBar progress={90} />
+            
           </CardContent>
         </Card>
         <Card className="col-span-1">
           <CardHeader>
             <CardTitle>Tile 5</CardTitle>
+            <Link href="/checklist">
+
+<p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+</Link>
           </CardHeader>
           <CardContent>
-            {/* Add tile 5 content here */}
+          <ProgressBar progress={54} />
           </CardContent>
         </Card>
         <Card className="col-span-1">
           <CardHeader>
             <CardTitle>Tile 6</CardTitle>
+            <Link href="/checklist">
+
+<p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+</Link>
+                
           </CardHeader>
           <CardContent>
-            {/* Add tile 6 content here */}
+           <ProgressBar progress={33} />
           </CardContent>
         </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 7</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 7 content here */}
-          </CardContent>
-        </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 8</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 8 content here */}
-          </CardContent>
-        </Card>
+     
       </div>
     </div>
   )
