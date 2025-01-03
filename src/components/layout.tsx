@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-400/80 backdrop-blur-md shadow-md' : 'bg-slate-100'}`}>
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-amber-100/10 backdrop-blur-md shadow-md' : 'bg-amber-50'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">

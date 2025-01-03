@@ -85,14 +85,22 @@ export default function LoginPage() {
               Forgot password?
             </Link>
           </div>
-          <Link href='/auth/dashboard'>
+          {userType==='client'?(<Link href='/auth/dashboard'>
           <Button
             type="submit"
             className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
           >
             Sign in
           </Button>
-          </Link>
+          </Link>):
+          (<Link href='/lawyer/dashboard'>
+          <Button
+            type="submit"
+            className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
+          >
+            Sign in
+          </Button>
+          </Link>)}
           <p className="text-center text-sm text-slate-600">
             Don't have an account?{' '}
             <Link href="/auth/signup" className="text-amber-600 hover:text-amber-900">

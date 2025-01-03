@@ -120,12 +120,24 @@ export default function SignUpPage() {
             </div>
           )}
 
-          <button
+          {userType === 'client' ? (
+          
+            <Link href='/auth/dashboard'>
+            <button
             type="submit"
             className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E]"
           >
             Create Account
-          </button>
+          </button></Link>) : (
+            
+            <Link href='/lawyer/dashboard'>
+            <button
+            type="submit"
+            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E]"
+          >
+            Create Account
+          </button></Link>
+          )}
 
           <p className="text-center text-sm text-slate-600">
             Already have an account?{' '}
