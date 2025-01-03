@@ -1,63 +1,71 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-// import { Nav } from "@/components/nav"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
+import { CategoryCard } from "@/components/categories/category-card"
 
 const categories = [
-  { name: "Personal Law", description: "Marriage, divorce, inheritance", link: "/courses/1" }, 
-  { name: "Business Law", description: "Contracts, compliance, IP" , link: "/courses/2"},
-  { name: "Criminal Law", description: "Procedures, rights, defenses", link: "/courses/3" },
-  { name: "Civil Law", description: "Property disputes, tenant rights" , link: "/courses/4"},
-  { name: "Legal Writing", description: "Documentation and reports" , link: "/courses/5"},
-  { name: "International Law", description: "Immigration, cross-border" , link: "/courses/6"},
-]
-
-const featuredCourses = [
-  {
-    title: "Understanding Tenant Rights in Bangladesh",
-    description: "Learn about your rights and responsibilities as a tenant or landlord.",
-    duration: "4 hours",
-    level: "Beginner",
-    category: "Civil Law"
+  { 
+    name: "Personal Law", 
+    description: "Family matters, inheritance, and individual rights",
+    href: "/categories/personal-law",
+    imageId: 1,
+    courseCount: 5
   },
-  {
-    title: "Business Contract Essentials",
-    description: "Master the fundamentals of business contract law and drafting.",
-    duration: "6 hours",
-    level: "Intermediate",
-    category: "Business Law"
+  { 
+    name: "Business Law", 
+    description: "Contracts, compliance, and corporate regulations",
+    href: "/categories/business-law",
+    imageId: 2,
+    courseCount: 5
   },
-  {
-    title: "Criminal Justice Fundamentals",
-    description: "Understand the basics of criminal law and procedure.",
-    duration: "8 hours",
-    level: "Beginner",
-    category: "Criminal Law"
+  { 
+    name: "Criminal Law", 
+    description: "Justice system, procedures, and defense strategies",
+    href: "/categories/criminal-law",
+    imageId: 3,
+    courseCount: 5
+  },
+  { 
+    name: "Civil Law", 
+    description: "Property rights, disputes, and case procedures",
+    href: "/categories/civil-law",
+    imageId: 4,
+    courseCount: 5
+  },
+  { 
+    name: "Legal Writing", 
+    description: "Document drafting and professional communication",
+    href: "/categories/legal-writing",
+    imageId: 5,
+    courseCount: 5
+  },
+  { 
+    name: "International Law", 
+    description: "Global frameworks, immigration, and cross-border regulations",
+    href: "/categories/international-law",
+    imageId: 6,
+    courseCount: 5
   }
 ]
 
-export default function Page() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* <Nav /> */}
-      
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">      
       {/* Header Section */}
-      <section className="px-4 py-12 md:py-16 lg:py-20 bg-gradient-to-b from-black to-slate-900 text-white">
+      <section className="px-4 py-16 md:py-24 bg-gradient-to-b from-primary/90 to-primary text-primary-foreground">
         <div className="container max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-down">
             Explore Law Courses
           </h1>
-          <p className="text-lg md:text-xl mb-8 text-slate-300">
-            Empower yourself with legal knowledge at your own pace
+          <p className="text-xl md:text-2xl mb-8 text-primary-foreground/80 animate-fade-in-up max-w-2xl mx-auto">
+            Empower yourself with legal knowledge. Learn at your own pace from expert-led courses.
           </p>
-          <div className="max-w-xl mx-auto flex flex-col sm:flex-row gap-4 mb-8">
+          <div className="max-w-xl mx-auto flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in">
             <Input 
               placeholder="Search for courses..." 
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
+              aria-label="Search for courses"
             />
-            <Button className="bg-yellow-500 text-black hover:bg-yellow-400">
+            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 transition-colors">
               Search Courses
             </Button>
           </div>
@@ -65,76 +73,32 @@ export default function Page() {
       </section>
 
       {/* Categories Section */}
-      <section className="px-4 py-12 bg-white">
+      <section className="px-4 py-16 md:py-24">
         <div className="container max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Explore by Category</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Explore by Category</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category) => (
-              <Card key={category.name} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle>{category.name}</CardTitle>
-                  <CardDescription>{category.description}</CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <div className='flex justify-center'>
-                  <Link href={category.link}>
-                  <Button variant="outline" className="w-full flex items-center">Browse Courses</Button>
-                  </Link>
-                  </div> 
-                </CardFooter>
-              </Card>
+              <CategoryCard
+                key={category.name}
+                name={category.name}
+                description={category.description}
+                href={category.href}
+                imageId={category.imageId}
+                courseCount={category.courseCount}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Courses Section */}
-      <section className="px-4 py-12 bg-slate-50">
-        <div className="container max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Our Most Popular Courses</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredCourses.map((course) => (
-              <Card key={course.title} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge variant="secondary">{course.category}</Badge>
-                    <Badge variant="outline">{course.level}</Badge>
-                  </div>
-                  <CardTitle className="text-xl">{course.title}</CardTitle>
-                  <CardDescription>{course.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-slate-600">Duration: {course.duration}</p>
-                </CardContent>
-                <CardFooter>
-                  <Button className="w-full">Enroll Now</Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Progress Tracker Preview */}
-      <section className="px-4 py-12 bg-brown-50">
-        <div className="flex flex-col items-center container max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Track Your Progress</h2>
-          <Card className="max-w-md mx-auto">
-            <CardHeader>
-              <CardTitle>Your Learning Journey</CardTitle>
-              <CardDescription className="mb-6">Sign in to track your progress and earn certificates
-
-                
-                <Link href={'/auth/login'}> 
-              <Button className="w-1/2  bg-yellow-500 text-black hover:bg-yellow-400">
-                Sign In to Start Learning
-              </Button>
-              </Link>  
-              </CardDescription>
-            </CardHeader>
-            {/* <CardFooter> */} 
-            {/* </CardFooter> */}
-          </Card>
+      {/* Call to Action Section */}
+      <section className="px-4 py-16 bg-accent text-accent-foreground">
+        <div className="container max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Legal Journey?</h2>
+          <p className="text-xl mb-8">Join thousands of students learning law online. Get started today!</p>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-lg px-8 py-3">
+            Get Started
+          </Button>
         </div>
       </section>
     </div>
