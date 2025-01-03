@@ -8,26 +8,27 @@ export default function Experience() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <Image
-              src="/placeholder.svg?text=Gavel"
-              alt="Gavel"
+              src="/lawyer.jpg"
+              alt="Legal Expertise"
               width={400}
               height={300}
-              className="rounded-lg"
+              className="rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
             />
           </div>
           <div className="space-y-6">
             <h2 className="text-3xl font-serif">
-              Let Our Experience
+              Navigate the Legal Labyrinth with Confidence.
               <br />
-              <span className="text-amber-400">Be Your Guide</span>
+              <span className="text-amber-400">We&apos;re Your Sherpas.</span>
             </h2>
             <p className="text-gray-300">
-              Get help from experienced lawyers and legal service providers for 
-              your business, personal issues, divorce, land-related issues, political 
-              cases and every other issues where you might need to visit the courts.
+              From the boardroom to the courtroom, we&apos;ve seen it all.  Our seasoned legal experts provide battle-tested counsel for businesses, individuals, and everyone in between.  Whether you&apos;re facing a complex contract dispute, navigating a difficult divorce, securing your intellectual property, or just need a trusted advisor, we&apos;re here to help you conquer your legal challenges. Don&apos;t let legal complexities hold you back—let our experience be your advantage.
+            </p>
+            <p className="text-gray-300">
+               We specialize in a wide range of legal areas, including: Business Law, Family Law, Real Estate, Intellectual Property, Criminal Defense, and more.  Contact us today for a confidential consultation and discover how we can empower you to achieve your goals.
             </p>
             <Button className="bg-amber-400 text-black hover:bg-amber-500">
-              Contact Us
+              Contact us
             </Button>
           </div>
         </div>
@@ -35,4 +36,3 @@ export default function Experience() {
     </section>
   )
 }
-

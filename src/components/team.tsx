@@ -5,19 +5,19 @@ const lawyers = [
     name: 'Barrister Ali',
     title: 'Senior Advocate',
     court: 'Supreme Court',
-    image: '/placeholder.svg?text=Lawyer1'
+    image: '/L1.png'
   },
   {
     name: 'Barrister Ms. Marina Begum',
     title: 'Senior Advocate',
     court: 'Law School',
-    image: '/placeholder.svg?text=Lawyer2'
+    image: '/L2.png'
   },
   {
     name: 'Barrister Rahman',
     title: 'Advocate',
     court: 'Supreme Court',
-    image: '/placeholder.svg?text=Lawyer3'
+    image: '/L3.png'
   }
 ]
 

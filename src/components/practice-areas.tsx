@@ -4,19 +4,19 @@ import Link from 'next/link'
 const areas = [
   {
     title: 'Criminal Law',
-    image: '/placeholder.svg?text=Criminal'
+    image: '/criminal.png'
   },
   {
     title: 'Business & Startups',
-    image: '/placeholder.svg?text=Business'
+    image: '/business.png'
   },
   {
     title: 'Divorce & Family',
-    image: '/placeholder.svg?text=Family'
+    image: '/law.webp'
   },
   {
     title: 'Public Law',
-    image: '/placeholder.svg?text=Public'
+    image: '/public.png'
   }
 ]
 
