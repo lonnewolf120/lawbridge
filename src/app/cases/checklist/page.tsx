@@ -1,12 +1,11 @@
 'use client'
 import { useState } from 'react';
-import { LawyerSearch } from '@/components/lawyer-search'
-import { FindLawyersMap } from '@/components/find-lawyers-map'
 
-export default function FindLawyersPage() {
+
+export default function checklistdefault() {
   const [checkedItems, setCheckedItems] = useState([false, false, false, false, false]);
 
-  const handleCheckboxChange = (index: number) => {
+  const handlecheckboxchange = (index: number) => {
     const newCheckedItems = [...checkedItems];
     newCheckedItems[index] = !newCheckedItems[index];
     setCheckedItems(newCheckedItems);
@@ -56,7 +55,7 @@ export default function FindLawyersPage() {
               <input
                 type="checkbox"
                 checked={checkedItems[index]}
-                onChange={() => handleCheckboxChange(index)}
+                onChange={() => handlecheckboxchange(index)}
                     className="w-5 h-5 border-2 border-gray-400 rounded"
                 />
                 <div

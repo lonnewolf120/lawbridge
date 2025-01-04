@@ -53,6 +53,50 @@ export default function ProgressPage() {
           <ProgressBar progress={54} />
           </CardContent>
         </Card>
+        <Card className="col-span-1">
+          <CardHeader>
+            <CardTitle>Probation Hearings</CardTitle>
+            <Link href="/cases/checklist">
+            <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+            </Link>
+          </CardHeader>
+          <CardContent>
+          <ProgressBar progress={78} />
+          </CardContent>
+        </Card>
+        <Card className="col-span-1">
+          <CardHeader>
+            <CardTitle>Probation Hearings</CardTitle>
+            <Link href="/cases/checklist">
+            <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+            </Link>
+          </CardHeader>
+          <CardContent>
+          <ProgressBar progress={49} />
+          </CardContent>
+        </Card>
+        <Card className="col-span-1">
+          <CardHeader>
+            <CardTitle>Probation Hearings</CardTitle>
+            <Link href="/cases/checklist">
+            <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+            </Link>
+          </CardHeader>
+          <CardContent>
+          <ProgressBar progress={23} />
+          </CardContent>
+        </Card>
+        <Card className="col-span-1">
+          <CardHeader>
+            <CardTitle>Probation Hearings</CardTitle>
+            <Link href="/cases/checklist">
+            <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+            </Link>
+          </CardHeader>
+          <CardContent>
+          <ProgressBar progress={34} />
+          </CardContent>
+        </Card>
       
       </div>
     </div>
