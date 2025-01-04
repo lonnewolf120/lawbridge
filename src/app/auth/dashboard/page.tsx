@@ -60,19 +60,25 @@ export default function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
         <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2">
           <MessageSquare className="h-6 w-6" />
+          <Link href='/legal-assistant'>
           <span>Chat with Legal Assistant</span>
+          </Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2" variant="outline">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 " variant="outline">
           <Calendar className="h-6 w-6" />
-          <span>Schedule Appointment</span>
+          <Link href='/find-lawyers'>
+          <span>Find Lawyer</span>
+          </Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2" variant="outline">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 " variant="outline">
           <FileText className="h-6 w-6" />
-          <span>Submit Document</span>
+          <Link href='/cases'>
+          <span>View all cases</span></Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2" variant="outline">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 " variant="outline">
           <BookOpen className="h-6 w-6" />
-          <span>Browse Resources</span>
+          <Link href='/blog'>
+          <span>Browse Articles</span></Link>
         </Button>
       </div>
 

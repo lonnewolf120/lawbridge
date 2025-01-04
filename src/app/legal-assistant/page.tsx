@@ -18,7 +18,7 @@ export default function LegalAssistantPage() {
           description={description}
           setDescription={setDescription}
         />
-        <Chatbot category={category} />
+        <Chatbot category={category} description={description} />
       </div>
     </div>
   )
