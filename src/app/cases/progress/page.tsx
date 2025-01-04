@@ -12,7 +12,7 @@ export default function ProgressPage() {
   return (
     <div className="bg-gray-100 text-gray-800 font-sans p-4">
       <div className="grid grid-cols-4 gap-4">
-        <Card className="col-span-1 row-span-10 h-100">
+        <Card className="col-span-1 row-span-10">
           <CardHeader>
             <CardTitle>User Profile</CardTitle>
           </CardHeader>
@@ -29,74 +29,31 @@ export default function ProgressPage() {
             </div>
           </CardContent>
         </Card>
+        
         <Card className="col-span-1">
           <CardHeader>
-            <CardTitle>Tile 1</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 1 content here */}
-          </CardContent>
-        </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 2</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 2 content here */}
-          </CardContent>
-        </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 3</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 3 content here */}
-          </CardContent>
-        </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Property</CardTitle>
+            <CardTitle>Class Action</CardTitle>
             <Link href="/cases/checklist">
 
             <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
             </Link>
           </CardHeader>
           <CardContent>
-            {/* Add tile 4 content here */}
+            <ProgressBar progress={75} />
           </CardContent>
         </Card>
         <Card className="col-span-1">
           <CardHeader>
-            <CardTitle>Tile 5</CardTitle>
+            <CardTitle>Probation Hearings</CardTitle>
+            <Link href="/cases/checklist">
+            <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
+            </Link>
           </CardHeader>
           <CardContent>
           <ProgressBar progress={54} />
           </CardContent>
         </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 6</CardTitle>
-          </CardHeader>
-          <CardContent>
-           <ProgressBar progress={33} />
-          </CardContent>
-        </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 7</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 7 content here */}
-          </CardContent>
-        </Card>
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Tile 8</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Add tile 8 content here */}
-          </CardContent>
-        </Card>
+      
       </div>
     </div>
   )

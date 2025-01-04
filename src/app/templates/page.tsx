@@ -21,17 +21,17 @@ export default function Home() {
           {/* Document Links */}
           <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
             {[
-              "Residential Lease Agreement",
-              "Incorporation",
-              "Last Will and Testament",
-              "Separation Agreement",
-              "Bill of Sale",
-              "Employment Contract",
+              { name: "Rental Agreement Form", link: "/templates/residential-lease-agreement" },
+              { name: "Incorporation", link: "/templates/incorporation" },
+              { name: "Last Will and Testament", link: "/templates/last-will-and-testament" },
+              { name: "Separation Agreement", link: "/templates/separation-agreement" },
+              { name: "Bill of Sale", link: "/templates/bill-of-sale" },
+              { name: "Employment Contract", link: "/templates/employment-contract" },
             ].map((doc) => (
-                <Link href="/templates/2"> 
-              <Button key={doc} variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
-                {doc}
-              </Button>
+              <Link key={doc.name} href={doc.link}> 
+                <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
+                  {doc.name}
+                </Button>
               </Link>
             ))}
           </div>
