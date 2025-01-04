@@ -42,7 +42,7 @@ const civilLawCourses = [
 export default function CivilLawPage() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <main className="container max-w-6xl mx-auto py-12 px-4">
+      <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-4">Civil Law Courses</h1>
         <p className="text-xl mb-8 text-gray-600">
           Explore the intricacies of civil law in Bangladesh. Our courses provide essential knowledge for legal professionals, aspiring lawyers, and individuals interested in understanding their rights and obligations in civil matters.
@@ -60,7 +60,7 @@ export default function CivilLawPage() {
             </Link>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   )
 }

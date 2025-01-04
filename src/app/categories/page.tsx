@@ -85,7 +85,7 @@ export default function CategoriesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       
-      <main className="container max-w-6xl mx-auto py-12 px-4">
+      <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-8 text-center">Explore Legal Education Categories</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -100,7 +100,7 @@ export default function CategoriesPage() {
             />
           ))}
         </div>
-      </main>
+      </div>
     </div>
   )
 }

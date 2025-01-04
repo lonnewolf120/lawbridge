@@ -12,7 +12,7 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/find-lawyers', label: 'Find Lawyers' },
   { href: '/legal-assistant', label: 'Legal Assistant' },
-  { href: '/cases', label: 'Cases' },
+  { href: '/auth/cases', label: 'Cases' },
   { href: '/courses', label: 'Courses' },
   { href: '/templates', label: 'Templates' },
   { href: '/blog', label: 'Articles' },
@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-amber-50">
       <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-amber-100/10 backdrop-blur-md shadow-md' : 'bg-slate-200'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -104,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="flex-1">{children}</main>
+      <div className="flex-1">{children}</div>
       <footer className="bg-gray-900 text-gray-400 py-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">

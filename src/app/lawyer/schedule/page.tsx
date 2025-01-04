@@ -1,76 +1,132 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from "@/components/ui/button"
+// import { withAuth } from '@/components/with-auth'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar } from "@/components/ui/calendar"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-const appointments = [
-  { id: 1, client: 'John Doe', type: 'Consultation', time: '09:00 AM' },
-  { id: 2, client: 'Jane Smith', type: 'Case Review', time: '11:00 AM' },
-  { id: 3, client: 'Bob Johnson', type: 'Court Hearing', time: '02:00 PM' },
-  { id: 4, client: 'Alice Brown', type: 'Document Signing', time: '04:00 PM' },
+// Dummy data for schedule
+const scheduleData = [
+  { id: 1, title: 'Client Meeting', date: '2023-07-15', time: '09:00 AM', duration: '1 hour' },
+  { id: 2, title: 'Court Hearing', date: '2023-07-16', time: '02:00 PM', duration: '2 hours' },
+  { id: 3, title: 'Document Review', date: '2023-07-17', time: '10:00 AM', duration: '3 hours' },
+  { id: 4, title: 'Team Meeting', date: '2023-07-18', time: '11:00 AM', duration: '1 hour' },
+  { id: 5, title: 'Client Call', date: '2023-07-19', time: '03:00 PM', duration: '30 minutes' },
 ]
 
-export default function LawyerSchedulePage() {
-  const [date, setDate] = useState<Date | undefined>(new Date())
+function LawyerSchedulePage() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [newEvent, setNewEvent] = useState({
+    title: '',
+    date: '',
+    time: '',
+    duration: '',
+  })
+
+  const handleAddEvent = () => {
+    // In a real application, you would add the new event to your backend here
+    console.log('Adding new event:', newEvent)
+    setIsDialogOpen(false)
+    setNewEvent({ title: '', date: '', time: '', duration: '' })
+  }
 
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8">My Schedule</h1>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Calendar</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              className="rounded-md border"
-            />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0">
-            <CardTitle>Appointments</CardTitle>
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Filter by type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="consultation">Consultation</SelectItem>
-                <SelectItem value="review">Case Review</SelectItem>
-                <SelectItem value="hearing">Court Hearing</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-              </SelectContent>
-            </Select>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {appointments.map((appointment) => (
-                <div key={appointment.id} className="flex items-center justify-between border-b pb-2">
-                  <div>
-                    <h3 className="font-medium">{appointment.client}</h3>
-                    <p className="text-sm text-muted-foreground">{appointment.type}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-medium">{appointment.time}</p>
-                    <Button variant="link" className="text-sm p-0">View Details</Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Button className="w-full mt-4">Schedule New Appointment</Button>
-          </CardContent>
-        </Card>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">Lawyer Schedule</h1>
+        <Button onClick={() => setIsDialogOpen(true)}>Add Event</Button>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Upcoming Events</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Title</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Time</TableHead>
+                <TableHead>Duration</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {scheduleData.map((event) => (
+                <TableRow key={event.id}>
+                  <TableCell>{event.title}</TableCell>
+                  <TableCell>{event.date}</TableCell>
+                  <TableCell>{event.time}</TableCell>
+                  <TableCell>{event.duration}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add New Event</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="title">Title</Label>
+              <Input 
+                id="title" 
+                value={newEvent.title} 
+                onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+              />
+            </div>
+            <div>
+              <Label htmlFor="date">Date</Label>
+              <Input 
+                id="date" 
+                type="date" 
+                value={newEvent.date} 
+                onChange={(e) => setNewEvent({...newEvent, date: e.target.value})}
+              />
+            </div>
+            <div>
+              <Label htmlFor="time">Time</Label>
+              <Input 
+                id="time" 
+                type="time" 
+                value={newEvent.time}
+                onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+              />
+            </div>
+            <div>
+              <Label htmlFor="duration">Duration</Label>
+              <Select 
+                onValueChange={(value) => setNewEvent({...newEvent, duration: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select duration" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="30 minutes">30 minutes</SelectItem>
+                  <SelectItem value="1 hour">1 hour</SelectItem>
+                  <SelectItem value="2 hours">2 hours</SelectItem>
+                  <SelectItem value="3 hours">3 hours</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button onClick={handleAddEvent}>Add Event</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
+
+// export default withAuth(LawyerSchedulePage)
+
+export default (LawyerSchedulePage)
 

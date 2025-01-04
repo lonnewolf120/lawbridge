@@ -56,7 +56,7 @@ export default function ProgressPage() {
         <Card className="col-span-1">
           <CardHeader>
             <CardTitle>Property</CardTitle>
-            <Link href="/cases/checklist">
+            <Link href="/auth/cases/checklist">
 
             <p className="text-blue-600 text-sm font-semibold hover:underline">Details</p>
             </Link>

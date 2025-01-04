@@ -107,7 +107,7 @@ export default function LoginPage() {
               Forgot password?
             </Link>
           </div>
-          {userType==='client'?(<Link href='/auth/dashboard'>
+          {userType==='client'?(<Link href='/auth/cases/dashboard'>
           <Button
             type="submit"
             className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
