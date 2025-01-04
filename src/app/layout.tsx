@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Layout from '@/components/layout'
 // import { ThemeProvider } from '@/contexts/theme-context'
 
+import { Toaster } from "@/components/ui/toaster" 
 import {Providers} from "./providers";
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +22,8 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <ThemeProvider> */}
         <Providers>
-          <Layout>{children}</Layout>
+          <Layout>{children}
+          </Layout><Toaster />
         </Providers>
         {/* </ThemeProvider> */}
       </body>

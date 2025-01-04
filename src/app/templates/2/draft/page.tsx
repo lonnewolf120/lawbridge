@@ -1,15 +1,40 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 export default function NDA() {
+
+  const downloadPDF = async () => {
+    const element = document.getElementById('nda');
+    if (!element) return;
+
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save('nda.pdf');
+  };
+
+  const printNDA = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <Button className="mr-4 bg-blue-500 hover:bg-blue-700 text-white">Download</Button>
-          <Button variant="outline">Print</Button>
+          <Button className="mr-4 bg-blue-500 hover:bg-blue-700 text-white" onClick={downloadPDF}>Download</Button>
+          <Button variant="outline" onClick={printNDA}>Print</Button>
         </div>
-          <div className="rounded-lg shadow-lg p-6 bg-white">
+        <div id="nda" className="rounded-lg shadow-lg p-6 bg-white">
             <div className="mb-4">
             <h2 className="text-2xl font-bold">Non-Disclosure Agreement</h2>
             <p className="text-gray-600">Effective Date: {new Date().toLocaleDateString()}</p>

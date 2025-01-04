@@ -27,7 +27,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
                             backgroundColor: ['#4caf50', '#e0e0e0'],
                             borderColor: '#fff',
                             borderWidth: 5,
-                            radius: '80%',
                         },
                     ],
                 },
