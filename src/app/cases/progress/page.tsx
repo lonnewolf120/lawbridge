@@ -14,7 +14,7 @@ export default function ProgressPage() {
       <div className="grid grid-cols-4 gap-4">
         <Card className="col-span-1 row-span-10">
           <CardHeader>
-            <CardTitle>User Profile</CardTitle>
+         
           </CardHeader>
           <CardContent>
             <div className="flex flex-col items-center justify-center">
