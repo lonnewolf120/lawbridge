@@ -14,7 +14,7 @@ const clients = [
     name: 'John Doe', 
     email: 'john@example.com', 
     phone: '123-456-7890',
-    address: '123 Main St, Anytown, USA',
+    address: '123 div St, Anytown, USA',
     avatar: '/placeholder.svg?text=JD',
     cases: [
       { id: '1234', type: 'Civil', status: 'Active', nextHearing: '2023-07-15' },

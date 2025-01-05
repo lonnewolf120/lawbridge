@@ -5,10 +5,10 @@ import Experience from '@/components/experience'
 import Team from '@/components/team'
 import BlogPosts from '@/components/blog-posts'
 import { Button } from '@/components/ui/button'
-
+import Link from 'next/link'
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <Hero />
       <PracticeAreas />
       <Stats />
@@ -28,12 +28,13 @@ export default function Home() {
       <Team />
       <BlogPosts />
       <section className="py-16 text-center bg-gray-50">
-        <h3 className="text-xl mb-4">If you would like us to assist you with your business</h3>
+        <h3 className="text-xl mb-4">Talk to our legal assistant </h3>
+        <Link href={'/legal-assistant'}>
         <Button variant="outline" className="bg-amber-100 hover:bg-amber-200 border-amber-200">
           Click here
-        </Button>
+        </Button></Link>
       </section>
-    </main>
+    </div>
   )
 }
 

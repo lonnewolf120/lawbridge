@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { Home, FileText, Calendar, Lightbulb, UserPlus } from 'lucide-react'
 
 const navItems = [
-  { name: 'Dashboard', href: '/auth/dashboard', icon: Home },
-  { name: 'File a Case', href: '/cases/file', icon: FileText },
-  { name: 'My Cases', href: '/cases', icon: FileText },
-  { name: 'Progress Tracker', href: '/cases/progress', icon: FileText },
-  { name: 'Upcoming Hearings', href: '/cases/hearings', icon: Calendar },
-  { name: 'Legal Tips', href: '/cases/tips', icon: Lightbulb },
+  { name: 'Dashboard', href: '/auth/cases/dashboard', icon: Home },
+  { name: 'File a Case', href: '/auth/cases/file', icon: FileText },
+  { name: 'My Cases', href: '/auth/cases', icon: FileText },
+  { name: 'Progress Tracker', href: '/auth/cases/progress', icon: FileText },
+  { name: 'Upcoming Hearings', href: '/auth/cases/hearings', icon: Calendar },
+  { name: 'Legal Tips', href: '/auth/cases/tips', icon: Lightbulb },
   { name: 'Find a Lawyer', href: '/find-lawyers', icon: UserPlus },
 ]
 

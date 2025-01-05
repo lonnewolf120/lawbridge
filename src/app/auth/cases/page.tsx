@@ -63,7 +63,7 @@ export default function MyCasesPage() {
         ))}
       </div>
       <div className="mt-8 mb-8">
-        <Link href="/cases/file">
+        <Link href="/auth/cases/file">
           <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white">File New Case</Button>
         </Link>
       </div>

@@ -50,9 +50,11 @@ export default function Hero() {
               accessible, and affordable. At LawBridge, we believe that navigating the legal world 
               shouldn't be overwhelming or expensive
             </p>
-            <Button className="bg-amber-100 text-black hover:bg-amber-200 border border-amber-200">
-              Get started
-            </Button>
+            <Link href='/login'>
+              <Button className="bg-amber-100 text-black hover:bg-amber-200 border border-amber-200">
+                Get started
+              </Button>
+            </Link>
             <div className="mt-8">
               <p className="text-sm text-muted-foreground mb-2">Have any question?</p>
               <Link href={`tel:+8801311962091`}>

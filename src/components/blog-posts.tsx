@@ -37,7 +37,7 @@ export default function BlogPosts() {
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-serif text-center mb-12">Latest Blog Posts</h2>
+        <h2 className="text-3xl font-serif text-center mb-12">Latest Articles</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {posts.map((post) => (
             <Card key={post.id} className="flex flex-col">

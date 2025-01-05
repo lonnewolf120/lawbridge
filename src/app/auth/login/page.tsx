@@ -3,9 +3,24 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Snackbar } from '@mui/material'
+// import { useAuth } from '@/contexts/auth-context'
 
 export default function LoginPage() {
   const [userType, setUserType] = useState<'client' | 'lawyer'>('client')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  // const { login } = useAuth()
+  const [snackopen, setSnack] = useState(false)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      setSnack(true);
+      // await login(email, password)
+    } catch (error) {
+      console.error('Login failed:', error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
@@ -14,7 +29,11 @@ export default function LoginPage() {
           <h2 className="text-3xl font-bold text-slate-900">Welcome Back</h2>
           <p className="mt-2 text-gray-600">Sign in to your account</p>
         </div>
-
+        <Snackbar
+          open={snackopen}
+          autoHideDuration={6000}
+          message="Logged in"
+        />
         <div className="flex gap-4 p-1 bg-slate-100 rounded-lg">
           <button
             onClick={() => setUserType('client')}
@@ -38,7 +57,7 @@ export default function LoginPage() {
           </button>
         </div>
 
-        <form className="mt-8 space-y-6">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-slate-700">
               Email
@@ -49,6 +68,7 @@ export default function LoginPage() {
               type="email"
               required
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+              onChange={(e)=>setEmail(e.target.value)}
             />
           </div>
 
@@ -61,6 +81,8 @@ export default function LoginPage() {
               name="password"
               type="password"
               required
+              onChange={(e)=>setPassword(e.target.value)}
+
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
             />
           </div>
@@ -85,7 +107,7 @@ export default function LoginPage() {
               Forgot password?
             </Link>
           </div>
-          {userType==='client'?(<Link href='/auth/dashboard'>
+          {userType==='client'?(<Link href='/auth/cases/dashboard'>
           <Button
             type="submit"
             className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
@@ -101,13 +123,13 @@ export default function LoginPage() {
             Sign in
           </Button>
           </Link>)}
+          </form>
           <p className="text-center text-sm text-slate-600">
             Don't have an account?{' '}
             <Link href="/auth/signup" className="text-amber-600 hover:text-amber-900">
               Sign up
             </Link>
           </p>
-        </form>
       </div>
     </div>
   )
