@@ -52,7 +52,7 @@ export default function FileCasePage() {
           <Label htmlFor="description" className="text-lg font-medium">Case Description</Label>
           <Textarea id="description" placeholder="Describe your case" className="mt-2 w-full p-4 text-lg border rounded-md h-60" />
         </div>
-        <Button type="submit" className="w-full py-4 text-lg font-medium rounded-md bg-red-300 hover:bg-red-600 text-black">File Case</Button>
+        <Button type="submit" className="w-full py-4 text-lg font-medium rounded-md bg-blue-500 hover:bg-blue-600 text-white">File Case</Button>
       </form>
     </div>
   )

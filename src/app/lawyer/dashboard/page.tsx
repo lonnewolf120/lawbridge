@@ -6,11 +6,10 @@ import { ArrowRight, Briefcase, Calendar, DollarSign, Users, FileText, Clock } f
 
 export default function LawyerDashboardPage() {
   return (
-    <div className="container mx-auto py-12">
+    <div className="container mx-auto py-12 px-4">
       <h1 className="text-4xl font-bold mb-8">Lawyer Dashboard</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-      <Link href={'/lawyer/cases'}>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Cases</CardTitle>
@@ -21,9 +20,6 @@ export default function LawyerDashboardPage() {
             <p className="text-xs text-muted-foreground">+2 from last month</p>
           </CardContent>
         </Card>
-        </Link>
-        
-      <Link href={'/lawyer/clients'}>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Clients</CardTitle>
@@ -33,8 +29,7 @@ export default function LawyerDashboardPage() {
             <div className="text-2xl font-bold">18</div>
             <p className="text-xs text-muted-foreground">+3 new this month</p>
           </CardContent>
-        </Card></Link>
-        <Link href={'/lawyer/schedule'}>
+        </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Upcoming Appointments</CardTitle>
@@ -44,8 +39,7 @@ export default function LawyerDashboardPage() {
             <div className="text-2xl font-bold">12</div>
             <p className="text-xs text-muted-foreground">For the next 7 days</p>
           </CardContent>
-        </Card></Link>
-        <Link href={'/lawyer/revenue'}>
+        </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Revenue</CardTitle>
@@ -56,7 +50,6 @@ export default function LawyerDashboardPage() {
             <p className="text-xs text-muted-foreground">+20% from last month</p>
           </CardContent>
         </Card>
-        </Link>   
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
@@ -130,25 +123,25 @@ export default function LawyerDashboardPage() {
             <Link href="/lawyer/cases/new">
               <Button className="w-full justify-start">
                 <FileText className="mr-2 h-4 w-4 text-amber-400" />
-                <p className='text-amber-50'>File New Case</p> 
+                <p className='text-amber-400'>File New Case</p> 
               </Button>
             </Link>
             <Link href="/lawyer/clients">
               <Button className="w-full justify-start bg-amber-100" variant="outline">
                 <Users className="mr-2 h-4 w-4" />
-                <p className='text-slate-700'>View Client List</p>
+                View Client List
               </Button>
             </Link>
             <Link href="/lawyer/schedule">
               <Button className="w-full justify-start bg-amber-200" variant="outline">
                 <Calendar className="mr-2 h-4 w-4" />
-                <p className='text-slate-700'>Manage Schedule</p>
+                Manage Schedule
               </Button>
             </Link>
             <Link href="/lawyer/deadlines">
               <Button className="w-full justify-start bg-amber-300" variant="outline">
                 <Clock className="mr-2 h-4 w-4" />
-                <p className='text-slate-700'>View Deadlines</p>
+                View Deadlines
               </Button>
             </Link>
           </CardContent>

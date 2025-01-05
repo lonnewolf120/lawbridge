@@ -8,18 +8,17 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 interface CourseCardProps {
   title: string
   description: string
-  imageId: number
-  price: number
+  image: string
 }
 
-export function CourseCard({ title, description, imageId, price }: CourseCardProps) {
+export function CourseCard({ title, description, image }: CourseCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <Card className="flex flex-col h-full transition-all duration-300 hover:shadow-lg">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={`/placeholder.svg?height=200&width=400&text=Course+${imageId}`}
+          src={`/placeholder.svg?height=200&width=400&text=Course+${image}`}
           alt={title}
           layout="fill"
           objectFit="cover"
@@ -37,10 +36,7 @@ export function CourseCard({ title, description, imageId, price }: CourseCardPro
           variant="ghost"
           size="sm"
           className="mt-2 p-0"
-          onClick={(e) => {
-            e.preventDefault()
-            setIsExpanded(!isExpanded)
-          }}
+          onClick={() => setIsExpanded(!isExpanded)}
         >
           {isExpanded ? (
             <>
@@ -54,10 +50,7 @@ export function CourseCard({ title, description, imageId, price }: CourseCardPro
         </Button>
       </CardContent>
       <CardFooter className="mt-auto">
-        <div className="flex justify-between items-center w-full">
-          <span className="font-bold text-lg">${price.toFixed(2)}</span>
-          <Button>View Course</Button>
-        </div>
+        <Button className="w-full">Enroll Now</Button>
       </CardFooter>
     </Card>
   )

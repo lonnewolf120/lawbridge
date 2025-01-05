@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { CategoryCard } from "@/components/course/category-card"
+import { CategoryCard } from "@/components/categories/category-card"
 
 const categories = [
   { 
@@ -49,11 +49,9 @@ const categories = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
-
-      
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">      
       {/* Header Section */}
-      <section className="px-4 py-16 md:py-24 bg-gradient-to-b from-green-400/90 to-green-800 text-primary-foreground">
+      <section className="px-4 py-16 md:py-24 bg-gradient-to-b from-primary/90 to-primary text-primary-foreground">
         <div className="container max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-down">
             Explore Law Courses

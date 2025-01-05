@@ -124,7 +124,15 @@ export default function LegalForms() {
   return (
     <div className="min-h-screen bg-gray-50">      
       <div className="flex">
-        
+        <div className="hidden lg:block w-64 p-4">
+          <Image
+            src="/logo2.png"
+            alt="Legal Forms"
+            width={200}
+            height={200}
+            className="w-full rounded-lg shadow-sm"
+          />
+        </div>
 
         <div className="flex-1 py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">

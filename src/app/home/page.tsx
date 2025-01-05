@@ -84,14 +84,14 @@ export default function HomePage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              Articles
+              Blog
             </CardTitle>
             <CardDescription>Read our latest articles</CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/blog">
               <Button className="w-full bg-orange-200 hover:bg-orange-500 text-black text-base">
-                View Article
+                View Blog
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>

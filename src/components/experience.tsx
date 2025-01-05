@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default function Experience() {
   return (
@@ -28,10 +27,9 @@ export default function Experience() {
             <p className="text-gray-300">
                We specialize in a wide range of legal areas, including: Business Law, Family Law, Real Estate, Intellectual Property, Criminal Defense, and more.  Contact us today for a confidential consultation and discover how we can empower you to achieve your goals.
             </p>
-            <Link href={'/find-lawyers'}>
             <Button className="bg-amber-400 text-black hover:bg-amber-500">
-              Find Lawyer
-            </Button></Link>
+              Contact us
+            </Button>
           </div>
         </div>
       </div>

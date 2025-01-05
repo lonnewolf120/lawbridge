@@ -12,7 +12,7 @@ const cases = [
   { id: '3141', client: 'Charlie Davis', type: 'Civil', status: 'Active', nextAction: 'Court Hearing', dueDate: '2023-07-25' },
 ]
 
-function LawyerCasesPage() {
+export default function LawyerCasesPage() {
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="flex justify-between items-center mb-8">
@@ -66,6 +66,4 @@ function LawyerCasesPage() {
     </div>
   )
 }
-
-export default LawyerCasesPage
 

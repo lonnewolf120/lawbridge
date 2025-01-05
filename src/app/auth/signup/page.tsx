@@ -122,7 +122,7 @@ export default function SignUpPage() {
 
           {userType === 'client' ? (
           
-            <Link href='/auth/cases/dashboard'>
+            <Link href='/auth/dashboard'>
             <button
             type="submit"
             className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E]"
