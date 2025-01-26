@@ -6,6 +6,28 @@ import Image from 'next/image'
 
 
 export default function Home() {
+  const templates = [
+  "Residential Lease Agreement",
+  "Incorporation",
+  "Last Will and Testament",
+  "Separation Agreement",
+  "Bill of Sale",
+  "Employment Contract",
+  ];
+
+  const items = [
+  { title: "Rent Out Property", icon: "🏠", href: "/templates/1" },
+  { title: "Plan My Estate", icon: "📋" , href: "/templates/1"},
+  { title: "Start a Business", icon: "🏪" , href: "/templates/1"},
+  { title: "Sell Services", icon: "💼" , href: "/templates/1"},
+  { title: "Sell or Transfer Real Estate", icon: "🔄" , href: "/templates/1"},
+  { title: "Lend Money", icon: "💰" , href: "/templates/1"},
+  { title: "Buy, Sell, or Rent Goods", icon: "🛍️" , href: "/templates/1"},
+  { title: "Manage Employees", icon: "👥" , href: "/templates/1"},
+  { title: "Separate or Divorce", icon: "📄" , href: "/templates/1"},
+  { title: "Plan My Child's Care", icon: "👶" , href: "/templates/1"},
+  ];
+
   return (
     <div className="min-h-screen bg-white">
 
@@ -20,18 +42,11 @@ export default function Home() {
           
           {/* Document Links */}
           <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
-            {[
-              { name: "Rental Agreement Form", link: "/templates/residential-lease-agreement" },
-              { name: "Incorporation", link: "/templates/incorporation" },
-              { name: "Last Will and Testament", link: "/templates/last-will-and-testament" },
-              { name: "Separation Agreement", link: "/templates/separation-agreement" },
-              { name: "Bill of Sale", link: "/templates/bill-of-sale" },
-              { name: "Employment Contract", link: "/templates/employment-contract" },
-            ].map((doc) => (
-              <Link key={doc.name} href={doc.link}> 
-                <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
-                  {doc.name}
-                </Button>
+            {templates.map((doc) => (
+              <Link href="/templates/2"> 
+              <Button key={doc} variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
+                {doc}
+              </Button>
               </Link>
             ))}
           </div>
@@ -44,7 +59,8 @@ export default function Home() {
               className="w-full pl-4 pr-10 py-3 rounded-full"
             />
             <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
-            
+          </div>
+          <div className="flex flex-col items-center relative max-w-2xl mx-auto mt-8">
         <Link href="/templates/1">
             <Button variant="outline" className="flex flex-col justify-center bg-amber-200 hover:bg-amber-400 text-black text-base">
               View All Documents
@@ -57,21 +73,10 @@ export default function Home() {
         <section className="space-y-6">
           <h2 className="text-3xl font-semibold text-center">What do you want to accomplish?</h2>
           <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              { title: "Rent Out Property", icon: "🏠" },
-              { title: "Plan My Estate", icon: "📋" },
-              { title: "Start a Business", icon: "🏪" },
-              { title: "Sell Services", icon: "💼" },
-              { title: "Sell or Transfer Real Estate", icon: "🔄" },
-              { title: "Lend Money", icon: "💰" },
-              { title: "Buy, Sell, or Rent Goods", icon: "🛍️" },
-              { title: "Manage Employees", icon: "👥" },
-              { title: "Separate or Divorce", icon: "📄" },
-              { title: "Plan My Child's Care", icon: "👶" },
-            ].map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.title}
-                href="#"
+                href={item.href}
                 className="flex items-center gap-4 text-green-600 hover:text-green-700 transition-colors"
               >
                 <span className="text-2xl">{item.icon}</span>
