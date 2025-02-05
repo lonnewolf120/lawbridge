@@ -90,21 +90,6 @@ export default function SignUpPage() {
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
             />
           </div>
-
-          {userType === 'lawyer' && (
-            <div>
-              <label htmlFor="barNumber" className="block text-sm font-medium text-slate-700">
-                Bar Number
-              </label>
-              <input
-                id="barNumber"
-                name="barNumber"
-                type="text"
-                required
-                className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
-              />
-            </div>
-          )}
           {userType === 'lawyer' && (
             <div>
               <label htmlFor="NID" className="block text-sm font-medium text-slate-700">
@@ -119,13 +104,28 @@ export default function SignUpPage() {
               />
             </div>
           )}
+          {userType === 'lawyer' && (
+            <div>
+              <label htmlFor="barNumber" className="block text-sm font-medium text-slate-700">
+                Bar Number
+              </label>
+              <input
+                id="barNumber"
+                name="barNumber"
+                type="text"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+              />
+            </div>
+          )}
+          
 
           {userType === 'client' ? (
           
             <Link href='/auth/dashboard'>
             <button
             type="submit"
-            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E]"
+            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
           >
             Create Account
           </button></Link>) : (
@@ -133,7 +133,7 @@ export default function SignUpPage() {
             <Link href='/lawyer/dashboard'>
             <button
             type="submit"
-            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E]"
+            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
           >
             Create Account
           </button></Link>
