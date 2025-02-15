@@ -9,9 +9,9 @@ export default function LegalAssistantPage() {
   const [description, setDescription] = useState<string | null>(null)
 
   return (
-    <div className="max-w-6xl mx-auto py-12 px-4">
-      <h1 className="text-3xl font-serif mb-8">Legal Assistant</h1>
-      <div className="grid md:grid-cols-2 gap-8">
+    <div className="w-full mx-auto py-12 px-8">
+      <h1 className="text-3xl font-serif mb-8">Avijatrik: Your Personal Legal Assistant</h1>
+      <div className="grid md:grid-cols-[1fr,3fr]  gap-8">
         <LegalCategoryForm
           category={category}
           setCategory={setCategory}

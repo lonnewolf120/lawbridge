@@ -78,7 +78,9 @@ export default function Chatbot({ category, description }: { category: string | 
     return (
         <Card className="h-[600px] flex flex-col">
             <CardHeader>
-                <CardTitle>Chat with Legal Assistant
+                <CardTitle>
+                <p className='text-3xl'>Chat with Avijatrik (AI Legal Assistant)</p>
+                {/* <p>Avijatrik can find you a lawyer based on your legal issue, or help you to solve it yourself. Try it out!</p> */}
                 </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow overflow-hidden relative">
