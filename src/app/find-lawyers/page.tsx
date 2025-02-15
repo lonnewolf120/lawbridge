@@ -17,12 +17,12 @@ export default function FindLawyersPage() {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* <h1 className="text-3xl font-serif mb-8">Find Lawyers</h1> */}
         <div className="grid lg:grid-cols-[2fr,1fr] gap-8">
-          <FindLawyersMap onLocationSelected={handleLocationSelected} /> {/* Pass the callback function */}
           <LawyerSearch mapLocation={selectedMapLocation} /> {/* Pass selectedMapLocation as prop */}
+          <FindLawyersMap onLocationSelected={handleLocationSelected} /> {/* Pass the callback function */}
+          
         </div>
       </div>
     </div>
   )
 }
 
-// function useCallback removed as it conflicts with the imported useCallback

@@ -12,6 +12,8 @@ export interface Lawyer {
     latitude?: number | null; // DECIMAL, can be null
     longitude?: number | null; // DECIMAL, can be null
     nid?: string | null; // TEXT, can be null
+    fees?: number | null; // DECIMAL, can be null
+    experience?: number | null; // INTEGER, can be null
   
     // Fields from the users table that you are likely to fetch in your query (based on your backend code)
     first_name?: string | null;
