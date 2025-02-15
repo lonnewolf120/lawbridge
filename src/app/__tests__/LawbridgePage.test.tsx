@@ -1,25 +1,25 @@
 // import { render, screen } from "@testing-library/react";
-// import LawbridgePage from "../layout";
+// import ShalishPage from "../layout";
 
-// describe("LawbridgePage", () => {
+// describe("ShalishPage", () => {
 //   it("renders without crashing", () => {
-//     render(<LawbridgePage />);
+//     render(<ShalishPage />);
 //   });
 
 //   it("displays the logo", () => {
-//     render(<LawbridgePage />);
-//     const logo = screen.getByAltText("Lawbridge Logo");
+//     render(<ShalishPage />);
+//     const logo = screen.getByAltText("Shalish Logo");
 //     expect(logo).toBeInTheDocument();
 //   });
 
 //   it("renders navigation items", () => {
-//     render(<LawbridgePage />);
+//     render(<ShalishPage />);
 //     expect(screen.getByText("Home")).toBeInTheDocument();
 //     expect(screen.getByText("About")).toBeInTheDocument();
 //   });
 
 //   it("renders login button", () => {
-//     render(<LawbridgePage />);
+//     render(<ShalishPage />);
 //     expect(screen.getByText("Log in")).toBeInTheDocument();
 //   });
 // });

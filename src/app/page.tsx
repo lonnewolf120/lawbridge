@@ -12,11 +12,12 @@ export default function Home() {
       <Hero />
       <PracticeAreas />
       <Stats />
+      
       <Experience />
       <section className="py-16 text-center space-y-4">
         <h2 className="text-3xl font-serif">We&apos;re Advocates for<br />Justice and Right</h2>
         <p className="max-w-3xl mx-auto text-muted-foreground px-4">
-          At LawBridge, we bring years of experience across various practice areas, ensuring you receive informed, 
+          At Shalish (সালিশ), we bring years of experience across various practice areas, ensuring you receive informed, 
           effective, and personalized legal solutions. Our dedicated team is committed to understanding your unique 
           needs and providing tailored advice and representation. Your trust empowers us to navigate the complexities 
           of the legal system and advocate fearlessly on your behalf.
