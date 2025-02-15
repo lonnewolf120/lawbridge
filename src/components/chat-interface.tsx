@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card'
 import ReactMarkdown from 'react-markdown'
+import Link from 'next/link'
 
 type Message = {
     role: 'user' | 'assistant'
@@ -83,7 +84,7 @@ export default function Chatbot({ category, description }: { category: string | 
                 {/* <p>Avijatrik can find you a lawyer based on your legal issue, or help you to solve it yourself. Try it out!</p> */}
                 </CardTitle>
             </CardHeader>
-            <CardContent className="flex-grow overflow-hidden relative">
+            <CardContent className="flex-grow overflow-hidden relative mb-4">
                 {category && (
                     <div className="m-2 p-2 bg-blue-100 text-blue-800 rounded-md text-sm">
                         Assistant will now speak in context to {category !== 'other' ? category : 'all'} Laws
@@ -94,7 +95,7 @@ export default function Chatbot({ category, description }: { category: string | 
                         Assistant received your description, will provide legal help in that context
                     </div>
                 )}
-                <div className="h-full pr-4 pt-3 overflow-y-auto pb-3" ref={scrollRef}>
+                <div className="h-full pr-4 pt-3 overflow-y-auto pb-3 mb-4" ref={scrollRef}>
 
                     {messages.map((message, index) => (
                         <div
@@ -104,10 +105,18 @@ export default function Chatbot({ category, description }: { category: string | 
                             } max-w-[80%]`}
                         >
                             <ReactMarkdown>{message.content}</ReactMarkdown>
+                            {message.content.includes("Find Lawyer") && (
+                                <Link href="/find-lawyers">
+                                <Button className="mt-4 mb-4  bg-blue-500 hover:bg-blue-600 text-white">
+                                    Find Lawyer Page
+                                </Button>
+                                </Link>
+                            )}
                         </div>
                     ))}
                 </div>
             </CardContent>
+            <hr className="border-t" />
             <CardFooter>
                 <form onSubmit={handleSubmit} className="flex w-full gap-2">
                     <Input
