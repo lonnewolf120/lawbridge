@@ -4,11 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function AboutPage() {
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8 text-center">About LawBridge</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">About Shalish</h1>
       
       <div className="max-w-3xl mx-auto mb-12">
         <p className="text-lg text-muted-foreground text-center">
-          LawBridge is your trusted partner in navigating the complex world of law. We connect you with expert legal professionals and provide resources to help you understand and address your legal needs.
+          Shalish is your trusted partner in navigating the complex world of law. We connect you with expert legal professionals and provide resources to help you understand and address your legal needs.
         </p>
       </div>
 
@@ -77,10 +77,10 @@ export default function AboutPage() {
         <Card>
           <CardContent className="prose max-w-none">
             <p>
-              LawBridge was founded in 2023 with a simple yet powerful idea: to make legal services more accessible and understandable for everyone. Our founders, experienced legal professionals and tech innovators, recognized the challenges many people face when dealing with legal issues.
+              Shalish was founded in 2023 with a simple yet powerful idea: to make legal services more accessible and understandable for everyone. Our founders, experienced legal professionals and tech innovators, recognized the challenges many people face when dealing with legal issues.
             </p>
             <p>
-              They envisioned a platform that would not only connect clients with the right legal experts but also provide educational resources to empower individuals with legal knowledge. This vision gave birth to LawBridge, a comprehensive legal service platform that combines technology with human expertise.
+              They envisioned a platform that would not only connect clients with the right legal experts but also provide educational resources to empower individuals with legal knowledge. This vision gave birth to Shalish, a comprehensive legal service platform that combines technology with human expertise.
             </p>
             <p>
               Since our inception, we've been committed to breaking down the barriers in the legal industry. We've built a network of qualified lawyers, developed an AI-powered legal assistant, and created an extensive educational hub. Our journey is driven by the belief that everyone deserves access to quality legal support and information.

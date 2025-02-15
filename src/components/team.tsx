@@ -2,22 +2,24 @@ import Image from 'next/image'
 
 const lawyers = [
   {
-    name: 'Barrister Ali',
-    title: 'Senior Advocate',
-    court: 'Supreme Court',
-    image: '/L1.png'
+    name: 'Advocate Lubna Yeasmin',
+    title: `MSS (VRJ-DU), LL.M, MSS (P. Science)\n
+    MPH (JPGSPH), STC-FNPPM (Philippines)\n
+    Advocate, Appellate Division`,
+    court: 'Supreme Court of Bangladesh',
+    image: '/L1.jpg'
   },
   {
-    name: 'Barrister Ms. Marina Begum',
-    title: 'Senior Advocate',
+    name: 'Barrister Faran Md Aaraf',
+    title: `Barrister, Honourable Society of Lincoln's Inn, UK\n Advocate , Dhaka Judge Court\n Academic mentor, London College of Legal Studies (South), \nUniversity of London`,
     court: 'Law School',
-    image: '/L2.png'
+    image: '/L2.jpg'
   },
   {
-    name: 'Barrister Rahman',
-    title: 'Advocate',
-    court: 'Supreme Court',
-    image: '/L3.png'
+    name: 'Ashra Anika Tanha',
+    title: `Accredited Civil/ Commercial Mediator,\nADR ODR International, UK.\n`,
+    court: 'LLB(Hons, 4th year), University of London (UK)',
+    image: '/L3.jpg'
   }
 ]
 
@@ -25,16 +27,18 @@ export default function Team() {
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-serif text-center mb-12">Our Lawyers</h2>
+        <h2 className="text-3xl font-serif text-center mb-12">Our Advisors</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {lawyers.map((lawyer) => (
             <div key={lawyer.name} className="text-center">
-              <div className="relative w-48 h-48 mx-auto mb-4">
+              <div className="relative w-48 h-48 mx-auto mb-8">
                 <Image
                   src={lawyer.image}
                   alt={lawyer.name}
-                  fill
-                  className="object-cover rounded-full"
+                  height={192}
+                  width={192}
+                  className="rounded-full"
+
                 />
               </div>
               <h3 className="font-medium">{lawyer.name}</h3>

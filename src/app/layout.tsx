@@ -8,8 +8,8 @@ import {Providers} from "./providers";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'LawBridge - Your Trusted Legal Partner',
-  description: 'Professional legal services made simple and accessible',
+  title: 'Shalish সালিশ - Legal aid for all. Your Trusted Legal Partner',
+  description: 'Find lawyers, book appointments, get real-time legal help from us. Professional legal services made simple and accessible. Get expert legal advice and representation from Shalish, your trusted legal partner.',
 }
 
 export default function RootLayout({

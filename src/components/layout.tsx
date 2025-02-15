@@ -39,12 +39,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="flex items-center gap-2">
               <Image
                 src="/logo2.png"
-                alt="LawBridge Logo"
+                alt="Shalish Logo"
                 width={40}
                 height={40}
                 className="rounded"
               />
-              <span className="font-serif text-xl">LawBridge</span>
+              <span className="font-serif text-xl">Shalish</span>
             </div>
             <nav className="hidden md:flex items-center gap-6">
               {navItems.map((item) => (
@@ -71,7 +71,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                   <div className="flex flex-col h-full">
                     <div className="flex items-center justify-between mb-6">
-                      <span className="font-serif text-xl">LawBridge</span>
+                      <span className="font-serif text-xl">Shalish</span>
                       <SheetTrigger asChild>
                         <Button variant="ghost" className="p-2">
                           <X className="h-6 w-6" />
@@ -114,7 +114,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <h4 className="font-medium text-white mb-4">Contact</h4>
-              <p className="text-sm">Email: info@lawbridge.com</p>
+              <p className="text-sm">Email: info@Shalish.com</p>
               <p className="text-sm">Phone: +8801311962091</p>
             </div>
             <div>

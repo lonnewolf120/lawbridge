@@ -11,7 +11,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-slate-900">Create Account</h2>
-          <p className="mt-2 text-gray-600">Join LawBridge today</p>
+          <p className="mt-2 text-gray-600">Join Shalish today</p>
         </div>
 
         <div className="flex gap-4 p-1 bg-slate-100 rounded-lg">

@@ -6,7 +6,7 @@ import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare, Search, User }
 export default function HomePage() {
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8">Welcome to LawBridge</h1>
+      <h1 className="text-4xl font-bold mb-8">Welcome to Shalish</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader>

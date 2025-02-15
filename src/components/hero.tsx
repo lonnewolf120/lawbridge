@@ -44,10 +44,10 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[2fr,1fr] gap-8 items-center">
           <div className="space-y-6 z-10">
-            <h1 className="text-5xl font-serif">Lawbridge</h1>
+            <h1 className="text-5xl font-serif">Shalish</h1>
             <p className="text-xl text-muted-foreground max-w-xl">
-              Welcome to LawBridge, your trusted partner in navigating legal complexities. Simple, 
-              accessible, and affordable. At LawBridge, we believe that navigating the legal world 
+              Welcome to Shalish, your trusted partner in navigating legal complexities. Simple, 
+              accessible, and affordable. At Shalish, we believe that navigating the legal world 
               shouldn't be overwhelming or expensive
             </p>
             <Link href='/login'>
