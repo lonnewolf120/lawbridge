@@ -626,8 +626,11 @@ function getCourseDetails(courseId: string) {
 
   return courses.find(course => course.id === courseId)
 }
+interface Params {
+  courseId: string
+}
 
-export default function CoursePage({ params }: { params: { courseId: string } }) {
+export default function CoursePage({ params }: { params: Params }) {
   const courseDetails = getCourseDetails(params.courseId)
 
   if (!courseDetails) {

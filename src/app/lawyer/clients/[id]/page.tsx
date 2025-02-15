@@ -24,7 +24,13 @@ const clients = [
   // ... other clients
 ]
 
-export default function ClientDetailPage({ params }: { params: { id: string } }) {
+
+interface Params {
+  id: string
+}
+
+
+export default function ClientDetailPage({ params }: { params: Params }) {
   const client = clients.find(c => c.id === params.id)
 
   if (!client) {

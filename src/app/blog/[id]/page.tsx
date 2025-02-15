@@ -3,8 +3,18 @@ import { notFound } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  date: string;
+  author: string;
+  category: string;
+}
+
 // This data should ideally come from a database or API
-const posts = [
+const posts: Post[] = [
   {
     id: 1,
     title: 'How to file a lawsuit against a company',
@@ -103,7 +113,13 @@ const posts = [
   }
 ]
 
-export default function BlogPost({ params }: { params: { id: string } }) {
+interface BlogPostProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function BlogPost({ params }: BlogPostProps) {
   const post = posts.find(p => p.id === parseInt(params.id))
 
   if (!post) {
@@ -139,4 +155,3 @@ export default function BlogPost({ params }: { params: { id: string } }) {
     </div>
   )
 }
-
