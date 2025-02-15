@@ -35,14 +35,15 @@ export function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Receive ma
   const [maxFee, setMaxFee] = useState<number | null>(null)
   const [minExperience, setMinExperience] = useState<number | null>(null)
   const [practiceAreaSearch, setPracticeAreaSearch] = useState('')
-  const baseUrl = 'http://localhost:10101'
+  const baseUrl = 'http://localhost:10101' 
+  const [radius, setRadius] = useState(50);
+
 
   const fetchLawyers = async () => {
     setLoading(true)
     try {
       let fetchedLawyers = []
       if (mapLocation) {
-        const radius = 50 // km - You can make this selectable later
         const response = await fetch(`${baseUrl}/lawyers/nearby`, {
           method: 'POST',
           headers: {
@@ -186,6 +187,16 @@ export function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Receive ma
                 value={minExperience === null ? '' : minExperience}
                 onChange={(e) => setMinExperience(e.target.value === '' ? null : parseFloat(e.target.value))}
               />
+            </div>
+            <div>
+            <Label htmlFor="radius">Search Radius (km)</Label>
+            <Input
+              id="radius"
+              type="number"
+              value={radius}
+              onChange={(e) => setRadius(parseInt(e.target.value))}
+             className='w-full'
+            />
             </div>
           </div>
 
