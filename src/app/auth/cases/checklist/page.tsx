@@ -1,8 +1,5 @@
 'use client'
 import { useState } from 'react';
-import { LawyerSearch } from '@/components/lawyer-search'
-import { FindLawyersMap } from '@/components/find-lawyers-map'
-
 export default function FindLawyersPage() {
   const [checkedItems, setCheckedItems] = useState([false, false]);
 
