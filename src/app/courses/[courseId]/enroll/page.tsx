@@ -156,7 +156,8 @@ function getCourseDetails(courseId: string) {
   return courses.find(course => course.id === courseId)
 }
 
-export default function CourseEnrollmentPage({ params }: { params: { courseId: string } }) {
+export default async function CourseEnrollmentPage(props: { params: Promise<{ courseId: string }> }) {
+  const params = await props.params;
   const courseDetails = getCourseDetails(params.courseId)
 
   if (!courseDetails) {

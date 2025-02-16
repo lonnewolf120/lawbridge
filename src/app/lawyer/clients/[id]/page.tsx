@@ -30,7 +30,8 @@ interface Params {
 }
 
 
-export default function ClientDetailPage({ params }: { params: Params }) {
+export default async function ClientDetailPage(props: { params: Promise<Params> }) {
+  const params = await props.params;
   const client = clients.find(c => c.id === params.id)
 
   if (!client) {

@@ -119,7 +119,8 @@ interface BlogPostProps {
   };
 }
 
-export default function BlogPost({ params }: BlogPostProps) {
+export default async function BlogPost(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const post = posts.find(p => p.id === parseInt(params.id))
 
   if (!post) {

@@ -55,7 +55,7 @@ export function CourseCard({ title, description, imageId, price }: CourseCardPro
       </CardContent>
       <CardFooter className="mt-auto">
         <div className="flex justify-between items-center w-full">
-          <span className="font-bold text-lg">${price.toFixed(2)}</span>
+          {/* <span className="font-bold text-lg">${price.toFixed(2)}</span> */}
           <Button>View Course</Button>
         </div>
       </CardFooter>

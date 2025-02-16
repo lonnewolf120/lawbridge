@@ -630,7 +630,8 @@ interface Params {
   courseId: string
 }
 
-export default function CoursePage({ params }: { params: Params }) {
+export default async function CoursePage(props: { params: Promise<Params> }) {
+  const params = await props.params;
   const courseDetails = getCourseDetails(params.courseId)
 
   if (!courseDetails) {

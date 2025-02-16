@@ -34,18 +34,27 @@
 // import { useForm } from 'react-hook-form'
 // import { zodResolver } from '@hookform/resolvers/zod'
 // import * as z from 'zod'
+// import { useRouter } from 'next/navigation'
 
 // const timeSlots = [
 //   '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'
 // ]
 
 // const formSchema = z.object({
-//   date: z.date(),
-//   time: z.string(),
-//   caseBrief: z.string().min(50, 'Please provide at least 50 characters'),
-//   location: z.enum(['lawyer-office', 'client-location']),
+//   date: z.date({
+//     required_error: 'Please select a date for your appointment.',
+//   }),
+//   time: z.string({
+//     required_error: 'Please select a time slot.',
+//   }),
+//   caseBrief: z.string().min(50, 'Case brief must be at least 50 characters long.'),
+//   location: z.enum(['lawyer-office', 'client-location'], {
+//     required_error: 'Please select an appointment location.',
+//   }),
 //   clientAddress: z.string().optional(),
-//   paymentMethod: z.enum(['online', 'pay-later'])
+//   paymentMethod: z.enum(['online', 'pay-later'], {
+//     required_error: 'Please select a payment method.',
+//   })
 // })
 
 // interface AppointmentBookingProps {
@@ -61,6 +70,7 @@
 //     locationSurcharge: 0,
 //     total: basePrice
 //   })
+//   const router = useRouter()
 
 //   const form = useForm<z.infer<typeof formSchema>>({
 //     resolver: zodResolver(formSchema),
@@ -79,28 +89,43 @@
 //     })
 //   }
 
+//   const nextStep = () => {
+//     form.handleSubmit(() => {
+//       setStep((currentStep) => currentStep + 1)
+//     })()
+//   }
+
+//   const prevStep = () => {
+//     setStep((currentStep) => currentStep - 1)
+//   }
+
 //   const onSubmit = async (data: z.infer<typeof formSchema>) => {
 //     const appointmentData = {
 //       ...data,
-//       lawyerId
+//       lawyerId,
+//       totalPrice: pricing.total,
+//       lawyerName
 //     }
 
-//     if (data.paymentMethod === 'online') {
-//       // Redirect to payment gateway
-//       console.log('Redirecting to payment gateway', appointmentData)
-//     } else {
-//       // Submit appointment with pay-later status
-//       console.log('Submitting appointment with pay-later status', appointmentData)
+//     try {
+//       // Simulate API call
+//       await new Promise((resolve) => setTimeout(resolve, 1000))
+//       console.log('Appointment Data:', appointmentData)
+//     //   toast.success('Appointment booked successfully!')
+//       router.push('/dashboard') // Redirect to dashboard or confirmation page
+//     } catch (error) {
+//       console.error('Appointment booking failed:', error)
+//     //   toast.error('Failed to book appointment. Please try again.')
 //     }
 //   }
 
 //   return (
-//     <div>
+//     <section>
 //     <Card className="w-full max-w-2xl mx-auto">
 //       <CardHeader>
 //         <CardTitle>Book Appointment with {lawyerName}</CardTitle>
 //         <CardDescription>
-//           Please fill in the details below to schedule your appointment
+//           Step {step} of 3: {step === 1 ? 'Select Date & Time' : step === 2 ? 'Brief & Location' : 'Summary & Payment'}
 //         </CardDescription>
 //       </CardHeader>
 //       <CardContent>
@@ -114,18 +139,19 @@
 //                   render={({ field }) => (
 //                     <FormItem className="flex flex-col">
 //                       <FormLabel>Appointment Date</FormLabel>
-//                       <Calendar
-//                         mode="single"
-//                         selected={field.value}
-//                         onSelect={field.onChange}
+//                       <FormControl>
+//                         <Calendar
+//                           mode="single"
+//                           selected={field.value}
+//                           onSelect={field.onChange}
 //                         disabled={(date) => date < new Date()}
 //                         className="rounded-md border"
 //                       />
+//                       </FormControl>
 //                       <FormMessage />
 //                     </FormItem>
 //                   )}
 //                 />
-
 //                 <FormField
 //                   control={form.control}
 //                   name="time"
@@ -133,7 +159,7 @@
 //                     <FormItem>
 //                       <FormLabel>Preferred Time</FormLabel>
 //                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-//                         <FormControl>
+//                       <FormControl>
 //                           <SelectTrigger>
 //                             <SelectValue placeholder="Select a time slot" />
 //                           </SelectTrigger>
@@ -175,14 +201,13 @@
 //                     </FormItem>
 //                   )}
 //                 />
-
 //                 <FormField
 //                   control={form.control}
 //                   name="location"
 //                   render={({ field }) => (
 //                     <FormItem className="space-y-3">
 //                       <FormLabel>Appointment Location</FormLabel>
-//                       <FormControl>
+//                             <FormControl>
 //                         <RadioGroup
 //                           onValueChange={(value: 'lawyer-office' | 'client-location') => {
 //                             field.onChange(value)
@@ -194,7 +219,7 @@
 //                           <FormItem className="flex items-center space-x-3 space-y-0">
 //                             <FormControl>
 //                               <RadioGroupItem value="lawyer-office" />
-//                             </FormControl>
+//                       </FormControl>
 //                             <FormLabel className="font-normal">
 //                               Lawyer&apos;s Office
 //                             </FormLabel>
@@ -286,25 +311,25 @@
 //                 />
 //               </div>
 //             )}
+
+//             <CardFooter className="flex justify-between">
+//               {step > 1 && (
+//                 <Button variant="secondary" onClick={prevStep}>
+//                   Back
+//                 </Button>
+//               )}
+//               {step < 3 ? (
+//                 <Button onClick={nextStep}>Next</Button>
+//               ) : (
+//                 <Button type="submit">Book Appointment</Button>
+//               )}
+//             </CardFooter>
 //           </form>
 //         </Form>
 //       </CardContent>
-//       <CardFooter className="flex justify-between">
-//         {step > 1 && (
-//           <Button variant="outline" onClick={() => setStep(step - 1)}>
-//             Previous
-//           </Button>
-//         )}
-//         {step < 3 ? (
-//           <Button onClick={() => setStep(step + 1)}>Next</Button>
-//         ) : (
-//           <Button onClick={form.handleSubmit(onSubmit)}>
-//             {form.watch('paymentMethod') === 'online' ? 'Proceed to Payment' : 'Confirm Appointment'}
-//           </Button>
-//         )}
-//       </CardFooter>
 //     </Card>
-//     </div>
+//     </section>
 //   )
-// }
 
+ 
+// }
