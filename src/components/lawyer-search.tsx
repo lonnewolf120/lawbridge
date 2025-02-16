@@ -56,7 +56,8 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
           }),
         })
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          // throw new Error(`HTTP error! status: ${response.status}`)
+          console.error(`HTTP error! status: ${response.status}`)
         }
         const data = await response.json()
         fetchedLawyers = data.lawyers || []
@@ -64,7 +65,8 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
         // If no map location, fetch all lawyers (or adjust as needed)
         const response = await fetch('/lawyers')
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          // throw new Error(`HTTP error! status: ${response.status}`)
+          console.error(`HTTP error! status: ${response.status}`)
         }
         const data = await response.json()
         fetchedLawyers = data.lawyers || []
