@@ -6,15 +6,15 @@ import L from 'leaflet';
 import { useState, useCallback } from 'react';
 
 // Import marker images
-import markerIcon2x from '/marker-icon-2x.png';
-import markerIcon from '/marker-icon.png';
-import markerShadow from '/marker-shadow.png';
+// import markerIcon2x from '/marker-icon-2x.png';
+// import markerIcon from '/marker-icon.png';
+// import markerShadow from '/marker-shadow.png';
 
 // Fix for default marker icon
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  iconRetinaUrl: '/marker-icon-2x.png',
+  iconUrl: '/marker-icon.png',
+  shadowUrl: '/marker-shadow.png',
 });
 
 interface LocationMarkerProps {
