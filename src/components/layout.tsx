@@ -94,7 +94,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       ))}
                     </nav>
                     <div className="mt-auto">
-                     <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+                     {/* <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+                     </Link> */}
+                     <Link href={'tel:+8801776225423'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Contact us</Button>
                      </Link>
                     </div>
                   </div>

@@ -1,5 +1,18 @@
 'use client'
 import { useState } from 'react';
+
+// import dynamic from 'next/dynamic'
+// import { useState, useCallback } from 'react'
+
+// const LawyerSearch = dynamic(() => import('@/components/lawyer-search'), {
+//   loading: () => <p>Loading Lawyer Search...</p>,
+//   ssr: false,
+// })
+// const FindLawyersMap = dynamic(() => import('@/components/find-lawyers-map').then(mod => mod.default), {
+//   loading: () => <p>Loading Map...</p>,
+//   ssr:false,
+// })
+
 export default function FindLawyersPage() {
   const [checkedItems, setCheckedItems] = useState([false, false]);
 
