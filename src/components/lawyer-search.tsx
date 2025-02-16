@@ -35,7 +35,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
   const [maxFee, setMaxFee] = useState<number | null>(null)
   const [minExperience, setMinExperience] = useState<number | null>(null)
   const [practiceAreaSearch, setPracticeAreaSearch] = useState('')
-  const baseUrl = 'http://localhost:10101' 
+  const baseUrl = process.env.baseUrl || 'http://68.183.246.96:10101'
   const [radius, setRadius] = useState(50);
 
 
