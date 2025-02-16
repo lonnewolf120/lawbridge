@@ -6,9 +6,9 @@ import L from 'leaflet';
 import { useState, useCallback } from 'react';
 
 // Import marker images
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import markerIcon2x from '/marker-icon-2x.png';
+import markerIcon from '/marker-icon.png';
+import markerShadow from '/marker-shadow.png';
 
 // Fix for default marker icon
 L.Icon.Default.mergeOptions({
