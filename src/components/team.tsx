@@ -11,8 +11,8 @@ const lawyers = [
   },
   {
     name: 'Barrister Faran Md Aaraf',
-    title: `Barrister, Honourable Society of Lincoln's Inn, UK\n Advocate , Dhaka Judge Court\n Academic mentor, London College of Legal Studies (South), \nUniversity of London`,
-    court: 'Law School',
+    title: `Barrister, Honourable Society of Lincoln's Inn, UK\n Advocate , Dhaka Judge Court\n Academic mentor,`,
+    court: 'London College of Legal Studies (South), \nUniversity of London (UK)',
     image: '/L2.jpg'
   },
   {
