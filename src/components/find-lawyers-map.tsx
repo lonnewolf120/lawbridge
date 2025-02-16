@@ -50,7 +50,7 @@ interface FindLawyersMapProps {
   onLocationSelected: (location: { latitude: number, longitude: number }) => void; // Prop for callback
 }
 
-export function FindLawyersMap({ onLocationSelected }: FindLawyersMapProps) { // Receive callback as prop
+export default function FindLawyersMap({ onLocationSelected }: FindLawyersMapProps) { // Receive callback as prop
   const [selectedLocation, setSelectedLocation] = useState<[number,number]>(dhakaPosition)
 
   return (

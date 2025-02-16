@@ -26,7 +26,7 @@ interface LawyerSearchProps {
   mapLocation: { latitude: number, longitude: number } | null; // Receive mapLocation prop
 }
 
-export function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Receive mapLocation prop
+export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Receive mapLocation prop
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedAreas, setSelectedAreas] = useState<string[]>([])
   const [lawyers, setLawyers] = useState<Lawyer[]>([]) // State to hold fetched lawyers
