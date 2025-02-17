@@ -42,7 +42,7 @@ export default function PersonalLawPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <main className="container max-w-6xl mx-auto py-12 px-4">
+      <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-4">Personal Law Courses</h1>
         <p className="text-xl mb-8 text-gray-600">
           Explore the intricacies of family matters, inheritance, and individual rights in Bangladesh. Our personal law courses offer in-depth knowledge and practical insights into the legal aspects that affect your daily life and relationships.
@@ -82,7 +82,7 @@ export default function PersonalLawPage() {
             Explore More Courses
           </Button>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

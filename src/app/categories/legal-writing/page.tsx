@@ -11,7 +11,7 @@ const legalWritingCourses = [
 export default function LegalWritingPage() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <main className="container max-w-6xl mx-auto py-12 px-4">
+      <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-8">Legal Writing & Documentation Courses</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {legalWritingCourses.map((course) => (
@@ -23,7 +23,7 @@ export default function LegalWritingPage() {
             />
           ))}
         </div>
-      </main>
+      </div>
     </div>
   )
 }

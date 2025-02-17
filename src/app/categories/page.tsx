@@ -49,7 +49,7 @@ export default function CategoriesPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       
-      <main className="container max-w-6xl mx-auto py-12 px-4">
+      <div className="container max-w-6xl mx-auto py-12 px-4">
         <section className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 text-slate-900">Explore Our Legal Education Hub</h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -103,7 +103,7 @@ export default function CategoriesPage() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   )
 }

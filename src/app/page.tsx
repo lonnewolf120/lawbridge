@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <Hero />
       <PracticeAreas />
       <Stats />
@@ -33,7 +33,7 @@ export default function Home() {
           Click here
         </Button>
       </section>
-    </main>
+    </div>
   )
 }
 

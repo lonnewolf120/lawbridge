@@ -11,7 +11,7 @@ const businessLawCourses = [
 export default function BusinessLawPage() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <main className="container max-w-6xl mx-auto py-12 px-4">
+      <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-8">Business Law Courses</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {businessLawCourses.map((course) => (
@@ -23,7 +23,7 @@ export default function BusinessLawPage() {
             />
           ))}
         </div>
-      </main>   
+      </div>   
     </div>
   )
 }

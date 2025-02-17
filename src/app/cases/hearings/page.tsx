@@ -1,33 +1,85 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { CalendarDays, MapPin, Clock } from 'lucide-react'
+'use client'
+import { useState, useEffect } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CalendarDays, MapPin, Clock } from 'lucide-react';
 
-const mockHearings = [
-  { id: 1, caseTitle: "Divorce Proceedings", date: "2023-12-15", time: "10:00 AM", location: "Court Room 3" },
-  { id: 2, caseTitle: "Copyright Infringement", date: "2023-12-18", time: "2:00 PM", location: "Court Room 5" },
-  { id: 3, caseTitle: "Property Dispute", date: "2023-12-20", time: "11:30 AM", location: "Court Room 2" },
-]
+interface Hearing {
+  hearing_id: number;
+  caseTitle: string; 
+  date: string;
+  time: string;
+  location: string;
+}
 
 export default function HearingsPage() {
+  const userId = 3;
+  const [hearings, setHearings] = useState<Hearing[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchHearings() {
+      try {
+        const response = await fetch(`http://localhost:10101/hearings/user/${userId}`, {
+          method: 'GET',
+          credentials: 'include', 
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setHearings(data.hearings);
+        } else {
+          setError(data.error || 'Failed to fetch hearings');
+        }
+      } catch (err) {
+        console.error('Error fetching hearings:', err);
+        setError('An error occurred while fetching hearings.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHearings();
+  }, [userId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
+        <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
+        <div>Loading hearings...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
+        <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
+        <div>Error: {error}</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
       <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
       <div className="grid gap-6">
-        {mockHearings.map((hearing) => (
-          <Card key={hearing.id} className="overflow-hidden border-orange-200">
+        {hearings.map((hearing) => (
+          <Card key={hearing.hearing_id} className="overflow-hidden border-orange-200">
             <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
-              <CardTitle>{hearing.caseTitle}</CardTitle>
+              <CardTitle>{hearing.details}</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex items-center">
                   <CalendarDays className="w-5 h-5 mr-2 text-amber-600" />
-                  <span>{hearing.date}</span>
+                  <span>{hearing.date.split("T")[0]}</span>
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 mr-2 text-amber-600" />
-                  <span>{hearing.time}</span>
+                  <span>
+                    {hearing.time.split(":").slice(0, 2).join(":")}{" "}
+                    {parseInt(hearing.time.split(":")[0]) >= 12 ? "PM" : "AM"}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 mr-2 text-amber-600" />
@@ -35,13 +87,14 @@ export default function HearingsPage() {
                 </div>
               </div>
               <div className="mt-4">
-                <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">View Details</Button>
+                <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">
+                  View Details
+                </Button>
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
     </div>
-  )
+  );
 }
-
