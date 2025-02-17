@@ -18,7 +18,7 @@ const lawyers = [
   {
     name: 'Ashra Anika Tanha',
     title: `Accredited Civil/ Commercial Mediator,\nADR ODR International, UK.\n`,
-    court: 'LLB(Hons, 4th year), University of London (UK)',
+    court: 'LLB, University of London (UK)',
     image: '/L3.jpg'
   }
 ]

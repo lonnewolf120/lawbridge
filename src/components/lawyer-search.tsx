@@ -44,6 +44,12 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
     try {
       let fetchedLawyers = []
       if (mapLocation) {
+        console.log('Fetching lawyers near:', mapLocation)
+        const res = await fetch(`${baseUrl}/`, {method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },})
+          console.log(res);
         const response = await fetch(`${baseUrl}/lawyers/nearby`, {
           method: 'POST',
           headers: {
@@ -228,7 +234,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
 
                       <p className="text-sm">Location: {lawyer.location}</p>
                       <p className="text-sm">Rating: {lawyer.rating}/5</p>
-                      <p className="text-sm">Fees: ${lawyer.fees}/hour</p>
+                      <p className="text-sm">Fees: {lawyer.fees}tk/hour</p>
                       <p className="text-sm">Experience: {lawyer.experience} years</p>
                       <Link href={`/lawyer/${lawyer.lawyer_id}`}>
                         <Button variant="outline" size="sm" className="mt-2 bg-amber-200 hover:bg-amber-500">View Profile</Button>
