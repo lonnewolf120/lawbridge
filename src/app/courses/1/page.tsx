@@ -36,7 +36,7 @@ const Personal: React.FC = () => {
             <img src='/lawyer.jpg' alt='Lawyer' style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
             <h2 className='text-xl text-pretty text-'>{index + 1}. {topic.title}</h2>
             <p>{topic.content}</p>
-            <Button className='bg-amber-100 hover:bg-amber-400 text-black text-base'> Enroll now</Button>
+            <Button className='bg-primary-100 hover:bg-primary-400 text-black text-base'> Enroll now</Button>
           </div>
         ))}
       </div>

@@ -137,10 +137,10 @@ export default function LegalForms() {
         <div className="flex-1 py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl font-bold text-border-900 mb-4">
                 Legal Forms & Legal Documents
               </h1>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-border-600">
                 Answer a few simple questions - download and print instantly
               </p>
             </div>
@@ -174,7 +174,7 @@ export default function LegalForms() {
               {alphabet.map((letter) => (
                 documents[letter] && (
                   <div key={letter}>
-                    <h2 id={letter} className="text-2xl font-semibold text-gray-900 mb-4">{letter}</h2>
+                    <h2 id={letter} className="text-2xl font-semibold text-border-900 mb-4">{letter}</h2>
                 <ul className="space-y-3">
                       {documents[letter].map((doc) => (
                     <li key={doc.title}>

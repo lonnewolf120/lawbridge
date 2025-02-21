@@ -36,7 +36,7 @@ const BusinessLawCards = () => {
             <h2 className='text-xl text-pretty text-'>{index + 1}. {topic.title}</h2>
             <p>{topic.description}</p>
             
-            <Button className='bg-amber-100 hover:bg-amber-400 text-black text-base'> Enroll now</Button>
+            <Button className='bg-primary-100 hover:bg-primary-400 text-black text-base'> Enroll now</Button>
           </div>
         ))}
       </div>

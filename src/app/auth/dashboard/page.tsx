@@ -6,8 +6,8 @@ import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare } from 'lucide-
 
 export default function DashboardPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8">Your Dashboard</h1>
+    <div className="container mx-auto py-12 px-4 bg-gradient-to-tl bg-primary-50">
+      <h1 className="text-4xl font-bold mb-8 text-primary-900">Your Dashboard</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
         <Card>
@@ -16,7 +16,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">3</p>
-            <Link href="/cases/hearings">
+            <Link href="/auth/cases/hearings">
               <Button variant="link" className="p-0">
                 View All
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -31,7 +31,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">2</p>
-            <Link href="/cases">
+            <Link href="/auth/cases">
               <Button variant="link" className="p-0">
                 View Cases
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -58,21 +58,27 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-700">
           <MessageSquare className="h-6 w-6" />
+          <Link href='/legal-assistant'>
           <span>Chat with Legal Assistant</span>
+          </Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2" variant="outline">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-500 text-slate-600" variant="outline">
           <Calendar className="h-6 w-6" />
-          <span>Schedule Appointment</span>
+          <Link href='/find-lawyers'>
+          <span>Find Lawyer</span>
+          </Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2" variant="outline">
+        <Button className="h-auto text-slate-600 py-4 flex flex-col items-center justify-center gap-2 bg-secondary-300" variant="outline">
           <FileText className="h-6 w-6" />
-          <span>Submit Document</span>
+          <Link href='/auth/cases'>
+          <span>View all cases</span></Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2" variant="outline">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-200" variant="outline">
           <BookOpen className="h-6 w-6" />
-          <span>Browse Resources</span>
+          <Link href='/blog'>
+          <span>Browse Articles</span></Link>
         </Button>
       </div>
 

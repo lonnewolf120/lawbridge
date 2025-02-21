@@ -62,7 +62,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center relative max-w-2xl mx-auto mt-8">
         <Link href="/templates/1">
-            <Button variant="outline" className="flex flex-col justify-center bg-amber-200 hover:bg-amber-400 text-black text-base">
+            <Button variant="outline" className="flex flex-col justify-center bg-primary-200 hover:bg-primary-400 text-black text-base">
               View All Documents
             </Button>
             </Link>  

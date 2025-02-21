@@ -45,7 +45,7 @@ export default function BusinessLawPage() {
     <div className="min-h-screen bg-slate-50">
         <main className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-4">Business Law Courses</h1>
-        <p className="text-xl mb-8 text-gray-600">
+        <p className="text-xl mb-8 text-border-600">
           Master the legal aspects of running a business in Bangladesh. Our business law courses provide essential knowledge for entrepreneurs, managers, and legal professionals working in the corporate sector.
         </p>
         

@@ -11,7 +11,7 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-slate-900">Reset Password</h2>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-border-600">
             {emailSent
               ? "Check your email for reset instructions"
               : "Enter your email to reset your password"}

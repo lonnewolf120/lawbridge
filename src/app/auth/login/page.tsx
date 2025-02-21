@@ -30,13 +30,16 @@ export default function LoginPage() {
         if (data.lawyer) {
           setCookie(null, 'lawyer', JSON.parse(data.lawyer), { path: '/' })
         }
+        setSnackMessage('Login successful')
+        setSnackColor('success')
+        setSnack(true)
+          
+      if(data.lawyer){
+        router.push('/auth/lawyer/dashboard')
       }
-      setSnackMessage('Login successful')
-      setSnackColor('success')
-      setSnack(true)
-
+      }
       router
-        .push('/auth/cases/dashboard')
+        .push('/auth/dashboard')
 
     } catch (error) {
       console.error('Login failed:', error)
@@ -51,7 +54,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-slate-900">Welcome Back</h2>
-          <p className="mt-2 text-gray-600">Sign in to your account</p>
+          <p className="mt-2 text-border-600">Sign in to your account</p>
         </div>
         <Snackbar
           open={snackopen}
@@ -65,7 +68,7 @@ export default function LoginPage() {
             onClick={() => setUserType('client')}
             className={`flex-1 py-2 rounded-md ${
               userType === 'client'
-                ? 'bg-amber-500 text-amber-50'
+                ? 'bg-primary-500 text-primary-50'
                 : 'text-slate-700'
             }`}
           >
@@ -75,7 +78,7 @@ export default function LoginPage() {
             onClick={() => setUserType('lawyer')}
             className={`flex-1 py-2 rounded-md ${
               userType === 'lawyer'
-                ? 'bg-amber-500 text-amber-50'
+                ? 'bg-primary-500 text-primary-50'
                 : 'text-slate-700'
             }`}
           >
@@ -129,21 +132,21 @@ export default function LoginPage() {
 
             <Link
               href="/auth/reset-password"
-              className="text-sm text-amber-500 hover:text-amber-9  00"
+              className="text-sm text-primary-500 hover:text-primary-9  00"
             >
               Forgot password?
             </Link>
           </div>
           <Button
             type="submit"
-            className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
+            className="w-full py-3 mt-4 mb-2 bg-primary-200 rounded-md hover:bg-primary-500 text-black text-base"
           >
             Sign in
           </Button>
         </form>
           <p className="text-center text-sm text-slate-600">
             Don't have an account?{' '}
-            <Link href="/auth/signup" className="text-amber-600 hover:text-amber-900">
+            <Link href="/auth/signup" className="text-primary-600 hover:text-primary-900">
               Sign up
             </Link>
           </p>

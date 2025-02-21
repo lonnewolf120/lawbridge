@@ -56,7 +56,7 @@ export default function SignUpPage() {
         <Snackbar open={snackopen} autoHideDuration={6000} message="User Signed up" />
         <div className="text-center">
           <h2 className="text-3xl font-bold text-slate-900">Create Account</h2>
-          <p className="mt-2 text-gray-600">Join Shalish today</p>
+          <p className="mt-2 text-border-600">Join Shalish today</p>
         </div>
 
         <div className="flex gap-4 p-1 bg-slate-100 rounded-lg">

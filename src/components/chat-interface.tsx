@@ -126,7 +126,7 @@ export default function Chatbot({ category, description }: { category: string | 
                         className="flex-grow"
                     />
                     <Button
-                        className="bg-amber-100 hover:bg-amber-200 border-amber-200 text-black text-base"
+                        className="bg-primary-100 hover:bg-primary-200 border-primary-200 text-black text-base"
                         type="submit"
                         disabled={isLoading}
                     >

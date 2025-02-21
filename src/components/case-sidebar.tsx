@@ -3,11 +3,12 @@ import { Home, FileText, Calendar, Lightbulb, UserPlus } from 'lucide-react'
 
 const navItems = [
   { name: 'Dashboard', href: '/auth/dashboard', icon: Home },
-  { name: 'Filed Cases', href: '/cases/file', icon: FileText },
-  { name: 'My Cases', href: '/cases', icon: FileText },
-  { name: 'Progress Tracker', href: '/cases/progress', icon: FileText },
-  { name: 'Upcoming Hearings', href: '/cases/hearings', icon: Calendar },
-  { name: 'Legal Tips', href: '/cases/tips', icon: Lightbulb }
+  { name: 'File a Case', href: '/auth/cases/file', icon: FileText },
+  { name: 'My Cases', href: '/auth/cases', icon: FileText },
+  { name: 'Progress Tracker', href: '/auth/cases/progress', icon: FileText },
+  { name: 'Upcoming Hearings', href: '/auth/cases/hearings', icon: Calendar },
+  { name: 'Legal Tips', href: '/auth/cases/tips', icon: Lightbulb },
+  { name: 'Find a Lawyer', href: '/find-lawyers', icon: UserPlus },
 ]
 
 export function Sidebar() {
@@ -18,7 +19,7 @@ export function Sidebar() {
         <ul>
           {navItems.map((item) => (
             <li key={item.name} className="mb-2">
-              <Link href={item.href} className="flex items-center p-2 rounded hover:bg-gray-200">
+                <Link href={item.href} className="flex items-center p-2 rounded hover:bg-gray-200">
                 <item.icon className="mr-2 h-5 w-5" />
                 {item.name}
               </Link>

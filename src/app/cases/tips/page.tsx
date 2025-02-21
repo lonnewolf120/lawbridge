@@ -20,7 +20,7 @@ const legalTips = [
 
 export default function TipsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
+    <div className="min-h-screen bg-white p-8">
       <h1 className="text-3xl font-bold mb-8">Legal Tips</h1>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6">
         {legalTips.map((tip, index) => (
