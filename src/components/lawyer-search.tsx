@@ -208,7 +208,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
             </div>
           </div>
 
-          <Button className="w-full bg-orange-200 hover:bg-orange-400 text-black text-base" onClick={handleSearchButtonClick} disabled={loading}>
+          <Button className="w-full bg-secondary-200 hover:bg-secondary-400 text-black text-base" onClick={handleSearchButtonClick} disabled={loading}>
             {loading ? "Searching..." : "Search"}
           </Button>
         </div>
@@ -223,7 +223,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
                     <img
                       src={lawyer.profile_picture_url! || 'https://avatar.iran.liara.run/public'}
                       alt={lawyer.first_name + ' ' + lawyer.last_name}
-                      className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                      className="w-16 h-16 rounded-full object-cover border border-border-300"
                     />
                     <div className='flex flex-col ml-4'>
                       <h4 className="font-medium text-lg">{lawyer.first_name} {lawyer.last_name}</h4>
@@ -237,14 +237,16 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
                       <p className="text-sm">Fees: {lawyer.fees}tk/hour</p>
                       <p className="text-sm">Experience: {lawyer.experience} years</p>
                       <Link href={`/lawyer/${lawyer.lawyer_id}`}>
-                        <Button variant="outline" size="sm" className="mt-2 bg-amber-200 hover:bg-amber-500">View Profile</Button>
+                        <Button variant="outline" size="sm" className="mt-2 bg-primary-200 hover:bg-primary-500">View Profile</Button>
                       </Link>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
-            {!loading && filteredLawyers.length === 0 && <p>No lawyers found matching your criteria.</p>} {/* No results message */}
+            {!loading && filteredLawyers.length === 0 && <div>
+              <p className='text-xl mb-4'>Click on a location first to find nearby lawyers if you haven't already.</p>
+              <p className='text-xl text-red'>No lawyers found matching your criteria.</p></div>} {/* No results message */}
           </ScrollArea>
         </div>
       </CardContent>

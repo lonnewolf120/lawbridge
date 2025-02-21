@@ -55,7 +55,7 @@ export function LegalCategoryForm({
           <div className="space-y-2">
             <Label htmlFor="issue-description">Briefly describe your legal issue </Label>
             <Tooltip content="this gives the AI assistant more insight about your matter and so his discussions will remain within context.">
-              <button className="ml-2 rounded-full bg-gray-200 p-1 text-gray-500 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              <button className="ml-2 rounded-full bg-gray-200 p-1 text-border-500 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-border-400"
               ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -80,7 +80,7 @@ export function LegalCategoryForm({
             />
           </div>
           <Button
-            className="bg-amber-100 hover:bg-amber-200 border-amber-200 text-black text-base"
+            className="bg-primary-100 hover:bg-primary-200 border-primary-200 text-black text-base"
             type="submit"
           >
             Get Assistance

@@ -121,13 +121,13 @@ export default function Checklist() {
                 className={`relative z-10 flex items-center justify-center w-10 h-10 rounded-full border-2 ${
                   task.status === 'Completed'
                     ? 'bg-green-500 border-green-500'
-                    : 'bg-gray-200 border-gray-400'
+                    : 'bg-gray-200 border-border-400'
                 }`}
               >
                 {task.status === 'Completed' ? (
                   <span className="text-white">✓</span>
                 ) : (
-                  <span className="text-gray-500">{index + 1}</span>
+                  <span className="text-border-500">{index + 1}</span>
                 )}
               </div>
             ))}
@@ -143,7 +143,7 @@ export default function Checklist() {
                   type="checkbox"
                   checked={task.status === 'Completed'}
                   onChange={() => handleCheckboxChange(task)}
-                  className="w-5 h-5 border-2 border-gray-400 rounded"
+                  className="w-5 h-5 border-2 border-border-400 rounded"
                 />
                 <div
                   className={`text-black text-lg font-medium

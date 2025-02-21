@@ -22,7 +22,7 @@ export default function Home() {
           needs and providing tailored advice and representation. Your trust empowers us to navigate the complexities 
           of the legal system and advocate fearlessly on your behalf.
         </p>
-        <Button variant="outline" className="bg-amber-100 hover:bg-amber-200 border-amber-200">
+        <Button variant="outline" className="bg-primary-100 hover:bg-primary-200 border-primary-200">
           Talk to Us
         </Button>
       </section>
@@ -31,7 +31,7 @@ export default function Home() {
       <section className="py-16 text-center bg-gray-50">
         <h3 className="text-xl mb-4">Talk to our legal assistant </h3>
         <Link href={'/legal-assistant'}>
-        <Button variant="outline" className="bg-amber-100 hover:bg-amber-200 border-amber-200">
+        <Button variant="outline" className="bg-primary-100 hover:bg-primary-200 border-primary-200">
           Click here
         </Button></Link>
       </section>

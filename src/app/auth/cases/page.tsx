@@ -28,9 +28,9 @@ const getStatusColor = (status: string) => {
     case 'active':
       return 'bg-green-100 text-green-800'
     case 'pending':
-      return 'bg-yellow-100 text-yellow-800'
+      return 'bg-secondary-100 text-secondary-800'
     case 'closed':
-      return 'bg-gray-100 text-gray-800'
+      return 'bg-gray-100 text-border-800'
     default:
       return 'bg-blue-100 text-blue-800'
   }
@@ -83,17 +83,17 @@ export default function MyCasesPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
-      <h1 className="text-3xl font-bold mb-8 text-amber-900">My Cases</h1>
+    <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+      <h1 className="text-3xl font-bold mb-8 text-primary-900">My Cases</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {cases.map((case_) => (
-          <Card key={case_.id} className="overflow-hidden border-orange-200">
-            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+          <Card key={case_.id} className="overflow-hidden border-secondary-200">
+            <CardHeader className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
               <CardTitle>{case_.title}</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="flex justify-between items-center gap-4">
-                <Badge variant="secondary" className="bg-amber-100 text-amber-800">{case_.category}</Badge>
+                <Badge variant="secondary" className="bg-primary-100 text-primary-800">{case_.category}</Badge>
                 <Badge className={`flex items-center ${getStatusColor(case_.status)}`}>
                   {getStatusIcon(case_.status)}
                   {case_.status}
@@ -101,7 +101,7 @@ export default function MyCasesPage() {
               </div>
               <div className="mt-4">
               <Link href={`/auth/cases/details`}>
-                <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">View Details</Button>
+                <Button variant="outline" className="text-primary-700 border-primary-500 hover:bg-primary-50">View Details</Button>
               </Link>
               </div>
             </CardContent>
@@ -110,7 +110,7 @@ export default function MyCasesPage() {
       </div>
       <div className="mt-8 mb-8">
         <Link href="/auth/cases/file">
-          <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white">Add New Case</Button>
+          <Button className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white">Add New Case</Button>
         </Link>
       </div>
     </div>

@@ -129,24 +129,24 @@ export default function LawyerDashboardPage() {
           <CardContent className="grid gap-2">
             <Link href="/lawyer/cases/new">
               <Button className="w-full justify-start">
-                <FileText className="mr-2 h-4 w-4 text-amber-400" />
-                <p className='text-amber-50'>File New Case</p> 
+                <FileText className="mr-2 h-4 w-4 text-primary-400" />
+                <p className='text-primary-50'>File New Case</p> 
               </Button>
             </Link>
             <Link href="/lawyer/clients">
-              <Button className="w-full justify-start bg-amber-100" variant="outline">
+              <Button className="w-full justify-start bg-primary-100" variant="outline">
                 <Users className="mr-2 h-4 w-4" />
                 <p className='text-slate-700'>View Client List</p>
               </Button>
             </Link>
             <Link href="/lawyer/schedule">
-              <Button className="w-full justify-start bg-amber-200" variant="outline">
+              <Button className="w-full justify-start bg-primary-200" variant="outline">
                 <Calendar className="mr-2 h-4 w-4" />
                 <p className='text-slate-700'>Manage Schedule</p>
               </Button>
             </Link>
             <Link href="/lawyer/deadlines">
-              <Button className="w-full justify-start bg-amber-300" variant="outline">
+              <Button className="w-full justify-start bg-primary-300" variant="outline">
                 <Clock className="mr-2 h-4 w-4" />
                 <p className='text-slate-700'>View Deadlines</p>
               </Button>

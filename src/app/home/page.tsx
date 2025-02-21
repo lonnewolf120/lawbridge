@@ -18,7 +18,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <Link href="/legal-assistant">
-              <Button className="w-full bg-amber-100 hover:bg-amber-200 text-black text-base">
+              <Button className="w-full bg-primary-100 hover:bg-primary-200 text-black text-base">
                 Chat Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -36,7 +36,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <Link href="/find-lawyers">
-              <Button className="w-full bg-orange-100 hover:bg-orange-400 text-black text-base">
+              <Button className="w-full bg-secondary-100 hover:bg-secondary-400 text-black text-base">
                 Search Lawyers
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -90,7 +90,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <Link href="/blog">
-              <Button className="w-full bg-orange-200 hover:bg-orange-500 text-black text-base">
+              <Button className="w-full bg-secondary-200 hover:bg-secondary-500 text-black text-base">
                 View Article
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -108,7 +108,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <Link href="/profile">
-              <Button className="w-full  bg-yellow-100 hover:bg-yellow-300 text-black text-base">
+              <Button className="w-full  bg-secondary-100 hover:bg-secondary-300 text-black text-base">
                 View Profile
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

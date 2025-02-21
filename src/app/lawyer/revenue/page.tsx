@@ -57,7 +57,7 @@ function LawyerRevenuePage() {
             <CardTitle>Pending Revenue</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold text-yellow-600">${pendingRevenue.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-secondary-600">${pendingRevenue.toLocaleString()}</p>
           </CardContent>
         </Card>
       </div>

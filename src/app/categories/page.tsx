@@ -65,14 +65,14 @@ function CategoryCard({ name, description, href, imageId, courseCount }: any) {
           />
         </div>
         <CardHeader>
-          <CardTitle className="text-2xl group-hover:text-yellow-600 transition-colors">{name}</CardTitle>
+          <CardTitle className="text-2xl group-hover:text-secondary-600 transition-colors">{name}</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription className="text-base">{description}</CardDescription>
           <p className="mt-2 text-sm text-slate-600">{courseCount} Courses</p>
         </CardContent>
         <CardFooter>
-          <Button className="w-full bg-slate-800 text-white hover:bg-yellow-500 hover:text-black transition-colors">
+          <Button className="w-full bg-slate-800 text-white hover:bg-secondary-500 hover:text-black transition-colors">
             Explore Courses
           </Button>
         </CardFooter>

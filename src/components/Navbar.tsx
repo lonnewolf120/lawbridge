@@ -13,8 +13,8 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/find-lawyers', label: 'Find Lawyers' },
   { href: '/legal-assistant', label: 'Legal Assistant' },
-  { href: '/auth/cases', label: 'Cases' },
-  { href: '/courses', label: 'Courses' },
+  // { href: '/auth/cases', label: 'Cases' },
+  { href: '/courses', label: 'Learn' },
   { href: '/templates', label: 'Templates' },
   { href: '/blog', label: 'Articles' },
 ]
@@ -39,8 +39,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col bg-amber-50">
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-amber-100/10 backdrop-blur-md shadow-md' : 'bg-amber-100'}`}>
+    <div className="min-h-screen flex flex-col bg-primary-50">
+      <header className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] h-16  px-6 rounded-md shadow-md top-0 z-50 transition-all duration-300 backdrop-blur-md shadow-md ${isScrolled ? 'bg-primary-50/10' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
@@ -68,10 +68,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </nav>
             <div className="flex items-center gap-4">
               {cookies.token !== null ?
-              <Link href={'/auth/cases/dashboard'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Dashboard</Button>
+              <Link href={'/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
               </Link>
               :
-              <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+              <Link href={'/auth/login'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Login</Button>
               </Link>
               }
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -108,14 +108,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </nav>
                     <div className="mt-auto">
                      {cookies.token !== null ?
-                     <Link href={'/auth/cases/dashboard'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Dashboard</Button>
+                     <Link href={'/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
                      </Link>
                      :
-                     <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+                     <Link href={'/auth/login'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Login</Button>
                      </Link>
                      
                      }
-                     {/* <Link href={'tel:+8801776225423'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Contact us</Button>
+                     {/* <Link href={'tel:+8801776225423'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Contact us</Button>
                      </Link> */}
                     </div>
                   </div>
@@ -125,8 +125,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <div className="flex-1">{children}</div>
-      <footer className="bg-gray-900 text-gray-400 py-12">
+      <div className="flex-1 mt-12">{children}</div>
+      <footer className="bg-gray-900 text-border-400 py-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>

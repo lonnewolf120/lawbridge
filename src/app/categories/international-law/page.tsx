@@ -44,7 +44,7 @@ export default function InternationalLawPage() {
     <div className="min-h-screen bg-slate-50">
       <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-4">International Law Courses</h1>
-        <p className="text-xl mb-8 text-gray-600">
+        <p className="text-xl mb-8 text-border-600">
           Explore the complexities of international law and its impact on Bangladesh. Our courses offer insights into global legal frameworks, cross-border regulations, and international relations from a legal perspective.
         </p>
         

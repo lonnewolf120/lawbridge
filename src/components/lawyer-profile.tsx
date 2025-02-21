@@ -31,7 +31,7 @@ export function LawyerProfile({ lawyer }: { lawyer: Lawyer }) {
                   <div className="flex items-center space-x-2 mt-2">
                       <Badge variant="secondary">{lawyer.location}</Badge>
                       <div className="flex items-center">
-                        <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                        <Star className="w-4 h-4 text-secondary-400 mr-1" />
                         <span>{lawyer.rating.toFixed(1)}</span>
                       </div>
                     </div>
@@ -72,7 +72,7 @@ export function LawyerProfile({ lawyer }: { lawyer: Lawyer }) {
                   <Button className="w-full bg-red-200 hover:bg-red-400 text-black text-base">Call Lawyer</Button>
               </Link>
               <Link href={`mailto:${lawyer.contact.email}`}>
-                  <Button className="w-full bg-yellow-100 hover:bg-yellow-300 text-base text-black">Email Lawyer</Button>
+                  <Button className="w-full bg-secondary-100 hover:bg-secondary-300 text-base text-black">Email Lawyer</Button>
               </Link>
               {/* <Link href={`/lawyer/${lawyer.id}/book`}>
                 <Button className="w-full">Book Appointment</Button>

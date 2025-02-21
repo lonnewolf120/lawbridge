@@ -46,8 +46,8 @@ export default function HearingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
-        <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
+      <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+        <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
         <div>Loading hearings...</div>
       </div>
     );
@@ -55,43 +55,43 @@ export default function HearingsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
-        <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
+      <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+        <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
         <div>Error: {error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
-      <h1 className="text-3xl font-bold mb-8 text-amber-900">Upcoming Hearings</h1>
+    <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+      <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
       <div className="grid grid-cols-3 gap-6 md:grid-cols-2">
         {hearings.map((hearing) => (
-          <Card key={hearing.hearing_id} className="overflow-hidden border-orange-200">
-            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+          <Card key={hearing.hearing_id} className="overflow-hidden border-secondary-200">
+            <CardHeader className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
              {/* <CardTitle>{hearing.details}</CardTitle>  */}
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid grid-cols-3 md:grid-cols-3 sm:grid-cols-1 ">
                 <div className="flex items-center">
-                  <CalendarDays className="w-3 h-3 text-amber-600" />
+                  <CalendarDays className="w-3 h-3 text-primary-600" />
                   <span>{hearing.date.split("T")[0]}</span>
                 </div>
                 <div className="flex items-center">
-                  <Clock className="w-3 h-3 text-amber-600" />
+                  <Clock className="w-3 h-3 text-primary-600" />
                   <span>
                     {hearing.time.split(":").slice(0, 2).join(":")}{" "}
                     {parseInt(hearing.time.split(":")[0]) >= 12 ? "PM" : "AM"}
                   </span>
                 </div>
                 <div className="flex items-center">
-                  <MapPin className="w-3 h-3 text-amber-600" />
+                  <MapPin className="w-3 h-3 text-primary-600" />
                   <span>{hearing.location}</span>
                 </div>
               </div>
               <div className="mt-4">
               <Link href={`/auth/cases/hearings/details`}>
-              <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">
+              <Button variant="outline" className="text-primary-700 border-primary-500 hover:bg-primary-50">
                   View Details
                 </Button>
               </Link>

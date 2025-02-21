@@ -51,14 +51,14 @@ export default function Hero() {
               shouldn't be overwhelming or expensive
             </p>
             <Link href='/login'>
-              <Button className="bg-amber-100 text-black hover:bg-amber-200 border border-amber-200">
+              <Button className="bg-primary-100 text-black hover:bg-primary-200 border border-primary-200">
                 Get started
               </Button>
             </Link>
             <div className="mt-8">
               <p className="text-sm text-muted-foreground mb-2">Have any question?</p>
               <Link href={`tel:+8801311962091`}>
-              <Button className="text-amber-200 hover:text-amber-300">Call now</Button>
+              <Button className="text-primary-200 hover:text-primary-300">Call now</Button>
                </Link>
             </div>
           </div>

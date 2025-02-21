@@ -70,7 +70,7 @@ export default function FileCasePage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100 p-12">
-      <h1 className="text-5xl font-bold mb-12 text-gray-800">Add Case Details</h1>
+      <h1 className="text-5xl font-bold mb-12 text-border-800">Add Case Details</h1>
       <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl w-full">
         <div>
           <Label htmlFor="title" className="text-lg font-medium">Case Title</Label>

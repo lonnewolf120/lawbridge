@@ -46,7 +46,7 @@ export default function LegalWritingPage() {
       
       <div className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-4">Legal Writing Courses</h1>
-        <p className="text-xl mb-8 text-gray-600">
+        <p className="text-xl mb-8 text-border-600">
           Enhance your legal writing skills with our specialized courses. Whether you're a law student, practicing lawyer, or legal professional, these courses will help you communicate more effectively in the legal field.
         </p>
         

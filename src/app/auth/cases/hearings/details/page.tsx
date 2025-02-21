@@ -51,7 +51,7 @@ export default function HearingPage() {
   }
 
   return (
-    <div className="flex-grow flex flex-col bg-gradient-to-b from-white to-amber-50 p-8">
+    <div className="flex-grow flex flex-col bg-gradient-to-b from-white to-primary-50 p-8">
       <div className="container mx-auto p-4 space-y-6 pb-16 mb-12">
         <div className="space-y-2" id="basic-info">
           <h1 className="text-3xl font-bold">{hearingData.casetitle}</h1>

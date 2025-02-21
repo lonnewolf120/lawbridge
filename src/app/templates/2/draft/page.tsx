@@ -37,7 +37,7 @@ export default function NDA() {
         <div id="nda" className="rounded-lg shadow-lg p-6 bg-white">
             <div className="mb-4">
             <h2 className="text-2xl font-bold">Non-Disclosure Agreement</h2>
-            <p className="text-gray-600">Effective Date: {new Date().toLocaleDateString()}</p>
+            <p className="text-border-600">Effective Date: {new Date().toLocaleDateString()}</p>
             </div>
 
           <p>This Non-Disclosure Agreement (the "Agreement") is made and entered into by and between [Disclosing Party Name (the "Disclosing Party") and [Receiving Party Name] (the "Receiving Party").</p>
