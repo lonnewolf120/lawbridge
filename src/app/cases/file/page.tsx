@@ -7,6 +7,15 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+const lawyers = [
+  { name: "Sadman Shafi", id: 1 },
+  { name: "John Doe", id: 2 },
+  { name: "Jane Doe", id: 3 },
+  { name: "Alice Smith", id: 4 },
+ 
+]
+
+
 const caseCategories = [
   { name: "Personal Law", description: "Marriage, divorce, inheritance" },
   { name: "Business Law", description: "Contracts, compliance, IP" },
@@ -100,18 +109,23 @@ export default function FileCasePage() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-
         <div>
-          <Label htmlFor="lawyerId" className="text-lg font-medium">Lawyer ID</Label>
-          <Input 
-            id="lawyerId" 
-            placeholder="Enter lawyer ID" 
-            type="number"
-            className="mt-2 w-full p-4 text-lg border rounded-md"
-            value={lawyerId}
-            onChange={(e) => setLawyerId(e.target.value)}
-          />
-        </div>
+  <Label htmlFor="lawyerId" className="text-lg font-medium">Select Lawyer</Label>
+  <Select value={lawyerId} onValueChange={(value) => setLawyerId(value)}>
+    <SelectTrigger className="mt-2 w-full p-4 border rounded-md text-lg">
+      <SelectValue placeholder="Select a lawyer" />
+    </SelectTrigger>
+    <SelectContent className="bg-white">
+      {lawyers.map((lawyer) => (
+        <SelectItem key={lawyer.name} value={lawyer.name} className="text-lg py-3">
+          {lawyer.name}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+ 
+</div>
+
 
         <Button type="submit" className="w-full py-4 text-lg font-medium rounded-md bg-blue-500 hover:bg-blue-600 text-white">
           Submit

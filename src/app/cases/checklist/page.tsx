@@ -146,9 +146,8 @@ export default function Checklist() {
                   className="w-5 h-5 border-2 border-gray-400 rounded"
                 />
                 <div
-                  className={`text-black text-lg font-medium ${
-                    task.status === 'Completed' ? 'line-through' : ''
-                  }`}
+                  className={`text-black text-lg font-medium
+                  `}
                 >
                   {task.title}
                 </div>

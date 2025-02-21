@@ -8,6 +8,13 @@ import React, { useEffect, useState } from 'react'
 
 import { FileText, AlertCircle, CheckCircle } from 'lucide-react'
 
+interface CaseItem {
+  id: number;
+  title: string;
+  category: string;
+  status: string;
+}
+
 /* const mockCases = [
   { id: 1, title: "Divorce Proceedings", category: "Personal Law", status: "Active" },
   { id: 2, title: "Copyright Infringement", category: "Business Law", status: "Pending" },
@@ -59,9 +66,9 @@ export default function MyCasesPage() {
             });
             const data = await res.json();
             setCases(data.cases);
-          } catch (err) {
+          } catch (err: any) {
             console.error("Error fetching cases:", err);
-            setError(err.message);
+            // setError((err as Error).message);
           } finally {
             setLoading(false);
           }
@@ -93,7 +100,9 @@ export default function MyCasesPage() {
                 </Badge>
               </div>
               <div className="mt-4">
+              <Link href={`/cases/details`}>
                 <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">View Details</Button>
+              </Link>
               </div>
             </CardContent>
           </Card>

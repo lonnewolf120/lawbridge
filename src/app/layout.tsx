@@ -5,6 +5,8 @@ import Layout from '@/components/layout'
 
 import { Toaster } from "@/components/ui/toaster" 
 import {Providers} from "./providers";
+import Footer from '@/components/Footer';
+import { Divide } from 'lucide-react';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -22,7 +24,12 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <ThemeProvider> */}
         <Providers>
-          <Layout>{children}
+          <Layout>
+            <div className="flex flex-grow h-screen">
+            {children}
+            </div>
+            <Divide className="w-full h-1 bg-gray-100" />
+        {/*   <Footer/> */}
           </Layout><Toaster />
         </Providers>
         {/* </ThemeProvider> */}
