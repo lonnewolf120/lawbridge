@@ -6,7 +6,7 @@ import Image from "next/image"
 export default function LegalForms() {
   const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'V', 'W']
   
-  const documents = {
+  const documents: { [key: string]: { title: string; href: string; }[] } = {
     A: [
       { title: 'Accord de confidentialité', href: '#' },   
       { title: 'Accord de séparation', href: '#' },    

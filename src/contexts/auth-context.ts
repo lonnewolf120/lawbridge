@@ -1,8 +1,8 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
+import nookies from 'nookies'
 
 type User = {
   id: string
@@ -13,7 +13,7 @@ type User = {
 
 type AuthContextType = {
   user: User | null
-  login: (email: string, password: string) => Promise<void>
+  login: (email: string, password: string, role: 'client' | 'lawyer') => Promise<void>
   logout: () => void
 }
 
@@ -24,7 +24,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
-    const storedUser = Cookies.get('user')
+    const cookies = nookies.get(null)
+    const storedUser = cookies.user
     if (storedUser) {
       setUser(JSON.parse(storedUser))
     }
@@ -40,21 +41,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       role: role,
     }
     setUser(fakeUser)
-    Cookies.set('user', JSON.stringify(fakeUser), { expires: 7 }) // Expires in 7 days
+    nookies.set(null, 'user', JSON.stringify(fakeUser), { maxAge: 7 * 24 * 60 * 60, path: '/' }) // Expires in 7 days
     router.push('/dashboard')
   }
 
   const logout = () => {
     setUser(null)
-    Cookies.remove('user')
+    nookies.destroy(null, 'user')
     router.push('/login')
   }
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  )
+  // return (
+  //   <AuthContext.Provider value={{ user, login, logout }}>
+  //     {children}
+  //   </AuthContext.Provider>
+  // )
 }
 
 export function useAuth() {

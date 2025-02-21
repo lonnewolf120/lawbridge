@@ -4,9 +4,15 @@ const nextConfig = {
   env: {
     GEMINI_API_KEY: process.env.GEMINI_API_KEY,
   }, eslint: {
-    ignoreDuringBuilds: true,
-},
+      ignoreDuringBuilds: true,
+  },
+  experimental: {
+    serverActions: {},
+    },
+  logging: {
+      server: true,
+      client: true,
+    },
 }
 
 module.exports = nextConfig
-

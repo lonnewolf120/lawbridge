@@ -2,16 +2,61 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { Button, Snackbar } from '@mui/material'
+import { auth_signup } from '@/lib/functions'
+import { setCookie } from 'nookies'
 
 export default function SignUpPage() {
   const [userType, setUserType] = useState<'client' | 'lawyer'>('client')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [nid, setNid] = useState('')
+  const [barNumber, setBarNumber] = useState('')
+
+  const [snackopen, setSnack] = useState(false)
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault()
+      try {
+        setSnack(true);
+      const userData = {
+        "user_type":userType,
+        "first_name":firstName,
+        "last_name":lastName,
+        email,
+        password,
+        ...(userType === 'lawyer' && { "nid":nid, "bar_number":barNumber }),
+      };
+      console.log("Userdata;", userData)
+      const res = await auth_signup(userData)
+      
+      if (res.status === 201) {
+        const data = await res.json();
+        setCookie(null, 'token', data.token, { path: '/' });
+        setCookie(null, 'user', JSON.parse(data.user), { path: '/' });
+        if (data.lawyer) {
+          setCookie(null, 'lawyer', JSON.parse(data.lawyer), { path: '/' });
+        }
+
+        // const cookies = parseCookies();
+        // console.log('Cookies:', cookies);
+        console.log("Signup successful, cookies set");
+      }
+      
+    } catch (error) {
+      console.error('Signup failed:', error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
+        <Snackbar open={snackopen} autoHideDuration={6000} message="User Signed up" />
         <div className="text-center">
           <h2 className="text-3xl font-bold text-slate-900">Create Account</h2>
-          <p className="mt-2 text-gray-600">Join LawBridge today</p>
+          <p className="mt-2 text-gray-600">Join Shalish today</p>
         </div>
 
         <div className="flex gap-4 p-1 bg-slate-100 rounded-lg">
@@ -37,7 +82,7 @@ export default function SignUpPage() {
           </button>
         </div>
 
-        <form className="mt-8 space-y-6">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-slate-700">
@@ -49,6 +94,8 @@ export default function SignUpPage() {
                 type="text"
                 required
                 className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div>
@@ -61,6 +108,8 @@ export default function SignUpPage() {
                 type="text"
                 required
                 className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
           </div>
@@ -75,6 +124,8 @@ export default function SignUpPage() {
               type="email"
               required
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -88,6 +139,8 @@ export default function SignUpPage() {
               type="password"
               required
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           {userType === 'lawyer' && (
@@ -101,6 +154,8 @@ export default function SignUpPage() {
                 type="text"
                 required
                 className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+                value={nid}
+                onChange={(e) => setNid(e.target.value)}
               />
             </div>
           )}
@@ -115,30 +170,37 @@ export default function SignUpPage() {
                 type="text"
                 required
                 className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+                value={barNumber}
+                onChange={(e) => setBarNumber(e.target.value)}
               />
             </div>
           )}
-          
 
+{/* 
           {userType === 'client' ? (
-          
-            <Link href='/auth/dashboard'>
-            <button
-            type="submit"
-            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
-          >
-            Create Account
-          </button></Link>) : (
-            
-            <Link href='/lawyer/dashboard'>
-            <button
-            type="submit"
-            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
-          >
-            Create Account
-          </button></Link>
-          )}
 
+            <button
+            type="submit"
+            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
+          >
+            Create Account
+            </button>) : (
+
+            <button
+            type="submit"
+            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
+          >
+            Create Account
+            </button>
+          )} */}
+        <button
+            type="submit"
+            onClick={handleSubmit}
+            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
+          >
+            Create Account
+            </button>
+    
           <p className="text-center text-sm text-slate-600">
             Already have an account?{' '}
             <Link href="/auth/login" className="text-[#8B4513] hover:text-[#D2691E]">
@@ -150,4 +212,3 @@ export default function SignUpPage() {
     </div>
   )
 }
-

@@ -24,7 +24,14 @@ const clients = [
   // ... other clients
 ]
 
-export default function ClientDetailPage({ params }: { params: { id: string } }) {
+
+interface Params {
+  id: string
+}
+
+
+export default async function ClientDetailPage(props: { params: Promise<Params> }) {
+  const params = await props.params;
   const client = clients.find(c => c.id === params.id)
 
   if (!client) {

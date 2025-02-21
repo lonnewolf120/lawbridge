@@ -1,5 +1,5 @@
 {
-  "name": "lawbridge",
+  "name": "Shalish",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -39,11 +39,11 @@
     "jspdf": "^2.5.2",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.469.0",
-    "next": "15.1.3",
+    "next": "^15.1.7",
     "nookies": "^2.5.2",
-    "react": "^19.0.0",
+    "react": "^19.0.0-rc.1",
     "react-day-picker": "^8.10.1",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.0.0-rc.1",
     "react-hook-form": "^7.54.2",
     "react-leaflet": "^5.0.0",
     "tailwind-merge": "^2.6.0",

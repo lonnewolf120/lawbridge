@@ -3,9 +3,48 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Snackbar } from '@mui/material'
+import { auth_login } from '@/lib/functions'
+import { setCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const [userType, setUserType] = useState<'client' | 'lawyer'>('client')
+  const [email, setEmail] = useState('')
+  const [snackMessage, setSnackMessage] = useState('')
+  const [snackColor, setSnackColor] = useState('success')
+  const [password, setPassword] = useState('')
+  const [snackopen, setSnack] = useState(false)
+  const router = useRouter()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      setSnack(true);
+      const res = await auth_login({ email, password, user_type: userType })
+      console.log("Login res:", res)
+      if (res.status === 200) {
+        const data = await res.json()
+        setCookie(null, 'token', data.token, { path: '/' })
+        setCookie(null, 'user', JSON.parse(data.user), { path: '/' })
+        if (data.lawyer) {
+          setCookie(null, 'lawyer', JSON.parse(data.lawyer), { path: '/' })
+        }
+      }
+      setSnackMessage('Login successful')
+      setSnackColor('success')
+      setSnack(true)
+
+      router
+        .push('/auth/cases/dashboard')
+
+    } catch (error) {
+      console.error('Login failed:', error)
+      setSnackColor('error')
+      setSnackMessage('Login failed')
+      setSnack(true)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
@@ -14,7 +53,13 @@ export default function LoginPage() {
           <h2 className="text-3xl font-bold text-slate-900">Welcome Back</h2>
           <p className="mt-2 text-gray-600">Sign in to your account</p>
         </div>
-
+        <Snackbar
+          open={snackopen}
+          autoHideDuration={5000}
+          color={snackColor}
+          onClose={() => setSnack(false)}
+          message={snackMessage}
+        />
         <div className="flex gap-4 p-1 bg-slate-100 rounded-lg">
           <button
             onClick={() => setUserType('client')}
@@ -38,7 +83,7 @@ export default function LoginPage() {
           </button>
         </div>
 
-        <form className="mt-8 space-y-6">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-slate-700">
               Email
@@ -49,6 +94,8 @@ export default function LoginPage() {
               type="email"
               required
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
           </div>
 
@@ -61,6 +108,8 @@ export default function LoginPage() {
               name="password"
               type="password"
               required
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
             />
           </div>
@@ -85,29 +134,19 @@ export default function LoginPage() {
               Forgot password?
             </Link>
           </div>
-          {userType==='client'?(<Link href='/auth/dashboard'>
           <Button
             type="submit"
             className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
           >
             Sign in
           </Button>
-          </Link>):
-          (<Link href='/lawyer/dashboard'>
-          <Button
-            type="submit"
-            className="w-full py-3 mt-4 mb-2 bg-amber-200 rounded-md hover:bg-amber-500 text-black text-base"
-          >
-            Sign in
-          </Button>
-          </Link>)}
+        </form>
           <p className="text-center text-sm text-slate-600">
             Don't have an account?{' '}
             <Link href="/auth/signup" className="text-amber-600 hover:text-amber-900">
               Sign up
             </Link>
           </p>
-        </form>
       </div>
     </div>
   )
