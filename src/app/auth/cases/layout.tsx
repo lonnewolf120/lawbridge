@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../../globals.css'
 import { Sidebar } from '@/components/case-sidebar'
-import Layout from '@/components/layout'
+// import Layout from '@/components/layout'
 import { Providers } from '../../providers';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -18,17 +18,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <div lang="en">
+      <div className={inter.className}>
       <Providers>
-        <Layout>
+        {/* <Layout> */}
         <div className="flex h-screen">
           <Sidebar />
           {children}
         </div>
-        </Layout>
+        {/* </Layout> */}
       </Providers>
-      </body>
-    </html>
+      </div>
+    </div>
   )
 }

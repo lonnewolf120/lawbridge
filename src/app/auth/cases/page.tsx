@@ -1,15 +1,27 @@
+'use client'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import React, { useEffect, useState } from 'react'
+
 import { FileText, AlertCircle, CheckCircle } from 'lucide-react'
 
-const mockCases = [
+interface CaseItem {
+  id: number;
+  title: string;
+  category: string;
+  status: string;
+}
+
+/* const mockCases = [
   { id: 1, title: "Divorce Proceedings", category: "Personal Law", status: "Active" },
   { id: 2, title: "Copyright Infringement", category: "Business Law", status: "Pending" },
   { id: 3, title: "Property Dispute", category: "Civil Law", status: "Closed" },
 ]
+ */
+
 
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
@@ -38,11 +50,43 @@ const getStatusIcon = (status: string) => {
 }
 
 export default function MyCasesPage() {
+
+    const clientId = 3; 
+    const [cases, setCases] = useState<CaseItem[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchCases = async () => {
+          try {
+          
+            const res = await fetch(`http://localhost:10101/cases/client/${clientId}`, {
+              method: 'GET',
+              credentials: 'include',
+            });
+            const data = await res.json();
+            setCases(data.cases);
+          } catch (err: any) {
+            console.error("Error fetching cases:", err);
+            // setError((err as Error).message);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchCases();
+      }, [clientId]);
+
+
+
+
+
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 p-8">
       <h1 className="text-3xl font-bold mb-8 text-amber-900">My Cases</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {mockCases.map((case_) => (
+        {cases.map((case_) => (
           <Card key={case_.id} className="overflow-hidden border-orange-200">
             <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
               <CardTitle>{case_.title}</CardTitle>
@@ -56,7 +100,9 @@ export default function MyCasesPage() {
                 </Badge>
               </div>
               <div className="mt-4">
+              <Link href={`/auth/cases/details`}>
                 <Button variant="outline" className="text-amber-700 border-amber-500 hover:bg-amber-50">View Details</Button>
+              </Link>
               </div>
             </CardContent>
           </Card>
@@ -64,7 +110,7 @@ export default function MyCasesPage() {
       </div>
       <div className="mt-8 mb-8">
         <Link href="/auth/cases/file">
-          <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white">File New Case</Button>
+          <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white">Add New Case</Button>
         </Link>
       </div>
     </div>
