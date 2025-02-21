@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu, X } from 'lucide-react'
+import {parseCookies} from 'nookies'
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -22,8 +23,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const cookies = parseCookies()
 
   useEffect(() => {
+    if(typeof window === 'undefined') return
+    if(cookies){
+      console.log("Cookies found", cookies, typeof cookies, cookies.token)
+      
+    }
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
@@ -33,7 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-amber-50">
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-amber-100/10 backdrop-blur-md shadow-md' : 'bg-slate-200'}`}>
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-amber-100/10 backdrop-blur-md shadow-md' : 'bg-amber-100'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
@@ -60,7 +67,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
             <div className="flex items-center gap-4">
-              <Link href='/auth/login'><Button className="hidden md:inline-flex bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button></Link>
+              {cookies.token !== null ?
+              <Link href={'/auth/cases/dashboard'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Dashboard</Button>
+              </Link>
+              :
+              <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+              </Link>
+              }
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" className="md:hidden p-2">
@@ -94,10 +107,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       ))}
                     </nav>
                     <div className="mt-auto">
-                     {/* <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
-                     </Link> */}
-                     <Link href={'tel:+8801776225423'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Contact us</Button>
+                     {cookies.token !== null ?
+                     <Link href={'/auth/cases/dashboard'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Dashboard</Button>
                      </Link>
+                     :
+                     <Link href={'/auth/login'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Login</Button>
+                     </Link>
+                     
+                     }
+                     {/* <Link href={'tel:+8801776225423'}> <Button className="w-full bg-amber-200 hover:bg-amber-400 text-black text-base">Contact us</Button>
+                     </Link> */}
                     </div>
                   </div>
                 </SheetContent>
