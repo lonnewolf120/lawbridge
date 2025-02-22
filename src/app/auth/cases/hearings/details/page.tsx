@@ -103,7 +103,7 @@ export default function HearingPage() {
                 <div className="flex items-center space-x-4">
                   <Avatar>
                     <AvatarImage src="/placeholder.svg" />
-                    <AvatarFallback>TI</AvatarFallback>
+                    <AvatarFallback>II</AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="font-medium">{hearingData.prosecution}</p>
@@ -117,7 +117,7 @@ export default function HearingPage() {
                 <div className="flex items-center space-x-4">
                   <Avatar>
                     <AvatarImage src="/placeholder.svg" />
-                    <AvatarFallback>JS</AvatarFallback>
+                    <AvatarFallback>NA</AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="font-medium">{hearingData.defense}</p>
