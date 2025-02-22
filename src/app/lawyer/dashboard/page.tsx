@@ -1,13 +1,28 @@
+'use client'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight, Briefcase, Calendar, DollarSign, Users, FileText, Clock } from 'lucide-react'
+import { ArrowRight, Briefcase, Calendar, DollarSign, Users, FileText, Clock, LogOut } from 'lucide-react'
+import { destroyCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
 
 export default function LawyerDashboardPage() {
+  const router = useRouter()
+  const logOut = () => {
+      const router = useRouter()
+      destroyCookie(null, 'token')
+      destroyCookie(null, 'lawyer')
+      destroyCookie(null, 'user')
+      console.log("Logged out")
+      router.push('/auth/login')
+    }
+    // logOut();
+
   return (
-    <div className="container mx-auto py-12">
+    <div className="container py-12 m-8 ">
       <h1 className="text-4xl font-bold mb-8">Lawyer Dashboard</h1>
+  
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
       <Link href={'/lawyer/cases'}>
@@ -136,32 +151,37 @@ export default function LawyerDashboardPage() {
             <Link href="/lawyer/clients">
               <Button className="w-full justify-start bg-primary-100" variant="outline">
                 <Users className="mr-2 h-4 w-4" />
-                <p className='text-slate-700'>View Client List</p>
+                <p className='text-accent-700'>View Client List</p>
               </Button>
             </Link>
             <Link href="/lawyer/schedule">
               <Button className="w-full justify-start bg-primary-200" variant="outline">
                 <Calendar className="mr-2 h-4 w-4" />
-                <p className='text-slate-700'>Manage Schedule</p>
+                <p className='text-accent-700'>Manage Schedule</p>
               </Button>
             </Link>
             <Link href="/lawyer/deadlines">
               <Button className="w-full justify-start bg-primary-300" variant="outline">
                 <Clock className="mr-2 h-4 w-4" />
-                <p className='text-slate-700'>View Deadlines</p>
+                <p className='text-accent-700'>View Deadlines</p>
               </Button>
             </Link>
           </CardContent>
         </Card>
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-4">
+        
         <Link href="/lawyer/cases">
           <Button>
             View All Cases
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </Link>
+        <Button className="p-0 flex items-center gap-2 text-red-500 m-4 p-4" onClick={logOut}>
+          Logout
+          <LogOut className="ml-2 h-4 w-4 bg-red" />
+        </Button>
       </div>
     </div>
   )

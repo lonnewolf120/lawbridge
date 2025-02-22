@@ -1,14 +1,31 @@
+'use client'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare } from 'lucide-react'
+import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare, LogOut } from 'lucide-react'
+import { destroyCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
+
 
 export default function DashboardPage() {
+  const router = useRouter()
+  const logOut = () => {
+    const router = useRouter()
+    destroyCookie(null, 'token')
+    destroyCookie(null, 'user')
+    router.push('/auth/login')
+  }
+
   return (
     <div className="container mx-auto py-12 px-4 bg-gradient-to-tl bg-primary-50">
       <h1 className="text-4xl font-bold mb-8 text-primary-900">Your Dashboard</h1>
-      
+      <Button variant="link" className="p-0 flex items-center gap-2 text-red-500"
+      onClick={() => {}}
+      >
+        Logout
+        <LogOut className="ml-2 h-4 w-4 bg-red" />
+      </Button>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
         <Card>
           <CardHeader>
@@ -64,13 +81,13 @@ export default function DashboardPage() {
           <span>Chat with Legal Assistant</span>
           </Link>
         </Button>
-        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-500 text-slate-600" variant="outline">
+        <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-500 text-accent-600" variant="outline">
           <Calendar className="h-6 w-6" />
           <Link href='/find-lawyers'>
           <span>Find Lawyer</span>
           </Link>
         </Button>
-        <Button className="h-auto text-slate-600 py-4 flex flex-col items-center justify-center gap-2 bg-secondary-300" variant="outline">
+        <Button className="h-auto text-accent-600 py-4 flex flex-col items-center justify-center gap-2 bg-secondary-300" variant="outline">
           <FileText className="h-6 w-6" />
           <Link href='/auth/cases'>
           <span>View all cases</span></Link>

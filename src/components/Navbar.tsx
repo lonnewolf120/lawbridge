@@ -24,6 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const cookies = parseCookies()
+  const lawyer = cookies.lawyer  //? JSON.parse(cookies.lawyer) : null
 
   useEffect(() => {
     if(typeof window === 'undefined') return
@@ -47,13 +48,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Image
                 src="/logo2.png"
                 alt="Shalish Logo"
-                width={40}
-                height={40}
+                width={120}
+                height={120}
                 className="rounded"
               />
               <span className="font-serif text-xl">Shalish</span>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="hidden md:flex items-center gap-6 sm:hidden">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -68,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </nav>
             <div className="flex items-center gap-4">
               {cookies.token !== null ?
-              <Link href={'/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
+              <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
               </Link>
               :
               <Link href={'/auth/login'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Login</Button>
@@ -108,12 +109,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </nav>
                     <div className="mt-auto">
                      {cookies.token !== null ?
-                     <Link href={'/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
+                     <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
                      </Link>
                      :
                      <Link href={'/auth/login'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Login</Button>
                      </Link>
-                     
                      }
                      {/* <Link href={'tel:+8801776225423'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Contact us</Button>
                      </Link> */}

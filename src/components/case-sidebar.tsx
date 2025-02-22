@@ -1,17 +1,21 @@
 import Link from 'next/link'
 import { Home, FileText, Calendar, Lightbulb, UserPlus } from 'lucide-react'
-
-const navItems = [
-  { name: 'Dashboard', href: '/auth/dashboard', icon: Home },
-  { name: 'File a Case', href: '/auth/cases/file', icon: FileText },
-  { name: 'My Cases', href: '/auth/cases', icon: FileText },
-  { name: 'Progress Tracker', href: '/auth/cases/progress', icon: FileText },
-  { name: 'Upcoming Hearings', href: '/auth/cases/hearings', icon: Calendar },
-  { name: 'Legal Tips', href: '/auth/cases/tips', icon: Lightbulb },
-  { name: 'Find a Lawyer', href: '/find-lawyers', icon: UserPlus },
-]
+import { parseCookies } from 'nookies'
 
 export function Sidebar() {
+  const cookies = parseCookies()
+  const lawyer = cookies.lawyer ? JSON.parse(cookies.lawyer) : null
+
+  const navItems = [
+    { name: 'Dashboard', href:( lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'), icon: Home },
+    { name: 'File a Case', href: '/auth/cases/file', icon: FileText },
+    { name: 'My Cases', href: '/auth/cases', icon: FileText },
+    { name: 'Progress Tracker', href: '/auth/cases/progress', icon: FileText },
+    { name: 'Upcoming Hearings', href: '/auth/cases/hearings', icon: Calendar },
+    { name: 'Legal Tips', href: '/auth/cases/tips', icon: Lightbulb },
+    { name: 'Find a Lawyer', href: '/find-lawyers', icon: UserPlus },
+  ]
+  
   return (
     <div className="w-64 bg-gray-100 h-full p-4">
       <h1 className="text-2xl font-bold mb-8">Legal Case Manager</h1>

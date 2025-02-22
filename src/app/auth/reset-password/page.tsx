@@ -10,7 +10,7 @@ export default function ResetPasswordPage() {
     <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Reset Password</h2>
+          <h2 className="text-3xl font-bold text-accent-900">Reset Password</h2>
           <p className="mt-2 text-border-600">
             {emailSent
               ? "Check your email for reset instructions"
@@ -21,7 +21,7 @@ export default function ResetPasswordPage() {
         {!emailSent ? (
           <form className="mt-8 space-y-6" onSubmit={() => setEmailSent(true)}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700">
+              <label htmlFor="email" className="block text-sm font-medium text-accent-700">
                 Email
               </label>
               <input
@@ -42,7 +42,7 @@ export default function ResetPasswordPage() {
           </form>
         ) : (
           <div className="mt-8 space-y-6">
-            <p className="text-center text-sm text-slate-600">
+            <p className="text-center text-sm text-accent-600">
               Didn't receive the email?{' '}
               <button
                 onClick={() => setEmailSent(false)}
@@ -54,7 +54,7 @@ export default function ResetPasswordPage() {
           </div>
         )}
 
-        <p className="text-center text-sm text-slate-600">
+        <p className="text-center text-sm text-accent-600">
           Remember your password?{' '}
           <Link href="/auth/login" className="text-[#8B4513] hover:text-[#D2691E]">
             Sign in
