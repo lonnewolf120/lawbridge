@@ -20,14 +20,16 @@ export default function RootLayout({
   return (
     <div lang="en">
       <div className={inter.className}>
-      <Providers>
-        {/* <Layout> */}
-        <div className="flex h-screen">
-          <Sidebar />
-          {children}
-        </div>
-        {/* </Layout> */}
-      </Providers>
+        <Providers>
+          {/* <Layout> */}
+          <div className="flex h-screen">
+            <Sidebar />
+            <div className="flex-grow">
+              {children}
+            </div>
+          </div>
+          {/* </Layout> */}
+        </Providers>
       </div>
     </div>
   )
