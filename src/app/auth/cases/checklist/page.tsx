@@ -115,7 +115,7 @@ export default function Checklist() {
               className="absolute left-0 h-2 bg-green-500 rounded-full transition-all duration-300"
               style={{ width: `${progressWidth}%` }}
             ></div>
-            {tasks.map((task, index) => (
+            {/* {tasks.map((task, index) => (
               <div
                 key={task.task_id}
                 className={`relative z-10 flex items-center justify-center w-10 h-10 rounded-full border-2 ${
@@ -130,7 +130,23 @@ export default function Checklist() {
                   <span className="text-border-500">{index + 1}</span>
                 )}
               </div>
-            ))}
+            ))} */}
+             {Array.from({ length: tasks.length }).map((_, index) => (
+              <div
+                key={index}
+                className={`relative z-10 flex items-center justify-center w-10 h-10 rounded-full border-2 ${
+                  index < completedTasks ? 'bg-green-500 border-green-500' : 'bg-gray-200 border-gray-400'
+                }`}
+              >
+                {index < completedTasks ? (
+                  <span className="text-white">✓</span>
+                ) : (
+                  <span className="text-gray-500">{index + 1}</span>
+                )}
+              </div>
+            ))} 
+
+            
           </div>
 
           <div className="flex flex-col space-y-4 w-full">
