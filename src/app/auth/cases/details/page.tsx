@@ -247,7 +247,8 @@ export default function CaseDetailsPage() {
             <p className="text-sm font-medium">Filing Date</p>
             <p className="flex items-center text-sm text-muted-foreground">
               <Calendar className="h-4 w-4 mr-2" />
-              {caseDataa?.assigned_at}
+              {caseDataa?.assigned_at.split("T")[0]}
+              
             </p>
           </div>
           <div className="space-y-1">
@@ -311,7 +312,7 @@ export default function CaseDetailsPage() {
                       className="h-8 w-8 p-0"
                       onClick={() => {
                         const link = document.createElement("a");
-                        // link.href = doc.url; // Ensure doc.url contains the correct file URL
+                         link.href = doc.url || ""; // Ensure doc.url contains the correct file URL
                         link.download = doc.name || "document"; // Optional: Set a filename
                         document.body.appendChild(link);
                         link.click();
