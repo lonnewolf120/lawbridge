@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Home, FileText, Calendar, Lightbulb, UserPlus } from 'lucide-react'
+import { Home, FileText, Calendar, Lightbulb, UserPlus ,ChartCandlestick, ScrollText} from 'lucide-react'
 import { parseCookies } from 'nookies'
 
 export function Sidebar() {
@@ -9,8 +9,8 @@ export function Sidebar() {
   const navItems = [
     { name: 'Dashboard', href:( lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'), icon: Home },
     { name: 'File a Case', href: '/auth/cases/file', icon: FileText },
-    { name: 'My Cases', href: '/auth/cases', icon: FileText },
-    { name: 'Progress Tracker', href: '/auth/cases/progress', icon: FileText },
+    { name: 'My Cases', href: '/auth/cases', icon: ScrollText },
+    { name: 'Progress Tracker', href: '/auth/cases/progress', icon: ChartCandlestick },
     { name: 'Upcoming Hearings', href: '/auth/cases/hearings', icon: Calendar },
     { name: 'Legal Tips', href: '/auth/cases/tips', icon: Lightbulb },
     { name: 'Find a Lawyer', href: '/find-lawyers', icon: UserPlus },
