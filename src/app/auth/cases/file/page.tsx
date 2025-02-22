@@ -32,10 +32,9 @@ export default function FileCasePage() {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [lawyerId, setLawyerId] = useState("") 
-   const cookies = parseCookies()
+  const cookies = parseCookies()
       const user = cookies.user ? JSON.parse(cookies.user) : null;
-      const client_id = user.user_id
-  
+      const userId = user.userId
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,7 +57,7 @@ export default function FileCasePage() {
           title,
           description,
           lawyer_id: 5,
-          client_id: client_id,
+          userId: userId,
         }),
       })
 
