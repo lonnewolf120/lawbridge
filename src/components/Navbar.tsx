@@ -13,7 +13,7 @@ const navItems = [
   // { href: '/', label: 'Home' },
   { href: '/find-lawyers', label: 'Find Lawyers' },
   { href: '/legal-assistant', label: 'Legal Assistant' },
-  // { href: '/auth/cases', label: 'Cases' },
+  { href: '/auth/cases', label: 'Cases' },
   { href: '/courses', label: 'Learn' },
   { href: '/templates', label: 'Templates' },
   { href: '/blog', label: 'Articles' },

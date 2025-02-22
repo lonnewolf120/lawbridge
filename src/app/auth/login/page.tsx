@@ -7,12 +7,14 @@ import { Snackbar } from '@mui/material'
 import { auth_login } from '@/lib/functions'
 import { setCookie } from 'nookies'
 import { useRouter } from 'next/navigation'
+import { Eye, EyeIcon, EyeOffIcon } from 'lucide-react'
 
 export default function LoginPage() {
   const [userType, setUserType] = useState<'client' | 'lawyer'>('client')
   const [email, setEmail] = useState('')
   const [snackMessage, setSnackMessage] = useState('')
   const [snackColor, setSnackColor] = useState('success')
+  const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')
   const [snackopen, setSnack] = useState(false)
   const router = useRouter()
@@ -41,6 +43,11 @@ export default function LoginPage() {
       router
       .push('/auth/dashboard')
       }
+      }else{
+        
+      setSnackColor('error')
+      setSnackMessage('Login failed')
+      setSnack(true)
       }
     } catch (error) {
       console.error('Login failed:', error)
@@ -103,20 +110,29 @@ export default function LoginPage() {
             />
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-accent-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
-            />
-          </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-accent-700">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+                />
+                <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                >
+                {showPassword ? <EyeOffIcon/>: <EyeIcon/>}
+                </button>
+              </div>
+            </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">

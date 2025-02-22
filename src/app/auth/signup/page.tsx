@@ -6,6 +6,7 @@ import { Button, Snackbar } from '@mui/material'
 import { auth_signup } from '@/lib/functions'
 import { setCookie } from 'nookies'
 import { useRouter } from 'next/navigation'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 
 export default function SignUpPage() {
   const [userType, setUserType] = useState<'client' | 'lawyer'>('client')
@@ -17,6 +18,7 @@ export default function SignUpPage() {
   const [barNumber, setBarNumber] = useState('')
   const router = useRouter()
   const [snackopen, setSnack] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault()
@@ -72,7 +74,7 @@ export default function SignUpPage() {
             onClick={() => setUserType('client')}
             className={`flex-1 py-2 rounded-md ${
               userType === 'client'
-                ? 'bg-[#D2691E] text-white'
+                ? 'bg-primary text-white'
                 : 'text-accent-700'
             }`}
           >
@@ -82,7 +84,7 @@ export default function SignUpPage() {
             onClick={() => setUserType('lawyer')}
             className={`flex-1 py-2 rounded-md ${
               userType === 'lawyer'
-                ? 'bg-[#D2691E] text-white'
+                ? 'bg-primary text-white'
                 : 'text-accent-700'
             }`}
           >
@@ -137,20 +139,30 @@ export default function SignUpPage() {
             />
           </div>
 
+          
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-accent-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+              <label htmlFor="password" className="block text-sm font-medium text-accent-700">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md"
+                />
+                <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                >
+                {showPassword ? <EyeOffIcon/>: <EyeIcon/>}
+                </button>
+              </div>
+            </div>
           {userType === 'lawyer' && (
             <div>
               <label htmlFor="NID" className="block text-sm font-medium text-accent-700">
@@ -204,14 +216,14 @@ export default function SignUpPage() {
         <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full py-3 bg-[#8B4513] text-white rounded-md hover:bg-[#D2691E] mt-10"
+            className="w-full py-3 bg-primary text-white rounded-md hover:bg-secondary hover:text-primary text-bold  mt-10"
           >
             Create Account
             </button>
     
           <p className="text-center text-sm text-accent-600">
             Already have an account?{' '}
-            <Link href="/auth/login" className="text-[#8B4513] hover:text-[#D2691E]">
+            <Link href="/auth/login" className="text-secondary hover:text-primary">
               Sign in
             </Link>
           </p>
