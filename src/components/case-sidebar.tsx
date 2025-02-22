@@ -12,7 +12,6 @@ export function Sidebar() {
     { name: 'My Cases', href: '/auth/cases', icon: ScrollText },
     { name: 'Progress Tracker', href: '/auth/cases/progress', icon: ChartCandlestick },
     { name: 'Upcoming Hearings', href: '/auth/cases/hearings', icon: Calendar },
-    { name: 'Legal Tips', href: '/auth/cases/tips', icon: Lightbulb },
     { name: 'Find a Lawyer', href: '/find-lawyers', icon: UserPlus },
   ]
   

@@ -53,7 +53,7 @@ export default function HomePage() {
 
       
       {/* Header Section */}
-      <section className="px-4 py-16 md:py-24 bg-gradient-to-b from-green-400/90 to-green-800 text-primary-foreground">
+      <section className="px-4 py-16 md:py-24 bg-gradient-to-b from-primary-400/90 to-primary-800 text-primary-foreground">
         <div className="container max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-down">
             Explore Law Courses

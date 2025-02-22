@@ -37,9 +37,6 @@ export default function LawyerDashboardPage() {
 {lawyer?    <div className="container py-12 m-8 ">
       <h1 className="text-4xl font-bold mb-8">Lawyer Dashboard</h1>
   
-      {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-            
-        </div> */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
       <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -47,8 +44,9 @@ export default function LawyerDashboardPage() {
               <Briefcase className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              {/* <div className="text-2xl font-bold">{user?.username??''}</div>
-              <p className="text-xs text-muted-foreground">{user.email??''}</p> */}
+              <div className="text-2xl font-bold">{user?.username??''}</div>
+              <p className="text-1xl text-foreground">{user.email??''}</p>
+              
             </CardContent>
             </Card>
         <Link href={'/lawyer/cases'}>
@@ -58,7 +56,7 @@ export default function LawyerDashboardPage() {
               <Briefcase className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">25</div>
+              <div className="text-2xl font-bold">6</div>
               <p className="text-xs text-muted-foreground">+2 from last month</p>
             </CardContent>
           </Card>
@@ -71,7 +69,7 @@ export default function LawyerDashboardPage() {
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">18</div>
+              <div className="text-2xl font-bold">5</div>
               <p className="text-xs text-muted-foreground">+3 new this month</p>
             </CardContent>
           </Card>
@@ -84,7 +82,7 @@ export default function LawyerDashboardPage() {
               <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">12</div>
+              <div className="text-2xl font-bold">5</div>
               <p className="text-xs text-muted-foreground">For the next 7 days</p>
             </CardContent>
           </Card>

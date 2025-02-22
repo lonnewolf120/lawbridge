@@ -9,6 +9,7 @@ import {parseCookies} from 'nookies'
 
 
 import { FileText, AlertCircle, CheckCircle } from 'lucide-react'
+import { useRouter } from "next/navigation"
 
 interface CaseItem {
   case_id: any
@@ -29,7 +30,7 @@ interface CaseItem {
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
     case 'active':
-      return 'bg-green-100 text-green-800'
+      return 'bg-primary-100 text-primary-800'
     case 'pending':
       return 'bg-secondary-100 text-secondary-800'
     case 'closed':
@@ -60,13 +61,17 @@ export default function MyCasesPage() {
     const [error, setError] = useState(null);
     const cookies = parseCookies()
     const user = cookies.user ? JSON.parse(cookies.user) : null;
-    const userId = user.userId
-
-
-
-
+    const router = useRouter()
+    // let userId = 0;
 
     useEffect(() => {
+      if(!cookies.token || !cookies.user){
+        console.log("Token not found")
+        router.push('/auth/login')
+      }
+      else{
+
+        const userId = user.userId;
         const fetchCases = async () => {
           try {
             console.log("Userid", userId, "cookies: ", cookies)
@@ -84,8 +89,8 @@ export default function MyCasesPage() {
           }
         };
     
-        fetchCases();
-      }, [userId]);
+        fetchCases();}
+      }, [cookies]);
 
 
 

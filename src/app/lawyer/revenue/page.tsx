@@ -49,7 +49,7 @@ function LawyerRevenuePage() {
             <CardTitle>Paid Revenue</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold text-green-600">${paidRevenue.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-primary-600">${paidRevenue.toLocaleString()}</p>
           </CardContent>
         </Card>
         <Card>

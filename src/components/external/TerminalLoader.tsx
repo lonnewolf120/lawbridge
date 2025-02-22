@@ -103,7 +103,7 @@ const StyledWrapper = styled.div`
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 0.2em solid green; /* Cursor */
+    border-right: 0.2em solid primary; /* Cursor */
     animation:
       typeAndDelete 4s steps(11) infinite,
       blinkCursor 0.5s step-end infinite alternate;

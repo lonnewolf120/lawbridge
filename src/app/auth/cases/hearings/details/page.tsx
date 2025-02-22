@@ -57,7 +57,7 @@ export default function HearingPage() {
           <h1 className="text-3xl font-bold">{hearingData.casetitle}</h1>
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="secondary">Case #047</Badge>
-            <Badge className="bg-green-500">Scheduled</Badge>
+            <Badge className="bg-primary-500">Scheduled</Badge>
           </div>
         </div>
 

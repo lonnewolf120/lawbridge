@@ -183,7 +183,7 @@ export default function LawyerHire({ lawyer }: { lawyer: Lawyer }) {
                 <div className="flex items-center gap-2 mt-2">
                   <MapPin className="w-4 h-4 text-muted-foreground" />
                   <span className="text-muted-foreground">{lawyer.location}</span>
-                  <Star className="w-4 h-4 text-yellow-500 fill-yellow-500 ml-2" />
+                  <Star className="w-4 h-4 text-secondary-500 fill-secondary-500 ml-2" />
                   <span>{lawyer.rating}</span>
                 </div>
                 <div className="flex items-center gap-2 mt-2">
@@ -191,7 +191,7 @@ export default function LawyerHire({ lawyer }: { lawyer: Lawyer }) {
                   <Badge variant="secondary">{lawyer.practice_areas}</Badge>
                 </div>
                 <div className="flex items-center gap-2 mt-2">
-                  <DollarSign className="w-4 h-4 text-green-600" />
+                  <DollarSign className="w-4 h-4 text-primary-600" />
                   <span className="font-medium">{lawyer.fees}</span>
                   <span className="text-muted-foreground">Tk</span>
                 </div>

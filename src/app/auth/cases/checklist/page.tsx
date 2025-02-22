@@ -112,7 +112,7 @@ export default function Checklist() {
           <div className="relative flex items-center justify-between w-full mt-4">
             <div className="absolute left-0 right-0 h-2 bg-gray-300 rounded-full"></div>
             <div
-              className="absolute left-0 h-2 bg-green-500 rounded-full transition-all duration-300"
+              className="absolute left-0 h-2 bg-primary-500 rounded-full transition-all duration-300"
               style={{ width: `${progressWidth}%` }}
             ></div>
             {/* {tasks.map((task, index) => (
@@ -120,7 +120,7 @@ export default function Checklist() {
                 key={task.task_id}
                 className={`relative z-10 flex items-center justify-center w-10 h-10 rounded-full border-2 ${
                   task.status === 'Completed'
-                    ? 'bg-green-500 border-green-500'
+                    ? 'bg-primary-500 border-primary-500'
                     : 'bg-gray-200 border-border-400'
                 }`}
               >
@@ -135,7 +135,7 @@ export default function Checklist() {
               <div
                 key={index}
                 className={`relative z-10 flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                  index < completedTasks ? 'bg-green-500 border-green-500' : 'bg-gray-200 border-gray-400'
+                  index < completedTasks ? 'bg-primary-500 border-primary-500' : 'bg-gray-200 border-gray-400'
                 }`}
               >
                 {index < completedTasks ? (

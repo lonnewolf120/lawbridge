@@ -48,8 +48,8 @@ export default function DashboardPage() {
               <Briefcase className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              {/* <div className="text-2xl font-bold">{user.username??''}</div>
-              <p className="text-xs text-muted-foreground">{user.email??''}</p> */}
+              <div className="text-2xl font-bold">{user.username??''}</div>
+              <p className="text-1xl text-muted-foreground">{user.email??''}</p>
             </CardContent>
             </Card>
         <Card>

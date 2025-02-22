@@ -44,7 +44,7 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
             {templates.map((doc) => (
               <Link href="/templates/2"> 
-              <Button key={doc} variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
+              <Button key={doc} variant="outline" className="border-primary-500 text-primary-600 hover:bg-primary-50">
                 {doc}
               </Button>
               </Link>
@@ -77,7 +77,7 @@ export default function Home() {
               <Link
                 key={item.title}
                 href={item.href}
-                className="flex items-center gap-4 text-green-600 hover:text-green-700 transition-colors"
+                className="flex items-center gap-4 text-primary-600 hover:text-primary-700 transition-colors"
               >
                 <span className="text-2xl">{item.icon}</span>
                 <span>{item.title}</span>

@@ -23,6 +23,11 @@ const caseDetails = {
     { date: '2023-06-15', content: 'Filed initial complaint' },
     { date: '2023-07-01', content: 'Received response from defendant' },
   ],
+  tasks: [
+    { name: 'Prepare evidence', progress: 50 },
+    { name: 'Interview witnesses', progress: 25 },
+    { name: 'File motion for summary judgment', progress: 0 },
+  ],
   documents: [
     { name: 'Initial Complaint', date: '2023-06-15' },
     { name: 'Defendant Response', date: '2023-07-01' },
@@ -96,7 +101,8 @@ function CaseDetailsPage() {
 
       <Tabs defaultValue="notes" className="w-full">
         <TabsList>
-          <TabsTrigger value="notes">Case Notes</TabsTrigger>
+        <TabsTrigger value="notes">Case Notes</TabsTrigger>
+          <TabsTrigger value="tasks">Tasks progress</TabsTrigger>
           <TabsTrigger value="documents">Documents</TabsTrigger>
         </TabsList>
         <TabsContent value="notes">
@@ -114,6 +120,24 @@ function CaseDetailsPage() {
                 ))}
               </ul>
               <Button className="mt-4">Add Note</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="tasks">
+          <Card>
+            <CardHeader>
+              <CardTitle>Tasks progress</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                {caseDetails.tasks.map((note, index) => (
+                  <li key={index} className="border-b pb-2">
+                    <p className="font-medium">{note.name}</p>
+                    <p>{note.progress}</p>
+                  </li>
+                ))}
+              </ul>
+              <Button className="mt-4">Add task</Button>
             </CardContent>
           </Card>
         </TabsContent>

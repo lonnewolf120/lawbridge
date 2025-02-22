@@ -49,12 +49,12 @@ export function LawyerProfile({ lawyer }: { lawyer: Lawyer }) {
                   <span>{lawyer.location}</span>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
-                  <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  <Star className="w-4 h-4 text-secondary-500 fill-secondary-500" />
                   <span className="font-medium">{lawyer.rating}</span>
                   <span className="text-muted-foreground">rating</span>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
-                  <DollarSign className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  <DollarSign className="w-4 h-4 text-secondary-500 fill-secondary-500" />
                   <span className="font-medium">{lawyer.fees}</span>
                   <span className="text-muted-foreground">Tk</span>
                 </div>
