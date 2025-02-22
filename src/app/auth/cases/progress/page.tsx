@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { ProgressBar } from '@/components/progress-bar-round'
+import { parseCookies } from 'nookies'
 
 interface CaseItem {
   case_id: number;
@@ -15,27 +16,32 @@ export default function ProgressPage() {
   const [progresses, setProgresses] = useState<{ [key: number]: number }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const cookies = parseCookies()
+    const user = cookies.user ? JSON.parse(cookies.user) : null;
+    const userId = user.userId
 
-  useEffect(() => {
-    const fetchCases = async () => {
-      try {
-      
-        const res = await fetch(`http://localhost:10101/cases/client/${clientId}`, {
-          method: 'GET',
-          credentials: 'include',
-        });
-        const data = await res.json();
-        setCases(data.cases);
-      } catch (err) {
-        console.error("Error fetching cases:", err);
-        // setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    useEffect(() => {
+        const fetchCases = async () => {
+          try {
+            console.log("Userid", userId, "cookies: ", cookies)
+            const res = await fetch(`http://localhost:10101/cases/client/${userId}`, {
+              method: 'GET',
+              credentials: 'include',
+            });
+            const data = await res.json();
+            setCases(data.cases);
+          } catch (err: any) {
+            console.error("Error fetching cases:", err);
+            // setError((err as Error).message);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchCases();
+      }, [userId]);
 
-    fetchCases();
-  }, [clientId]);
+
 
   useEffect(() => {
     if (cases.length > 0) {

@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link'
+import { parseCookies } from 'nookies';
 
 
 interface Hearing {
@@ -16,10 +17,15 @@ interface Hearing {
 }
 
 export default function HearingsPage() {
-  const userId = 3;
+  //const userId = 3;
   const [hearings, setHearings] = useState<Hearing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+    const cookies = parseCookies()
+      const user = cookies.user ? JSON.parse(cookies.user) : null;
+      const userId = user.userId
+  
+
 
   useEffect(() => {
     async function fetchHearings() {

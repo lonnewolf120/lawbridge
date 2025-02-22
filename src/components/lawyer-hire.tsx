@@ -1,4 +1,5 @@
 "use client"
+import {useEffect} from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -88,8 +89,24 @@ export default function LawyerHire({ lawyer }: { lawyer: Lawyer }) {
   const [snackopen, setSnack] = useState(false)
   const [snackMessage, setSnackMessage] = useState('')
   const [snackColor, setSnackColor] = useState('success')
-  const user = cookies.user // ? JSON.parse(cookies.user) : null
+  const user = cookies.user ? JSON.parse(cookies.user) : null
+  const lawyerCurrent = cookies.lawyer ? JSON.parse(cookies.lawyer) : null
   const token = cookies.token
+
+  useEffect(() => {
+    if (!user) {
+      setSnackMessage('Please login to hire a lawyer')
+      setSnackColor('error')
+      setSnack(true)
+      window.location.href = '/login'
+    }
+    if (lawyerCurrent) {
+      setSnackMessage('You are already a lawyer')
+      setSnackColor('error')
+      setSnack(true)
+      window.location.href = '/lawyer/dashboard'
+    }
+  }, [])
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

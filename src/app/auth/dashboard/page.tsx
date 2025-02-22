@@ -4,28 +4,36 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare, LogOut } from 'lucide-react'
-import { destroyCookie } from 'nookies'
+import { destroyCookie, parseCookies } from 'nookies'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 
 export default function DashboardPage() {
   const router = useRouter()
+  const cookies = parseCookies()
   const logOut = () => {
-    const router = useRouter()
-    destroyCookie(null, 'token')
-    destroyCookie(null, 'user')
+    destroyCookie(null, 'token', {path: '/'})
+    destroyCookie(null, 'user', {path: '/'})
     router.push('/auth/login')
   }
+    useEffect(() => {
+      if (!cookies.token) {
+        router.push('/auth/login')
+      }
+    }, [cookies])
 
   return (
     <div className="container mx-auto py-12 px-4 bg-gradient-to-tl bg-primary-50">
-      <h1 className="text-4xl font-bold mb-8 text-primary-900">Your Dashboard</h1>
-      <Button variant="link" className="p-0 flex items-center gap-2 text-red-500"
-      onClick={() => {}}
+      <div className='flex justify-between items-center mb-8'>
+      <h1 className="text-4xl font-bold text-primary-900">Your Dashboard</h1>
+      <Button className="m-4 flex items-end text-red-500"
+      onClick={logOut}
       >
         Logout
-        <LogOut className="ml-2 h-4 w-4 bg-red" />
+        <LogOut className="h-4 w-4 bg-red" />
       </Button>
+      </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
         <Card>
           <CardHeader>

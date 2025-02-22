@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {parseCookies} from 'nookies'
+
 
 const lawyers = [
   { name: "Sadman Shafi", id: 1 },
@@ -30,6 +32,9 @@ export default function FileCasePage() {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [lawyerId, setLawyerId] = useState("") 
+  const cookies = parseCookies()
+      const user = cookies.user ? JSON.parse(cookies.user) : null;
+      const userId = user.userId
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,7 +45,8 @@ export default function FileCasePage() {
     }
 
     try {
-      const client_id = '3';
+
+     // const client_id = '3';
       const response = await fetch("http://localhost:10101/cases/client", {
         method: "POST",
         headers: {
@@ -51,7 +57,7 @@ export default function FileCasePage() {
           title,
           description,
           lawyer_id: 5,
-          client_id: 3,
+          userId: userId,
         }),
       })
 
@@ -70,7 +76,7 @@ export default function FileCasePage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100 p-12">
-      <h1 className="text-5xl font-bold mb-12 text-border-800">Add Case Details</h1>
+      <h1 className="mt-20 text-5xl font-bold mb-12 text-border-800">Add Case Details</h1>
       <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl w-full">
         <div>
           <Label htmlFor="title" className="text-lg font-medium">Case Title</Label>
@@ -127,7 +133,7 @@ export default function FileCasePage() {
 </div>
 
 
-        <Button type="submit" className="w-full py-4 text-lg font-medium rounded-md bg-blue-500 hover:bg-blue-600 text-white">
+        <Button type="submit" className="mb-20 w-full py-4 text-lg font-medium rounded-md bg-blue-500 hover:bg-blue-600 text-white">
           Submit
         </Button>
       </form>

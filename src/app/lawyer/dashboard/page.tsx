@@ -4,73 +4,87 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { ArrowRight, Briefcase, Calendar, DollarSign, Users, FileText, Clock, LogOut } from 'lucide-react'
-import { destroyCookie } from 'nookies'
+import { destroyCookie, parseCookies } from 'nookies'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function LawyerDashboardPage() {
   const router = useRouter()
-  const logOut = () => {
-      const router = useRouter()
-      destroyCookie(null, 'token')
-      destroyCookie(null, 'lawyer')
-      destroyCookie(null, 'user')
-      console.log("Logged out")
+  const cookies = parseCookies()
+  useEffect(() => {
+    if (!cookies.token) {
       router.push('/auth/login')
     }
-    // logOut();
+    if(!cookies.lawyer){
+      router.push('/auth/dashboard')
+    }
+  }, [cookies])
+
+  const logOut = async () => {
+    destroyCookie(null, 'token', { path: '/' })
+    destroyCookie(null, 'lawyer', { path: '/' })
+    destroyCookie(null, 'user', { path: '/' })
+    const cookies = await parseCookies()
+    console.log("Cookies after logout", cookies)
+    console.log("Logged out")
+    router.push('/auth/login')
+  }
 
   return (
     <div className="container py-12 m-8 ">
       <h1 className="text-4xl font-bold mb-8">Lawyer Dashboard</h1>
   
-      
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-      <Link href={'/lawyer/cases'}>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Cases</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">25</div>
-            <p className="text-xs text-muted-foreground">+2 from last month</p>
-          </CardContent>
-        </Card>
+        <Link href={'/lawyer/cases'}>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Cases</CardTitle>
+              <Briefcase className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">25</div>
+              <p className="text-xs text-muted-foreground">+2 from last month</p>
+            </CardContent>
+          </Card>
         </Link>
         
-      <Link href={'/lawyer/clients'}>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Clients</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">18</div>
-            <p className="text-xs text-muted-foreground">+3 new this month</p>
-          </CardContent>
-        </Card></Link>
+        <Link href={'/lawyer/clients'}>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Active Clients</CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">18</div>
+              <p className="text-xs text-muted-foreground">+3 new this month</p>
+            </CardContent>
+          </Card>
+        </Link>
+        
         <Link href={'/lawyer/schedule'}>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Upcoming Appointments</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">For the next 7 days</p>
-          </CardContent>
-        </Card></Link>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Upcoming Appointments</CardTitle>
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">12</div>
+              <p className="text-xs text-muted-foreground">For the next 7 days</p>
+            </CardContent>
+          </Card>
+        </Link>
+        
         <Link href={'/lawyer/revenue'}>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">$15,231</div>
-            <p className="text-xs text-muted-foreground">+20% from last month</p>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Revenue</CardTitle>
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">$15,231</div>
+              <p className="text-xs text-muted-foreground">+20% from last month</p>
+            </CardContent>
+          </Card>
         </Link>   
       </div>
 
@@ -170,15 +184,14 @@ export default function LawyerDashboardPage() {
         </Card>
       </div>
 
-      <div className="flex justify-end gap-4">
-        
+      <div className="flex justify-center gap-4">
         <Link href="/lawyer/cases">
           <Button>
             View All Cases
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </Link>
-        <Button className="p-0 flex items-center gap-2 text-red-500 m-4 p-4" onClick={logOut}>
+        <Button className="p-0 text-red-500 ml-4 p-4" onClick={logOut}>
           Logout
           <LogOut className="ml-2 h-4 w-4 bg-red" />
         </Button>
@@ -186,4 +199,3 @@ export default function LawyerDashboardPage() {
     </div>
   )
 }
-

@@ -12,7 +12,7 @@ export async function auth_signup(body: any) {
         });
         const data = await res.json();
         return NextResponse.json(data, { status: res.status });
-    } catch (error) {
+    } catch (error) {   
         console.error("Signup error:", error);
         return NextResponse.json({ error: 'Failed to signup' }, { status: 500 });
     }
@@ -265,6 +265,24 @@ export async function clients_GET_ID(id: string) {
     } catch (error) {
         console.error("Get client by ID error:", error);
         return NextResponse.json({ error: 'Failed to get client by ID' }, { status: 500 });
+    }
+}
+
+export async function get_req(endpoint:string) {
+    const token = parseCookies().token;
+    if(!token ) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    try {
+        const res = await fetch(`${BACKEND_URL}/${endpoint}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+             }
+        });
+        const data = await res.json();
+        return NextResponse.json(data, { status: res.status });
+    } catch (error) {
+        console.error("Search lawyers error:", error);
+        return NextResponse.json({ error: 'Failed to search lawyers' }, { status: 500 });
     }
 }
 

@@ -17,7 +17,7 @@ export function Sidebar() {
   ]
   
   return (
-    <div className="w-64 bg-gray-100 h-full p-4">
+    <div className="w-64 bg-gray-100 h-full p-4 mt-12">
       <h1 className="text-2xl font-bold mb-8">Legal Case Manager</h1>
       <nav>
         <ul>
