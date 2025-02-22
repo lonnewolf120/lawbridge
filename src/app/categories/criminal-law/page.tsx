@@ -61,13 +61,6 @@ const criminalLawCourses = [
     ],
   },
 ]
-\
-export default function C
-name: "UN Convention on the Rights of the Child"
-},
-    ],
-  },
-]
 
 export default function CriminalLawPage() {
   return (
