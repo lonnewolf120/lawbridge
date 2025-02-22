@@ -132,7 +132,7 @@ const caseData = {
       name: "Charge Sheet",
       type: "Legal Document",
       dateAdded: "2024-02-01",
-      addedBy: "Peter Davis",
+      addedBy: "Irtiza Iram",
       url: "https://templates.easylegaldocs.com/template.php?id=148&format=msword",
     },
     {
@@ -147,7 +147,7 @@ const caseData = {
       name: "Motion to Dismiss",
       type: "Legal Document",
       dateAdded: "2024-02-15",
-      addedBy: "Jane Smith",
+      addedBy: "Ahmed Saif",
     },
   ],
   tags: ["Financial Crime", "Motion Pending", "High Priority"],
