@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {parseCookies} from 'nookies'
+
 
 const lawyers = [
   { name: "Sadman Shafi", id: 1 },
@@ -30,6 +32,9 @@ export default function FileCasePage() {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [lawyerId, setLawyerId] = useState("") 
+  const cookies = parseCookies()
+      const user = cookies.user ? JSON.parse(cookies.user) : null;
+      const userId = user.userId
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,7 +45,8 @@ export default function FileCasePage() {
     }
 
     try {
-      const client_id = '3';
+
+     // const client_id = '3';
       const response = await fetch("http://localhost:10101/cases/client", {
         method: "POST",
         headers: {
@@ -51,7 +57,8 @@ export default function FileCasePage() {
           title,
           description,
           lawyer_id: 5,
-          client_id: 3,
+          userId: userId,
+          category
         }),
       })
 

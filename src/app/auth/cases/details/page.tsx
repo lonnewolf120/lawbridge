@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react"
+import { useSearchParams } from 'next/navigation';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -17,6 +18,7 @@ interface Case {
   prosecution: string;
   defense: string;
   judge: string;
+  category: string;
   status: string;
   brief_summary: string;
   prev_hearing_summary: string;
@@ -25,7 +27,7 @@ interface Case {
   case_id: string;
   status_text: string;
   assigned_at: string;
-  court: string;
+  court_name: string;
   judge_name: string;
   description: string;
   tags: string[];
@@ -66,9 +68,10 @@ const jsonToCase = (json: any): Case => {
     case_id: json.case_id,
     status_text: json.status_text,
     assigned_at: json.assigned_at,
-    court: json.court,
+    court_name: json.court_name,
     judge_name: json.judge_name,
     description: json.description,
+    category: json.category,
     tags: json.tags,
     basicInfo: {
       caseType: json.caseType,
@@ -153,7 +156,8 @@ const caseData = {
 
 export default function CaseDetailsPage() {
   const userId = 3;
-  const case_id = 1
+  const searchParams = useSearchParams();
+  const caseId = searchParams.get('caseId'); 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -166,7 +170,7 @@ export default function CaseDetailsPage() {
   useEffect(() => {
     async function fetchHearings() {
       try {
-        const response = await fetch(`http://localhost:10101/hearings/user/${userId}`, {
+        const response = await fetch(`http://localhost:10101/hearings/case/${caseId}`, {
           method: 'GET',
           credentials: 'include', 
         });
@@ -184,13 +188,13 @@ export default function CaseDetailsPage() {
       }
     }
     fetchHearings();
-  }, [userId]);
+  }, [caseId]);
   
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:10101/cases/${case_id}`, {
+        const res = await fetch(`http://localhost:10101/cases/${caseId}`, {
           method: 'GET',
           credentials: 'include', 
         });
@@ -251,15 +255,15 @@ export default function CaseDetailsPage() {
           </div>
           <div className="space-y-1">
             <p className="text-sm font-medium">Court</p>
-            <p className="text-sm text-muted-foreground">{caseDataa?.court}</p>
+            <p className="text-sm text-muted-foreground">{caseDataa?.court_name}</p>
           </div>
           <div className="space-y-1">
             <p className="text-sm font-medium">Judge</p>
             <p className="text-sm text-muted-foreground">{caseDataa?.judge}</p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm font-medium">Priority</p>
-            <p className="text-sm text-muted-foreground">{caseDataa?.basicInfo.priority}</p>
+            <p className="text-sm font-medium">Type</p>
+            <p className="text-sm text-muted-foreground">{caseDataa?.category}</p>
           </div>
         </div>
       </CardContent>

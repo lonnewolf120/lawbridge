@@ -5,10 +5,13 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import React, { useEffect, useState } from 'react'
+import {parseCookies} from 'nookies'
+
 
 import { FileText, AlertCircle, CheckCircle } from 'lucide-react'
 
 interface CaseItem {
+  case_id: any
   id: number;
   title: string;
   category: string;
@@ -51,16 +54,23 @@ const getStatusIcon = (status: string) => {
 
 export default function MyCasesPage() {
 
-    const clientId = 3; 
+    //const clientId = 3; 
     const [cases, setCases] = useState<CaseItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const cookies = parseCookies()
+    const user = cookies.user ? JSON.parse(cookies.user) : null;
+    const userId = user.userId
+
+
+
+
 
     useEffect(() => {
         const fetchCases = async () => {
           try {
-          
-            const res = await fetch(`http://localhost:10101/cases/client/${clientId}`, {
+            console.log("Userid", userId, "cookies: ", cookies)
+            const res = await fetch(`http://localhost:10101/cases/client/${userId}`, {
               method: 'GET',
               credentials: 'include',
             });
@@ -75,7 +85,7 @@ export default function MyCasesPage() {
         };
     
         fetchCases();
-      }, [clientId]);
+      }, [userId]);
 
 
 
@@ -100,9 +110,11 @@ export default function MyCasesPage() {
                 </Badge>
               </div>
               <div className="mt-4">
-              <Link href={`/auth/cases/details`}>
+              <Link href={`/auth/cases/details?caseId=${case_.case_id}`}>
                 <Button variant="outline" className="text-primary-700 border-primary-500 hover:bg-primary-50">View Details</Button>
               </Link>
+
+              
               </div>
             </CardContent>
           </Card>

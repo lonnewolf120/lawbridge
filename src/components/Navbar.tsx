@@ -129,7 +129,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       <div className="flex-1 mt-12">{children}</div>
-      <footer className="bg-gray-900 text-border-400 py-12">
+     {/*  <footer className="bg-gray-900 text-border-400 py-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -156,7 +156,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
