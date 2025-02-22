@@ -127,7 +127,7 @@ export default function DashboardPage() {
         <CardContent>
           <ul className="space-y-2">
             <li className="flex justify-between items-center">
-              <span>Appointment with Lawyer John Doe</span>
+              <span>Appointment with Lawyer Kamal Hannan</span>
               <span className="text-sm text-muted-foreground">2 days ago</span>
             </li>
             <li className="flex justify-between items-center">

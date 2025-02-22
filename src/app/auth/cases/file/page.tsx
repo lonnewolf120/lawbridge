@@ -10,10 +10,10 @@ import {parseCookies} from 'nookies'
 
 
 const lawyers = [
-  { name: "Sadman Shafi", id: 1 },
-  { name: "John Doe", id: 2 },
-  { name: "Jane Doe", id: 3 },
-  { name: "Alice Smith", id: 4 },
+  { name: "Kamal Hannan", id: 1 },
+  { name: "Shoyeb Fakir", id: 2 },
+  { name: "Mostofa Kamal", id: 3 },
+  { name: "Iftekhar Islam", id: 4 },
  
 ]
 
@@ -23,7 +23,6 @@ const caseCategories = [
   { name: "Business Law", description: "Contracts, compliance, IP" },
   { name: "Criminal Law", description: "Procedures, rights, defenses" },
   { name: "Civil Law", description: "Property disputes, tenant rights" },
-  { name: "Legal Writing", description: "Documentation and reports" },
   { name: "International Law", description: "Immigration, cross-border" },
 ]
 
