@@ -26,21 +26,22 @@ export default function LoginPage() {
       if (res.status === 200) {
         const data = await res.json()
         setCookie(null, 'token', data.token, { path: '/' })
-        setCookie(null, 'user', JSON.parse(data.user), { path: '/' })
+        setCookie(null, 'user', JSON.stringify(data.user), { path: '/' })
         if (data.lawyer) {
-          setCookie(null, 'lawyer', JSON.parse(data.lawyer), { path: '/' })
+          setCookie(null, 'lawyer', JSON.stringify(data.lawyer), { path: '/' })
         }
         setSnackMessage('Login successful')
         setSnackColor('success')
         setSnack(true)
           
       if(data.lawyer){
-        router.push('/auth/lawyer/dashboard')
+        router.push('/lawyer/dashboard')
       }
-      }
+      else{
       router
-        .push('/auth/dashboard')
-
+      .push('/auth/dashboard')
+      }
+      }
     } catch (error) {
       console.error('Login failed:', error)
       setSnackColor('error')
@@ -53,7 +54,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Welcome Back</h2>
+          <h2 className="text-3xl font-bold text-accent-900">Welcome Back</h2>
           <p className="mt-2 text-border-600">Sign in to your account</p>
         </div>
         <Snackbar
@@ -69,7 +70,7 @@ export default function LoginPage() {
             className={`flex-1 py-2 rounded-md ${
               userType === 'client'
                 ? 'bg-primary-500 text-primary-50'
-                : 'text-slate-700'
+                : 'text-accent-700'
             }`}
           >
             Client
@@ -79,7 +80,7 @@ export default function LoginPage() {
             className={`flex-1 py-2 rounded-md ${
               userType === 'lawyer'
                 ? 'bg-primary-500 text-primary-50'
-                : 'text-slate-700'
+                : 'text-accent-700'
             }`}
           >
             Lawyer
@@ -88,7 +89,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="block text-sm font-medium text-accent-700">
               Email
             </label>
             <input
@@ -103,7 +104,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="password" className="block text-sm font-medium text-accent-700">
               Password
             </label>
             <input
@@ -125,7 +126,7 @@ export default function LoginPage() {
                 type="checkbox"
                 className="h-4 w-4 border-slate-300 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-700">
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-accent-700">
                 Remember me
               </label>
             </div>
@@ -144,7 +145,7 @@ export default function LoginPage() {
             Sign in
           </Button>
         </form>
-          <p className="text-center text-sm text-slate-600">
+          <p className="text-center text-sm text-accent-600">
             Don't have an account?{' '}
             <Link href="/auth/signup" className="text-primary-600 hover:text-primary-900">
               Sign up

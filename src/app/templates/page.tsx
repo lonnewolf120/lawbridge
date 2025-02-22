@@ -36,7 +36,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center space-y-4">
           <h1 className="text-4xl font-bold">Free Legal Documents, Forms and Contracts</h1>
-          <p className="text-slate-600">
+          <p className="text-accent-600">
             Print or download your customized legal document with a free trial subscription.
           </p>
           
@@ -58,7 +58,7 @@ export default function Home() {
               placeholder="Search hundreds of documents..."
               className="w-full pl-4 pr-10 py-3 rounded-full"
             />
-            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-accent-400" />
           </div>
           <div className="flex flex-col items-center relative max-w-2xl mx-auto mt-8">
         <Link href="/templates/1">

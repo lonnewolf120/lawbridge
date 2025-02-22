@@ -35,9 +35,9 @@ export default function SignUpPage() {
       if (res.status === 201) {
         const data = await res.json();
         setCookie(null, 'token', data.token, { path: '/' });
-        setCookie(null, 'user', JSON.parse(data.user), { path: '/' });
+        setCookie(null, 'user', JSON.stringify(data.user), { path: '/' });
         if (data.lawyer) {
-          setCookie(null, 'lawyer', JSON.parse(data.lawyer), { path: '/' });
+          setCookie(null, 'lawyer', JSON.stringify(data.lawyer), { path: '/' });
         }
 
         // const cookies = parseCookies();
@@ -55,7 +55,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <Snackbar open={snackopen} autoHideDuration={6000} message="User Signed up" />
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Create Account</h2>
+          <h2 className="text-3xl font-bold text-accent-900">Create Account</h2>
           <p className="mt-2 text-border-600">Join Shalish today</p>
         </div>
 
@@ -65,7 +65,7 @@ export default function SignUpPage() {
             className={`flex-1 py-2 rounded-md ${
               userType === 'client'
                 ? 'bg-[#D2691E] text-white'
-                : 'text-slate-700'
+                : 'text-accent-700'
             }`}
           >
             Client
@@ -75,7 +75,7 @@ export default function SignUpPage() {
             className={`flex-1 py-2 rounded-md ${
               userType === 'lawyer'
                 ? 'bg-[#D2691E] text-white'
-                : 'text-slate-700'
+                : 'text-accent-700'
             }`}
           >
             Lawyer
@@ -85,7 +85,7 @@ export default function SignUpPage() {
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-slate-700">
+              <label htmlFor="firstName" className="block text-sm font-medium text-accent-700">
                 First Name
               </label>
               <input
@@ -99,7 +99,7 @@ export default function SignUpPage() {
               />
             </div>
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-slate-700">
+              <label htmlFor="lastName" className="block text-sm font-medium text-accent-700">
                 Last Name
               </label>
               <input
@@ -115,7 +115,7 @@ export default function SignUpPage() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="block text-sm font-medium text-accent-700">
               Email
             </label>
             <input
@@ -130,7 +130,7 @@ export default function SignUpPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="password" className="block text-sm font-medium text-accent-700">
               Password
             </label>
             <input
@@ -145,7 +145,7 @@ export default function SignUpPage() {
           </div>
           {userType === 'lawyer' && (
             <div>
-              <label htmlFor="NID" className="block text-sm font-medium text-slate-700">
+              <label htmlFor="NID" className="block text-sm font-medium text-accent-700">
                 NID number
               </label>
               <input
@@ -161,7 +161,7 @@ export default function SignUpPage() {
           )}
           {userType === 'lawyer' && (
             <div>
-              <label htmlFor="barNumber" className="block text-sm font-medium text-slate-700">
+              <label htmlFor="barNumber" className="block text-sm font-medium text-accent-700">
                 Bar Number
               </label>
               <input
@@ -201,7 +201,7 @@ export default function SignUpPage() {
             Create Account
             </button>
     
-          <p className="text-center text-sm text-slate-600">
+          <p className="text-center text-sm text-accent-600">
             Already have an account?{' '}
             <Link href="/auth/login" className="text-[#8B4513] hover:text-[#D2691E]">
               Sign in

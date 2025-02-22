@@ -69,7 +69,7 @@ function CategoryCard({ name, description, href, imageId, courseCount }: any) {
         </CardHeader>
         <CardContent>
           <CardDescription className="text-base">{description}</CardDescription>
-          <p className="mt-2 text-sm text-slate-600">{courseCount} Courses</p>
+          <p className="mt-2 text-sm text-accent-600">{courseCount} Courses</p>
         </CardContent>
         <CardFooter>
           <Button className="w-full bg-slate-800 text-white hover:bg-secondary-500 hover:text-black transition-colors">

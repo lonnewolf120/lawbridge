@@ -19,7 +19,7 @@ export default function VerifyPage() {
     <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Verify Your Account</h2>
+          <h2 className="text-3xl font-bold text-accent-900">Verify Your Account</h2>
           <p className="mt-2 text-border-600">
             We sent a verification code to your email
           </p>
@@ -46,7 +46,7 @@ export default function VerifyPage() {
             Verify Account
           </button>
 
-          <p className="text-center text-sm text-slate-600">
+          <p className="text-center text-sm text-accent-600">
             Didn't receive the code?{' '}
             <button
               type="button"

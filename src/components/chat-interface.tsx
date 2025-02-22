@@ -6,6 +6,9 @@ import { Input } from '@/components/ui/input'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import { Prompt } from 'next/font/google'
+import PromptSearch from './external/PromptSearch'
+import SearchInput from './external/PromptSearch'
 
 type Message = {
     role: 'user' | 'assistant'
@@ -119,19 +122,21 @@ export default function Chatbot({ category, description }: { category: string | 
             <hr className="border-t" />
             <CardFooter>
                 <form onSubmit={handleSubmit} className="flex w-full gap-2">
-                    <Input
+
+                    {/* <Input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Type your message..."
                         className="flex-grow"
-                    />
-                    <Button
+                    /> */}
+                    <PromptSearch placeholder='Send a message' onChange={setInput} className='w-full'/>
+                    {/* <Button
                         className="bg-primary-100 hover:bg-primary-200 border-primary-200 text-black text-base"
                         type="submit"
                         disabled={isLoading}
                     >
                         {isLoading ? 'Sending...' : 'Send'}
-                    </Button>
+                    </Button> */}
                 </form>
             </CardFooter>
         </Card>

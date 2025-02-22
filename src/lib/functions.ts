@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-
+import {parseCookies } from 'nookies';
 const BACKEND_URL = process.env.BASE_URL || 'http://localhost:10101';
 
 // --- Authentication Routes ---
@@ -265,6 +265,25 @@ export async function clients_GET_ID(id: string) {
     } catch (error) {
         console.error("Get client by ID error:", error);
         return NextResponse.json({ error: 'Failed to get client by ID' }, { status: 500 });
+    }
+}
+
+export async function post_req(body: any, endpoint:string) {
+    const token = parseCookies().token;
+    if(!token ) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    try {
+        const res = await fetch(`${BACKEND_URL}/${endpoint}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+             },
+            body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        return NextResponse.json(data, { status: res.status });
+    } catch (error) {
+        console.error("Search lawyers error:", error);
+        return NextResponse.json({ error: 'Failed to search lawyers' }, { status: 500 });
     }
 }
 

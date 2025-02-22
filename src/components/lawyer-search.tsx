@@ -10,6 +10,8 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import Link from 'next/link'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Lawyer } from '@/types/lawyer'
+import TerminalLoader from './external/TerminalLoader'
+import StatusText from './external/statusText'
 
 const practiceAreas = [
   'Criminal Law',
@@ -127,7 +129,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Search Lawyers</CardTitle>
+        <CardTitle><p className='text-xl'>Search Lawyers</p></CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -207,15 +209,36 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
             />
             </div>
           </div>
+          
+                
+          <button className=" inline-flex items-center w-[50%]  relative inline-flex h-10   overflow-hidden 
+          rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-slate-400 
+          focus:ring-offset-2 focus:ring-offset-slate-50">
 
-          <Button className="w-full bg-secondary-200 hover:bg-secondary-400 text-black text-base" onClick={handleSearchButtonClick} disabled={loading}>
+            {/* <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
+            bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" /> */}
+           {loading? <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
+            bg-[conic-gradient(from_90deg_at_50%_50%,#000000_50%,#FFFFFF_50%,#000000_100%)]" />
+          : <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
+          bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"/>
+          }
+            
+            <span className="inline-flex h-full w-full cursor-pointer 
+            items-center justify-center rounded-full px-3 py-1 
+            text-sm font-medium text-white backdrop-blur-3xl">
             {loading ? "Searching..." : "Search"}
-          </Button>
-        </div>
+            </span>
+          </button>
+
+        {/* <button className={`inline-flex h-12 animate-shimmer items-center ${loading? 'text-primary border-accent' : 'text-secondary border-primary'} justify-center rounded-md border bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium  transition-colors focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-primary-50`}>
+        
+            
+            </button> */}
+          </div>
         <div className="mt-6">
           <h3 className="font-semibold mb-2">Results</h3>
           <ScrollArea className="h-[400px]">
-            {loading && <p>Loading lawyers...</p>} {/* Display loading message */}
+            {loading && <TerminalLoader text='Loading'/>} {/* Display loading message */}
             {!loading && filteredLawyers.map((lawyer) => (
               <Card key={lawyer.lawyer_id} className="mb-4">
                 <CardContent className="p-4">
@@ -224,14 +247,13 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
                       src={lawyer.profile_picture_url! || 'https://avatar.iran.liara.run/public'}
                       alt={lawyer.first_name + ' ' + lawyer.last_name}
                       className="w-16 h-16 rounded-full object-cover border border-border-300"
+                      onError={(e) => { e.currentTarget.src = 'https://avatar.iran.liara.run/public'; e.currentTarget.alt = 'Default Avatar'; }}
                     />
                     <div className='flex flex-col ml-4'>
                       <h4 className="font-medium text-lg">{lawyer.first_name} {lawyer.last_name}</h4>
-
                       <p className="text-sm text-muted-foreground">
                         {lawyer.practice_areas ? lawyer.practice_areas : 'No practice areas listed'}
                       </p>
-
                       <p className="text-sm">Location: {lawyer.location}</p>
                       <p className="text-sm">Rating: {lawyer.rating}/5</p>
                       <p className="text-sm">Fees: {lawyer.fees}tk/hour</p>
@@ -245,8 +267,8 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Re
               </Card>
             ))}
             {!loading && filteredLawyers.length === 0 && <div>
-              <p className='text-xl mb-4'>Click on a location first to find nearby lawyers if you haven't already.</p>
-              <p className='text-xl text-red'>No lawyers found matching your criteria.</p></div>} {/* No results message */}
+              <StatusText className='w-full' title={`No lawyers found matching your criteria.`}  descriptions={[`Click on a location first to find nearby lawyers if you haven't already.`, 'Try other filters or remove current ones to view available lawyers']}/>
+            </div>} {/* No results message */}
           </ScrollArea>
         </div>
       </CardContent>

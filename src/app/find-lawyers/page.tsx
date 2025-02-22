@@ -1,14 +1,16 @@
 'use client'
 
+// import BookLoader from '@/components/external/BookLoader'
+// import TerminalLoader from '@/components/external/TerminalLoader'
 import dynamic from 'next/dynamic'
 import { useState, useCallback } from 'react'
 
 const LawyerSearch = dynamic(() => import('@/components/lawyer-search'), {
-  loading: () => <p>Loading Lawyer Search...</p>,
+  loading: () =><p/>,
   ssr: false,
 })
 const FindLawyersMap = dynamic(() => import('@/components/find-lawyers-map').then(mod => mod.default), {
-  loading: () => <p>Loading Map...</p>,
+  loading: () => <p/>,
   ssr:false,
 })
 
