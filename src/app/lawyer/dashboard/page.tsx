@@ -11,6 +11,8 @@ import { useEffect } from 'react'
 export default function LawyerDashboardPage() {
   const router = useRouter()
   const cookies = parseCookies()
+  const user = cookies.user? JSON.parse(cookies.user) : null
+  const lawyer = cookies.lawyer? JSON.parse(cookies.lawyer) : null
   useEffect(() => {
     if (!cookies.token) {
       router.push('/auth/login')
@@ -31,10 +33,24 @@ export default function LawyerDashboardPage() {
   }
 
   return (
-    <div className="container py-12 m-8 ">
+    <div>
+{lawyer?    <div className="container py-12 m-8 ">
       <h1 className="text-4xl font-bold mb-8">Lawyer Dashboard</h1>
   
+      {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+            
+        </div> */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+      <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Personal Info</CardTitle>
+              <Briefcase className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              {/* <div className="text-2xl font-bold">{user?.username??''}</div>
+              <p className="text-xs text-muted-foreground">{user.email??''}</p> */}
+            </CardContent>
+            </Card>
         <Link href={'/lawyer/cases'}>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -196,6 +212,24 @@ export default function LawyerDashboardPage() {
           <LogOut className="ml-2 h-4 w-4 bg-red" />
         </Button>
       </div>
+    </div> 
+    :
+    <div>
+    <div className="flex flex-col items-center justify-center h-full py-12 px-4 bg-gradient-to-tl bg-primary-50">
+      <h2 className="text-2xl font-bold text-primary-900 mb-4">Please login or signup to view your dashboard</h2>
+      <Button onClick={() => router.push('/auth/login')} className="mb-4">
+        Login
+      </Button>
+      <div className="w-full max-w-sm">
+        <div className="animate-pulse">
+          <div className="h-4 bg-gray-300 rounded mb-4"></div>
+          <div className="h-4 bg-gray-300 rounded mb-4"></div>
+          <div className="h-4 bg-gray-300 rounded mb-4"></div>
+        </div>
+      </div>
+    </div>
+    
+    </div>}
     </div>
   )
 }

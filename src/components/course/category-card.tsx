@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
+import Link from "next/link"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { BookOpen } from 'lucide-react'
+import { BookOpen } from "lucide-react"
 
 interface CategoryCardProps {
   name: string
@@ -39,7 +39,10 @@ export function CategoryCard({ name, description, href, imageId, courseCount }: 
       </CardContent>
       <CardFooter className="p-4">
         <Link href={href} className="w-full">
-          <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+          <Button
+            variant="outline"
+            className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+          >
             Explore Courses
           </Button>
         </Link>
@@ -47,4 +50,5 @@ export function CategoryCard({ name, description, href, imageId, courseCount }: 
     </Card>
   )
 }
+
 
