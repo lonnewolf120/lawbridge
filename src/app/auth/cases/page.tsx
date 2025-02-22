@@ -11,6 +11,7 @@ import {parseCookies} from 'nookies'
 import { FileText, AlertCircle, CheckCircle } from 'lucide-react'
 
 interface CaseItem {
+  case_id: any
   id: number;
   title: string;
   category: string;
@@ -109,9 +110,11 @@ export default function MyCasesPage() {
                 </Badge>
               </div>
               <div className="mt-4">
-              <Link href={`/auth/cases/details`}>
+              <Link href={`/auth/cases/details?caseId=${case_.case_id}`}>
                 <Button variant="outline" className="text-primary-700 border-primary-500 hover:bg-primary-50">View Details</Button>
               </Link>
+
+              
               </div>
             </CardContent>
           </Card>
