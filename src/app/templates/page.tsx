@@ -29,7 +29,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-primary-50">
 
       {/* div Content */}
       <div className="container py-12 space-y-12">

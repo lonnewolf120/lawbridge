@@ -137,7 +137,7 @@ export default function LegalForms() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+            <div className="bg-primary-50 p-6 rounded-lg shadow-sm mb-8">
               <div className="flex gap-2">
                 <Input
                   type="search"

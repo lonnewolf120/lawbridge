@@ -24,7 +24,7 @@ export default function RentalAgreementForm() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-center mb-8">Rental Agreement Form</h1>
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-primary-50 p-6 rounded-lg shadow">
           <div>
             <Label htmlFor="propertyType">What kind of property is being rented?</Label>
             <Textarea id="propertyType" placeholder="Describe the property..." />

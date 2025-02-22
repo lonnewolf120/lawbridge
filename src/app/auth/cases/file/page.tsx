@@ -96,7 +96,7 @@ export default function FileCasePage() {
             <SelectTrigger className="mt-2 w-full p-4 border rounded-md text-lg">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
-            <SelectContent className="bg-white">
+            <SelectContent className="bg-primary-50">
               {caseCategories.map((cat) => (
                 <SelectItem key={cat.name} value={cat.name} className="text-lg py-3">
                   {cat.name}
@@ -122,7 +122,7 @@ export default function FileCasePage() {
     <SelectTrigger className="mt-2 w-full p-4 border rounded-md text-lg">
       <SelectValue placeholder="Select a lawyer" />
     </SelectTrigger>
-    <SelectContent className="bg-white">
+    <SelectContent className="bg-primary-50">
       {lawyers.map((lawyer) => (
         <SelectItem key={lawyer.name} value={lawyer.name} className="text-lg py-3">
           {lawyer.name}

@@ -30,7 +30,7 @@ export function CourseCard({ id, title, description, imageId, content, resources
   const summary = createSummary(content)
 
   return (
-    <Card className="flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-white border-gray-200 group">
+    <Card className="flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-primary-50 border-gray-200 group">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
           src={`/placeholder.svg?height=200&width=400&text=Course+${imageId}`}
