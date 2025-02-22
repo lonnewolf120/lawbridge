@@ -1,164 +1,56 @@
-import { EnrollmentPage } from '@/components/course/enrollment-page'
+import { EnrollmentPage } from "@/components/course/enrollment-page"
+
+
 function getCourseDetails(courseId: string) {
   const courses = [
-    { 
+    {
       id: "marriage-laws",
-      title: "Marriage Laws and Procedures in Bangladesh", 
-      price: 99.99,
-    },
-    { 
-      id: "divorce-laws",
-      title: "Divorce Laws: Rights and Processes", 
-      price: 89.99,
-    },
-    {
-      id: "inheritance-laws",
-      title: "Understanding Inheritance Laws",
-      price: 79.99,
-    },
-    {
-      id: "child-custody",
-      title: "Child Custody and Guardianship",
-      price: 69.99,
-    },
-    {
-      id: "domestic-violence",
-      title: "Domestic Violence Laws and Remedies",
-      price: 59.99,
+      title: "Marriage Laws and Procedures in Bangladesh",
+      content:
+        "This course covers the Muslim Family Laws Ordinance 1961, the Special Marriage Act 1872, and other relevant laws. You'll learn about different types of marriages recognized in Bangladesh, legal requirements for marriage registration, and the rights and obligations of spouses under Bangladeshi law.",
     },
     {
       id: "contract-law",
-      title: "Contract Law and Negotiation",
-      price: 109.99,
-    },
-    {
-      id: "company-law",
-      title: "Company Law and Corporate Governance",
-      price: 99.99,
-    },
-    {
-      id: "intellectual-property",
-      title: "Intellectual Property Rights",
-      price: 89.99,
-    },
-    {
-      id: "labor-law",
-      title: "Labor Law and Employee Rights",
-      price: 79.99,
-    },
-    {
-      id: "tax-law",
-      title: "Taxation Law for Businesses",
-      price: 69.99,
+      title: "Contract Law and Negotiation in Bangladesh",
+      content:
+        "This course focuses on the Contract Act 1872 and its application in modern business contexts. You'll study contract formation, performance, breach, and remedies under Bangladeshi law, as well as recent developments in e-contracts and digital signatures.",
     },
     {
       id: "criminal-procedure",
       title: "Criminal Procedure in Bangladesh",
-      price: 99.99,
-    },
-    {
-      id: "penal-code",
-      title: "Bangladesh Penal Code: In-depth Analysis",
-      price: 89.99,
-    },
-    {
-      id: "evidence-law",
-      title: "Law of Evidence in Criminal Cases",
-      price: 79.99,
-    },
-    {
-      id: "cybercrime",
-      title: "Cybercrime and Digital Forensics",
-      price: 69.99,
-    },
-    {
-      id: "juvenile-justice",
-      title: "Juvenile Justice System",
-      price: 59.99,
+      content:
+        "This course provides a comprehensive study of the Code of Criminal Procedure 1898 and its amendments. You'll gain in-depth knowledge of arrest procedures, bail applications, trial processes, and appeals in the Bangladeshi criminal justice system.",
     },
     {
       id: "property-law",
-      title: "Property Law and Land Rights",
-      price: 99.99,
-    },
-    {
-      id: "civil-procedure",
-      title: "Civil Procedure Code: A Comprehensive Study",
-      price: 89.99,
-    },
-    {
-      id: "tort-law",
-      title: "Tort Law and Civil Liabilities",
-      price: 79.99,
-    },
-    {
-      id: "contract-disputes",
-      title: "Contract Disputes and Remedies",
-      price: 69.99,
-    },
-    {
-      id: "consumer-protection",
-      title: "Consumer Protection Laws",
-      price: 59.99,
+      title: "Property Law and Land Rights in Bangladesh",
+      content:
+        "This course covers the Transfer of Property Act 1882, the Registration Act 1908, and other relevant laws. You'll learn about land registration, property transfer, leases and tenancy, and common property disputes in Bangladesh.",
     },
     {
       id: "legal-drafting",
-      title: "Legal Drafting: Contracts and Agreements",
-      price: 89.99,
-    },
-    {
-      id: "legal-research",
-      title: "Legal Research and Citation",
-      price: 79.99,
-    },
-    {
-      id: "legal-correspondence",
-      title: "Professional Legal Correspondence",
-      price: 69.99,
-    },
-    {
-      id: "legal-analysis",
-      title: "Legal Analysis and Writing",
-      price: 59.99,
-    },
-    {
-      id: "advocacy-writing",
-      title: "Advocacy Writing for Court",
-      price: 49.99,
+      title: "Legal Drafting: Contracts and Agreements in Bangladesh",
+      content:
+        "This course focuses on drafting clear and effective legal documents in the context of Bangladeshi law. You'll learn contract drafting techniques, common clauses, and best practices in legal writing specific to Bangladesh, in both Bangla and English.",
     },
     {
       id: "public-international-law",
-      title: "Public International Law",
-      price: 109.99,
+      title: "Public International Law: Bangladesh Perspective",
+      content:
+        "This course explores public international law with a focus on Bangladesh's position and involvement. You'll study international treaties, state responsibility, and dispute resolution mechanisms, with emphasis on cases and issues relevant to Bangladesh.",
     },
-    {
-      id: "international-trade-law",
-      title: "International Trade Law",
-      price: 99.99,
-    },
-    {
-      id: "human-rights-law",
-      title: "International Human Rights Law",
-      price: 89.99,
-    },
-    {
-      id: "international-arbitration",
-      title: "International Arbitration",
-      price: 79.99,
-    },
-    {
-      id: "immigration-law",
-      title: "Immigration and Refugee Law",
-      price: 69.99,
-    }
   ]
 
-  return courses.find(course => course.id === courseId)
+  return courses.find((course) => course.id === courseId)
+}
+interface Params {
+  courseId: string
 }
 
-export default async function CourseEnrollmentPage(props: { params: Promise<{ courseId: string }> }) {
+export default async function CourseEnrollmentPage(props: { params: Promise<Params> }) {
   const params = await props.params;
   const courseDetails = getCourseDetails(params.courseId)
+
 
   if (!courseDetails) {
     return <div>Course not found</div>
@@ -167,7 +59,7 @@ export default async function CourseEnrollmentPage(props: { params: Promise<{ co
   return (
     <div className="min-h-screen bg-slate-50">
       
-      <EnrollmentPage courseTitle={courseDetails.title} price={courseDetails.price} />
+      <EnrollmentPage courseTitle={courseDetails.title} courseContent={courseDetails.content} />
     </div>
   )
 }

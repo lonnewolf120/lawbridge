@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Snackbar } from '@mui/material'
 import { auth_login } from '@/lib/functions'
-import { setCookie } from 'nookies'
+import { setCookie, parseCookies } from 'nookies'
 import { useRouter } from 'next/navigation'
 import { Eye, EyeIcon, EyeOffIcon } from 'lucide-react'
 
@@ -18,6 +18,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [snackopen, setSnack] = useState(false)
   const router = useRouter()
+  const cookies = parseCookies()
+
+  if(cookies.lawyer){
+    router.push('/lawyer/dashboard')
+  }else if(cookies.user){
+    router.push('/auth/dashboard')
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
