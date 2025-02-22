@@ -1,8 +1,11 @@
+'use client'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { useEffect } from 'react'
+import { get_req, post_req } from '@/lib/functions'
 
 const clients = [
   { id: '1', name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', activeCases: 2 },
@@ -13,6 +16,16 @@ const clients = [
 ]
 
 export default function ClientListPage() {
+
+  useEffect(() => {
+    console.log('Fetching clients...')
+    const fetchClients = async () => {
+      const response = await get_req('clients/all')
+      const data = await response.json()
+      console.log("Client data:",data)
+     }
+   }, [])
+
   return (
     <div className="container mx-auto py-12 px-4">
       {/* <div className="flex justify-between items-center mb-8">

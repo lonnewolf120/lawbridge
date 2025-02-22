@@ -10,7 +10,7 @@ import { Menu, X } from 'lucide-react'
 import {parseCookies} from 'nookies'
 
 const navItems = [
-  { href: '/', label: 'Home' },
+  // { href: '/', label: 'Home' },
   { href: '/find-lawyers', label: 'Find Lawyers' },
   { href: '/legal-assistant', label: 'Legal Assistant' },
   // { href: '/auth/cases', label: 'Cases' },
@@ -30,14 +30,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     if(typeof window === 'undefined') return
     if(cookies){
       console.log("Cookies found", cookies, typeof cookies, cookies.token)
-      
     }
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [cookies])
 
   return (
     <div className="min-h-screen flex flex-col bg-primary-50">
@@ -45,6 +44,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
+              <Link href="/">
               <Image
                 src="/logo2.png"
                 alt="Shalish Logo"
@@ -52,7 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 height={120}
                 className="rounded"
               />
+              </Link>
+              <Link href="/">
               <span className="font-serif text-xl">Shalish</span>
+              </Link>
             </div>
             <nav className="hidden md:flex items-center gap-6 sm:hidden">
               {navItems.map((item) => (

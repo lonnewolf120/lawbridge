@@ -1,8 +1,11 @@
+'use client'
+import {useEffect} from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { parseCookies } from 'nookies'
 
 const cases = [
   { id: '1234', client: 'John Doe', type: 'Civil', status: 'Active', nextAction: 'File Motion', dueDate: '2023-07-15' },
@@ -13,6 +16,22 @@ const cases = [
 ]
 
 function LawyerCasesPage() {
+  const cookies = parseCookies()
+  const token = cookies.token
+  const user = cookies.user ? JSON.parse(cookies.user) : null
+  const lawyer = cookies.lawyer ? JSON.parse(cookies.lawyer) : null
+
+  useEffect(() => {
+    console.log('Fetching cases... for ', lawyer)
+    const fetchCases = async () => {
+      const response = await fetch('/api/cases')
+      const data = await response.json()
+      console.log(data)
+    }
+
+  }, [])
+
+
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="flex justify-between items-center mb-8">

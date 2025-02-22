@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button, Snackbar } from '@mui/material'
 import { auth_signup } from '@/lib/functions'
 import { setCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
 
 export default function SignUpPage() {
   const [userType, setUserType] = useState<'client' | 'lawyer'>('client')
@@ -14,7 +15,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState('')
   const [nid, setNid] = useState('')
   const [barNumber, setBarNumber] = useState('')
-
+  const router = useRouter()
   const [snackopen, setSnack] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -43,6 +44,13 @@ export default function SignUpPage() {
         // const cookies = parseCookies();
         // console.log('Cookies:', cookies);
         console.log("Signup successful, cookies set");
+        if(data.lawyer){
+          router.push('/lawyer/dashboard')
+        }
+        else{
+        router
+        .push('/auth/dashboard')
+        }
       }
       
     } catch (error) {
