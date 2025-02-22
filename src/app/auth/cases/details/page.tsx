@@ -132,7 +132,7 @@ const caseData = {
       name: "Charge Sheet",
       type: "Legal Document",
       dateAdded: "2024-02-01",
-      addedBy: "Peter Davis",
+      addedBy: "Irtiza Iram",
       url: "https://templates.easylegaldocs.com/template.php?id=148&format=msword",
     },
     {
@@ -147,7 +147,7 @@ const caseData = {
       name: "Motion to Dismiss",
       type: "Legal Document",
       dateAdded: "2024-02-15",
-      addedBy: "Jane Smith",
+      addedBy: "Ahmed Saif",
     },
   ],
   tags: ["Financial Crime", "Motion Pending", "High Priority"],
@@ -247,7 +247,8 @@ export default function CaseDetailsPage() {
             <p className="text-sm font-medium">Filing Date</p>
             <p className="flex items-center text-sm text-muted-foreground">
               <Calendar className="h-4 w-4 mr-2" />
-              {caseDataa?.assigned_at}
+              {caseDataa?.assigned_at.split("T")[0]}
+              
             </p>
           </div>
           <div className="space-y-1">
@@ -311,7 +312,7 @@ export default function CaseDetailsPage() {
                       className="h-8 w-8 p-0"
                       onClick={() => {
                         const link = document.createElement("a");
-                        // link.href = doc.url; // Ensure doc.url contains the correct file URL
+                         link.href = doc.url || ""; // Ensure doc.url contains the correct file URL
                         link.download = doc.name || "document"; // Optional: Set a filename
                         document.body.appendChild(link);
                         link.click();
