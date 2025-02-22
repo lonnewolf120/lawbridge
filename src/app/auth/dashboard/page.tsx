@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare, LogOut } from 'lucide-react'
+import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare, LogOut,ChartCandlestick } from 'lucide-react'
 import { destroyCookie, parseCookies } from 'nookies'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -96,12 +96,12 @@ export default function DashboardPage() {
           </Link>
         </Button>
         <Button className="h-auto text-accent-600 py-4 flex flex-col items-center justify-center gap-2 bg-secondary-300" variant="outline">
-          <FileText className="h-6 w-6" />
-          <Link href='/auth/cases'>
-          <span>View all cases</span></Link>
+          <ChartCandlestick className="h-6 w-6" />
+          <Link href='/auth/cases/progress'>
+          <span>Progress</span></Link>
         </Button>
         <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-200" variant="outline">
-          <BookOpen className="h-6 w-6" />
+          <FileText className="h-6 w-6" />
           <Link href='/blog'>
           <span>Browse Articles</span></Link>
         </Button>

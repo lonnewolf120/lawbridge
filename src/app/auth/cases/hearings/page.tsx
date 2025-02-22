@@ -69,7 +69,7 @@ export default function HearingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+    <div className="mt-10 min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
       <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
       <div className="grid grid-cols-3 gap-6 md:grid-cols-2">
         {hearings.map((hearing) => (
