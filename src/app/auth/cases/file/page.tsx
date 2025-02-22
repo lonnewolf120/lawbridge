@@ -58,6 +58,7 @@ export default function FileCasePage() {
           description,
           lawyer_id: 5,
           userId: userId,
+          category
         }),
       })
 
