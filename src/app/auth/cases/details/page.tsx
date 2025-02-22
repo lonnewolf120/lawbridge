@@ -1,14 +1,15 @@
 'use client'
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, Suspense } from "react"
 import { useSearchParams } from 'next/navigation';
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Calendar, Clock, FileText, Link2, MapPin, User, MessageSquare, Bell, Upload, Download, ChevronUp, Users, ExternalLink } from "lucide-react"
+import { Calendar, FileText, Link2, Download } from "lucide-react"
 import Link from "next/link"
+import TerminalLoader from "@/components/external/TerminalLoader";
+
 interface Case {
   hearing_id: number;
   casetitle: string;
@@ -21,6 +22,14 @@ interface Case {
   category: string;
   status: string;
   brief_summary: string;
+  documents: {
+    id: string;
+    name: string;
+    type: string;
+    dateAdded: string;
+    addedBy: string;
+    url: string;
+  }[];
   prev_hearing_summary: string;
   next_steps: string;
   title: string;
@@ -43,12 +52,10 @@ interface Hearing {
   date: string;
   time: string;
   location: string;
-  // details: string;
   hearing_type: string;
   judge: string;
   status: string;
 }
-
 
 const jsonToCase = (json: any): Case => {
   return {
@@ -59,6 +66,7 @@ const jsonToCase = (json: any): Case => {
     location: json.location,
     prosecution: json.prosecution,
     defense: json.defense,
+    documents: json.documents,
     judge: json.judge,
     status: json.status,
     brief_summary: json.brief_summary,
@@ -79,94 +87,14 @@ const jsonToCase = (json: any): Case => {
     },
   }
 }
-const caseData = {
-  basicInfo: {
-    caseNumber: "2024-CR-123",
-    caseTitle: "State vs. John Doe",
-    caseType: "Criminal",
-    filingDate: "2024-01-15",
-    court: "Superior Court",
-    judge: "Hon. Sarah Johnson",
-    status: "Active",
-    priority: "High",
-  },
-  parties: {
-    plaintiff: {
-      name: "State of California",
-      type: "Government",
-      contact: "District Attorney's Office",
-      attorney: "Peter Davis",
-      attorneyContact: "pdavis@justice.gov",
-    },
-    defendant: {
-      name: "John Doe",
-      type: "Individual",
-      contact: "123 Main St, Anytown, CA",
-      attorney: "Jane Smith",
-      attorneyContact: "jsmith@legal.com",
-    },
-  },
-  description:
-    "Case involves allegations of financial misconduct. Initial evidence has been presented and discovery is in progress. Defense has filed a motion to dismiss citing lack of evidence.",
-  previousHearings: [
-    {
-      id: 1,
-      date: "2024-02-15",
-      type: "Initial Hearing",
-      judge: "Hon. Sarah Johnson",
-      status: "Completed",
-      summary: "Initial hearing completed. Bail was set at $50,000.",
-    },
-    {
-      id: 2,
-      date: "2024-02-28",
-      type: "Motion Hearing",
-      judge: "Hon. Sarah Johnson",
-      status: "Scheduled",
-      summary: "Motion to dismiss hearing",
-    },
-  ],
-  documents: [
-    {
-      id: 1,
-      name: "Charge Sheet",
-      type: "Legal Document",
-      dateAdded: "2024-02-01",
-      addedBy: "Peter Davis",
-      url: "https://templates.easylegaldocs.com/template.php?id=148&format=msword",
-    },
-    {
-      id: 2,
-      name: "Evidence Log",
-      type: "Evidence",
-      dateAdded: "2024-02-10",
-      addedBy: "Investigation Team",
-    },
-    {
-      id: 3,
-      name: "Motion to Dismiss",
-      type: "Legal Document",
-      dateAdded: "2024-02-15",
-      addedBy: "Jane Smith",
-    },
-  ],
-  tags: ["Financial Crime", "Motion Pending", "High Priority"],
-}
 
 
-export default function CaseDetailsPage() {
-  const userId = 3;
-  const searchParams = useSearchParams();
-  const caseId = searchParams.get('caseId'); 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+function CaseDetails({ caseId }: { caseId: string | null }) {
   const [caseDataa, setCaseData] = useState<Case | null>(null)
   const [hearings, setHearings] = useState<Hearing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-   
   useEffect(() => {
     async function fetchHearings() {
       try {
@@ -189,7 +117,6 @@ export default function CaseDetailsPage() {
     }
     fetchHearings();
   }, [caseId]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -202,82 +129,72 @@ export default function CaseDetailsPage() {
         data = jsonToCase(data)
         setCaseData(data)
         console.log(data)
-   
-        
       } catch (error) {
         console.error('Error fetching case data:', error)
       }
     }
     fetchData()
-  }, [])
-/* 
-  if (!hearingData) {
-    return <p>Loading case details...</p>
-  }
- */
+  }, [caseId])
+
+  if (loading) return <TerminalLoader text='Loading case details...' />;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="mt-10 container mx-auto p-4 space-y-6 max-w-4xl pb-16">
-
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">{caseDataa?.title}</h1>
-        
-      </div>
-      <div className="flex flex-wrap gap-2">
-        <Badge variant="outline">Case No.{caseDataa?.case_id}</Badge>
-        <Badge variant="default">{caseDataa?.status}</Badge>
-        {/* <Badge variant="secondary">{caseDataa?.caseType}</Badge> */}
-        {caseDataa?.tags?.map((tag) => (
-          <Badge key={tag} variant="outline">
-            {tag}
-          </Badge>
-        ))}
-      </div>
-    </div>
-
-    {/* Basic Information */}
-    <Card>
-      <CardHeader>
-        <CardTitle>Basic Information</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="space-y-1">
-            <p className="text-sm font-medium">Filing Date</p>
-            <p className="flex items-center text-sm text-muted-foreground">
-              <Calendar className="h-4 w-4 mr-2" />
-              {caseDataa?.assigned_at}
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="text-sm font-medium">Court</p>
-            <p className="text-sm text-muted-foreground">{caseDataa?.court_name}</p>
-          </div>
-          <div className="space-y-1">
-            <p className="text-sm font-medium">Judge</p>
-            <p className="text-sm text-muted-foreground">{caseDataa?.judge}</p>
-          </div>
-          <div className="space-y-1">
-            <p className="text-sm font-medium">Type</p>
-            <p className="text-sm text-muted-foreground">{caseDataa?.category}</p>
-          </div>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold">{caseDataa?.title}</h1>
         </div>
-      </CardContent>
-    </Card>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="outline">Case No.{caseDataa?.case_id}</Badge>
+          <Badge variant="default">{caseDataa?.status}</Badge>
+          {caseDataa?.tags?.map((tag) => (
+            <Badge key={tag} variant="outline">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </div>
 
+      <Card>
+        <CardHeader>
+          <CardTitle>Basic Information</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-1">
+              <p className="text-sm font-medium">Filing Date</p>
+              <p className="flex items-center text-sm text-muted-foreground">
+                <Calendar className="h-4 w-4 mr-2" />
+                {caseDataa?.assigned_at}
+              </p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium">Court</p>
+              <p className="text-sm text-muted-foreground">{caseDataa?.court_name}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium">Judge</p>
+              <p className="text-sm text-muted-foreground">{caseDataa?.judge}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium">Type</p>
+              <p className="text-sm text-muted-foreground">{caseDataa?.category}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-    {/* Case Description */}
-    <Card>
-      <CardHeader>
-        <CardTitle>Case Description</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm text-muted-foreground">{caseDataa?.description}</p>
-      </CardContent>
-    </Card>
-    {/* Documents */}
-    <Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Case Description</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">{caseDataa?.description}</p>
+        </CardContent>
+      </Card>
+
+      <Card>
         <CardHeader>
           <CardTitle>Case Documents</CardTitle>
         </CardHeader>
@@ -293,7 +210,7 @@ export default function CaseDetailsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {caseData.documents.map((doc) => (
+              {caseDataa?.documents.map((doc) => (
                 <TableRow key={doc.id}>
                   <TableCell className="font-medium">
                     <div className="flex items-center gap-2">
@@ -311,7 +228,7 @@ export default function CaseDetailsPage() {
                       className="h-8 w-8 p-0"
                       onClick={() => {
                         const link = document.createElement("a");
-                        // link.href = doc.url; // Ensure doc.url contains the correct file URL
+                        link.href = doc.url; // Ensure doc.url contains the correct file URL
                         link.download = doc.name || "document"; // Optional: Set a filename
                         document.body.appendChild(link);
                         link.click();
@@ -329,7 +246,6 @@ export default function CaseDetailsPage() {
         </CardContent>
       </Card>
 
-      {/* Previous Hearings */}
       <Card>
         <CardHeader>
           <CardTitle>Previous Hearings</CardTitle>
@@ -355,17 +271,15 @@ export default function CaseDetailsPage() {
                     <Badge variant={hearing.status === "Completed" ? "default" : "secondary"}>{hearing.status}</Badge>
                   </TableCell>
                   <TableCell>
-                  <Link href={`/auth/cases/hearings/details`}>
-             
-             
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-8 w-8 p-0"
-                    >
-                      <Link2 className="h-4 w-4" />
-                      <span className="sr-only">View hearing details</span>
-                    </Button>
+                    <Link href={`/auth/cases/hearings/details`}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                      >
+                        <Link2 className="h-4 w-4" />
+                        <span className="sr-only">View hearing details</span>
+                      </Button>
                     </Link>
                   </TableCell>
                 </TableRow>
@@ -374,13 +288,19 @@ export default function CaseDetailsPage() {
           </Table>
         </CardContent>
       </Card>
-
-
-
-    
-    {/* Action Buttons */}
-   
-  </div>
+    </div>
   )
 }
 
+function CaseDetailsWrapper() {
+  const searchParams = useSearchParams();
+  const caseId = searchParams.get('caseId');
+
+  return (
+    <Suspense fallback={<TerminalLoader text='Loading case details...' />}>
+      <CaseDetails caseId={caseId} />
+    </Suspense>
+  );
+}
+
+export default CaseDetailsWrapper;

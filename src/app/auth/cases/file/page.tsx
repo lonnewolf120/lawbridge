@@ -10,10 +10,10 @@ import {parseCookies} from 'nookies'
 
 
 const lawyers = [
-  { name: "Sadman Shafi", id: 1 },
-  { name: "John Doe", id: 2 },
-  { name: "Jane Doe", id: 3 },
-  { name: "Alice Smith", id: 4 },
+  { name: "Sadman Shafi", id: 110 },
+  { name: "John Doe", id: 24 },
+  { name: "Jane Doe", id: 31 },
+  { name: "Alice Smith", id: 44 },
  
 ]
 
@@ -33,11 +33,11 @@ export default function FileCasePage() {
   const [description, setDescription] = useState("")
   const [lawyerId, setLawyerId] = useState("") 
   const cookies = parseCookies()
-      const user = cookies.user ? JSON.parse(cookies.user) : null;
-      const userId = user.userId
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const user = cookies.user ? JSON.parse(cookies.user) : null;
+    const userId = user.userId
 
     if (!title || !category || !lawyerId) {
       alert("Please fill in all required fields.")

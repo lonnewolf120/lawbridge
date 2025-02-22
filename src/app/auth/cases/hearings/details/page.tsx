@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Calendar, Clock, MapPin, User, ChevronUp } from "lucide-react"
+import TerminalLoader from "@/components/external/TerminalLoader"
 
 interface Hearing {
   hearing_id: number;
@@ -47,7 +48,7 @@ export default function HearingPage() {
   }, [])
 
   if (!hearingData) {
-    return <p>Loading hearing information...</p>
+    return <TerminalLoader text='Loading hearing information...' />
   }
 
   return (

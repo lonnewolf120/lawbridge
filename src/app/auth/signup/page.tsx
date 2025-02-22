@@ -51,7 +51,7 @@ export default function SignUpPage() {
         }
         else{
         router
-        .push('/auth/dashboard')
+        .push('/auth/cases/dashboard')
         }
       }
       

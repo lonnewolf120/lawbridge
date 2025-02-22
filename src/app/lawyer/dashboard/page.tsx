@@ -18,7 +18,7 @@ export default function LawyerDashboardPage() {
       router.push('/auth/login')
     }
     if(!cookies.lawyer){
-      router.push('/auth/dashboard')
+      router.push('/auth/cases/dashboard')
     }
   }, [cookies])
 

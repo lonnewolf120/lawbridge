@@ -23,7 +23,7 @@ export default function LoginPage() {
   if(cookies.lawyer){
     router.push('/lawyer/dashboard')
   }else if(cookies.user){
-    router.push('/auth/dashboard')
+    router.push('/auth/cases/dashboard')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +48,7 @@ export default function LoginPage() {
       }
       else{
       router
-      .push('/auth/dashboard')
+      .push('/auth/cases/dashboard')
       }
       }else{
         

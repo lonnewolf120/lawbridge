@@ -7,7 +7,7 @@ export function Sidebar() {
   const lawyer = cookies.lawyer ? JSON.parse(cookies.lawyer) : null
 
   const navItems = [
-    { name: 'Dashboard', href:( lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'), icon: Home },
+    { name: 'Dashboard', href:( lawyer!== null ? '/lawyer/dashboard' : '/auth/cases/dashboard'), icon: Home },
     { name: 'File a Case', href: '/auth/cases/file', icon: FileText },
     { name: 'My Cases', href: '/auth/cases', icon: ScrollText },
     { name: 'Progress Tracker', href: '/auth/cases/progress', icon: ChartCandlestick },
@@ -16,7 +16,7 @@ export function Sidebar() {
   ]
   
   return (
-    <div className="w-64 bg-gray-100 h-full p-4 mt-12">
+    <div className="w-64 bg-primary-50 h-full p-4 mt-12">
       <h1 className="text-2xl font-bold mb-8">Legal Case Manager</h1>
       <nav>
         <ul>
