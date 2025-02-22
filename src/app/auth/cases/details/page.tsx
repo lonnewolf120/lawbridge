@@ -217,15 +217,12 @@ export default function CaseDetailsPage() {
  */
 
   return (
-    <div className="container mx-auto p-4 space-y-6 max-w-4xl pb-16">
+    <div className="mt-10 container mx-auto p-4 space-y-6 max-w-4xl pb-16">
 
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">{caseDataa?.title}</h1>
-        <Button variant="outline">
-          <ExternalLink className="h-4 w-4 mr-2" />
-          Share Case
-        </Button>
+        
       </div>
       <div className="flex flex-wrap gap-2">
         <Badge variant="outline">Case No.{caseDataa?.case_id}</Badge>
@@ -382,10 +379,7 @@ export default function CaseDetailsPage() {
 
     
     {/* Action Buttons */}
-    <div className="flex justify-end gap-4">
-      <Button variant="outline">Edit Case Details</Button>
-      <Button>Schedule New Hearing</Button>
-    </div>
+   
   </div>
   )
 }

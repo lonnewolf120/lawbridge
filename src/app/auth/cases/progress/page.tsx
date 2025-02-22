@@ -80,7 +80,7 @@ export default function ProgressPage() {
   if (error) return <div className="p-4 text-red-600">Error: {error}</div>;
 
   return (
-    <div className="bg-gray-100 text-border-800 font-sans p-4">
+    <div className="mt-10 bg-gray-100 text-border-800 font-sans p-4">
       <div className="grid grid-cols-4 gap-4">
         {cases.map((caseItem) => (
           <Card key={caseItem.case_id} className="col-span-1">

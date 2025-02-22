@@ -98,7 +98,7 @@ export default function MyCasesPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+    <div className="mt-10 min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
       <h1 className="text-3xl font-bold mb-8 text-primary-900">My Cases</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {cases.map((case_) => (

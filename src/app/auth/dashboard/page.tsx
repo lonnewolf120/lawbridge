@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight, BookOpen, Calendar, FileText, MessageSquare, LogOut, Briefcase } from 'lucide-react'
+import { ArrowRight, BookOpen, Briefcase, Calendar, FileText, MessageSquare, LogOut,ChartCandlestick } from 'lucide-react'
 import { destroyCookie, parseCookies } from 'nookies'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -12,7 +12,7 @@ import { useEffect } from 'react'
 export default function DashboardPage() {
   const router = useRouter()
   const cookies = parseCookies()
-  const user = cookies.user? JSON.parse(cookies.user) : null
+  const user = cookies.user ? JSON.parse(cookies.user) : null
   const logOut = () => {
     destroyCookie(null, 'token', {path: '/'})
     destroyCookie(null, 'user', {path: '/'})
@@ -27,7 +27,7 @@ export default function DashboardPage() {
   return (
     <div>
       {user? 
-      <div className="container mx-auto py-12 px-4 bg-gradient-to-tl bg-primary-50">
+    <div className="container mx-auto py-12 px-4 bg-gradient-to-tl bg-primary-50">
       <div className='flex justify-between items-center mb-8'>
       <h1 className="text-4xl font-bold text-primary-900">Your Dashboard</h1>
       <Button className="m-4 flex items-end text-red-500"
@@ -37,10 +37,6 @@ export default function DashboardPage() {
         <LogOut className="h-4 w-4 bg-red" />
       </Button>
       </div>
-      
-      {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-            
-        </div> */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
       <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -113,12 +109,12 @@ export default function DashboardPage() {
           </Link>
         </Button>
         <Button className="h-auto text-accent-600 py-4 flex flex-col items-center justify-center gap-2 bg-secondary-300" variant="outline">
-          <FileText className="h-6 w-6" />
-          <Link href='/auth/cases'>
-          <span>View all cases</span></Link>
+          <ChartCandlestick className="h-6 w-6" />
+          <Link href='/auth/cases/progress'>
+          <span>Progress</span></Link>
         </Button>
         <Button className="h-auto py-4 flex flex-col items-center justify-center gap-2 bg-primary-200" variant="outline">
-          <BookOpen className="h-6 w-6" />
+          <FileText className="h-6 w-6" />
           <Link href='/blog'>
           <span>Browse Articles</span></Link>
         </Button>
@@ -144,22 +140,23 @@ export default function DashboardPage() {
             </li>
           </ul>
         </CardContent>
-      </Card></div>: <div>
-        <div className="flex flex-col items-center justify-center h-full py-12 px-4 bg-gradient-to-tl bg-primary-50">
-          <h2 className="text-2xl font-bold text-primary-900 mb-4">Please login or signup to view your dashboard</h2>
-          <Button onClick={() => router.push('/auth/login')} className="mb-4">
-            Login
-          </Button>
-          <div className="w-full max-w-sm">
-            <div className="animate-pulse">
-              <div className="h-4 bg-gray-300 rounded mb-4"></div>
-              <div className="h-4 bg-gray-300 rounded mb-4"></div>
-              <div className="h-4 bg-gray-300 rounded mb-4"></div>
-            </div>
-          </div>
+      </Card>
+    </div>: <div>
+    <div className="flex flex-col items-center justify-center h-full py-12 px-4 bg-gradient-to-tl bg-primary-50">
+      <h2 className="text-2xl font-bold text-primary-900 mb-4">Please login or signup to view your dashboard</h2>
+      <Button onClick={() => router.push('/auth/login')} className="mb-4">
+        Login
+      </Button>
+      <div className="w-full max-w-sm">
+        <div className="animate-pulse">
+          <div className="h-4 bg-gray-300 rounded mb-4"></div>
+          <div className="h-4 bg-gray-300 rounded mb-4"></div>
+          <div className="h-4 bg-gray-300 rounded mb-4"></div>
         </div>
-        
-        </div>}
+      </div>
+    </div>
+    
+    </div>}
     </div>
   )
 }

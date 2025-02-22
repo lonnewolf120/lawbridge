@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, MapPin, Clock } from 'lucide-react';
@@ -8,6 +8,7 @@ import { parseCookies } from 'nookies';
 
 
 interface Hearing {
+  details: string;
   hearing_id: number;
   caseTitle: string;
   date: string;
@@ -69,13 +70,13 @@ export default function HearingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
+    <div className="mt-10 min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
       <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
       <div className="grid grid-cols-3 gap-6 md:grid-cols-2">
         {hearings.map((hearing) => (
           <Card key={hearing.hearing_id} className="overflow-hidden border-secondary-200">
             <CardHeader className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
-             {/* <CardTitle>{hearing.details}</CardTitle>  */}
+             <CardTitle>{hearing.details}</CardTitle> 
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid grid-cols-3 md:grid-cols-3 sm:grid-cols-1 ">
