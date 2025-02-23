@@ -6,7 +6,7 @@ import { CalendarDays, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link'
 import { parseCookies } from 'nookies';
 import TerminalLoader from '@/components/external/TerminalLoader';
-
+import { useRouter } from "next/navigation"
 
 interface Hearing {
   details: string;
@@ -99,7 +99,7 @@ export default function HearingsPage() {
                 </div>
               </div>
               <div className="mt-4">
-              <Link href={`/auth/cases/hearings/details`}>
+              <Link href={`/auth/cases/hearings/details?hearingId=${hearing.hearing_id}`}>
               <Button variant="outline" className="text-primary-700 border-primary-500 hover:bg-primary-50">
                   View Details
                 </Button>
