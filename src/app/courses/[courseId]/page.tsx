@@ -328,7 +328,7 @@ export default async function CourseDetailsPage(props: { params: Promise<Params>
       
       <main className="container max-w-4xl mx-auto py-12 px-4">
         <BackButton />
-        <Card className="mb-8 bg-white border-gray-200">
+        <Card className="mb-8 bg-primary-50 border-gray-200">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-gray-900">{courseDetails.title}</CardTitle>
           </CardHeader>
@@ -338,19 +338,19 @@ export default async function CourseDetailsPage(props: { params: Promise<Params>
           <TabsList className="bg-[#f5f5dc]">
             <TabsTrigger
               value="overview"
-              className="text-gray-700 data-[state=active]:bg-white data-[state=active]:text-gray-900"
+              className="text-gray-700 data-[state=active]:bg-primary-50 data-[state=active]:text-gray-900"
             >
               Overview
             </TabsTrigger>
             <TabsTrigger
               value="resources"
-              className="text-gray-700 data-[state=active]:bg-white data-[state=active]:text-gray-900"
+              className="text-gray-700 data-[state=active]:bg-primary-50 data-[state=active]:text-gray-900"
             >
               Resources
             </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-primary-50 border-gray-200">
               <CardHeader>
                 <CardTitle className="text-gray-900">Course Overview</CardTitle>
               </CardHeader>
@@ -366,7 +366,7 @@ export default async function CourseDetailsPage(props: { params: Promise<Params>
             </Card>
           </TabsContent>
           <TabsContent value="resources" className="space-y-4">
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-primary-50 border-gray-200">
               <CardHeader>
                 <CardTitle className="text-gray-900">Course Resources</CardTitle>
               </CardHeader>

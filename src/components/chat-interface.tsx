@@ -121,7 +121,7 @@ export default function Chatbot({ category, description }: { category: string | 
             </CardContent>
             <hr className="border-t" />
             <CardFooter>
-                <form onSubmit={handleSubmit} className="flex w-full gap-2">
+                <form onSubmit={handleSubmit} className="flex w-full">
 
                     {/* <Input
                         value={input}

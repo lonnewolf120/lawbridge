@@ -8,7 +8,7 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
+      <div className="w-full max-w-md space-y-8 bg-primary-50 p-8 rounded-lg shadow-xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-accent-900">Reset Password</h2>
           <p className="mt-2 text-border-600">

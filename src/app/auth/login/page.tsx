@@ -23,7 +23,7 @@ export default function LoginPage() {
   if(cookies.lawyer){
     router.push('/lawyer/dashboard')
   }else if(cookies.user){
-    router.push('/auth/dashboard')
+    router.push('/auth/cases/dashboard')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +48,7 @@ export default function LoginPage() {
       }
       else{
       router
-      .push('/auth/dashboard')
+      .push('/auth/cases/dashboard')
       }
       }else{
         
@@ -66,7 +66,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
+      <div className="w-full max-w-md space-y-8 bg-primary-50 p-8 rounded-lg shadow-xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-accent-900">Welcome Back</h2>
           <p className="mt-2 text-border-600">Sign in to your account</p>

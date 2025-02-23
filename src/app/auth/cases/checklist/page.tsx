@@ -107,7 +107,7 @@ export default function Checklist() {
   return (
     <div className="w-full mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-bold mb-12 text-border-800 text-center">Track Progress</h1>
-      <div className="bg-white p-6 rounded-lg shadow-lg">
+      <div className="bg-primary p-6 rounded-lg shadow-lg">
         <div className="flex flex-col items-center space-y-4 w-full">
           <div className="relative flex items-center justify-between w-full mt-4">
             <div className="absolute left-0 right-0 h-2 bg-gray-300 rounded-full"></div>
@@ -125,7 +125,7 @@ export default function Checklist() {
                 }`}
               >
                 {task.status === 'Completed' ? (
-                  <span className="text-white">✓</span>
+                  <span className="text-black">✓</span>
                 ) : (
                   <span className="text-border-500">{index + 1}</span>
                 )}
@@ -139,7 +139,7 @@ export default function Checklist() {
                 }`}
               >
                 {index < completedTasks ? (
-                  <span className="text-white">✓</span>
+                  <span className="text-black">✓</span>
                 ) : (
                   <span className="text-gray-500">{index + 1}</span>
                 )}

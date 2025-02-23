@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { ProgressBar } from '@/components/progress-bar-round'
 import { parseCookies } from 'nookies'
+import TerminalLoader from '@/components/external/TerminalLoader'
 
 interface CaseItem {
   case_id: number;
@@ -17,10 +18,11 @@ export default function ProgressPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const cookies = parseCookies()
-    const user = cookies.user ? JSON.parse(cookies.user) : null;
-    const userId = user.userId
-
+    
     useEffect(() => {
+      const user = cookies.user ? JSON.parse(cookies.user) : null;
+      const userId = user.userId
+
         const fetchCases = async () => {
           try {
             console.log("Userid", userId, "cookies: ", cookies)
@@ -39,7 +41,7 @@ export default function ProgressPage() {
         };
     
         fetchCases();
-      }, [userId]);
+      }, [cookies]);
 
 
 
@@ -76,7 +78,7 @@ export default function ProgressPage() {
 
 
 
-  if (loading) return <div className="p-4">Loading...</div>;
+  if (loading) return <div className="p-4"><TerminalLoader text='Loading...' /></div>;
   if (error) return <div className="p-4 text-red-600">Error: {error}</div>;
 
   return (

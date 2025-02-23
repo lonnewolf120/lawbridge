@@ -217,7 +217,7 @@ export default function CaseDetailsPage() {
  */
 
   return (
-    <div className="mt-10 container mx-auto p-4 space-y-6 max-w-4xl pb-16">
+    <div className="flex flex-col mb-10 min-h-screen mt-10 mx-auto p-4 space-y-6 max-w-4xl pb-16">
 
     <div className="space-y-2">
       <div className="flex items-center justify-between">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CalendarDays, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link'
 import { parseCookies } from 'nookies';
+import TerminalLoader from '@/components/external/TerminalLoader';
 
 
 interface Hearing {
@@ -22,13 +23,14 @@ export default function HearingsPage() {
   const [hearings, setHearings] = useState<Hearing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-    const cookies = parseCookies()
-      const user = cookies.user ? JSON.parse(cookies.user) : null;
-      const userId = user.userId
-  
+  const cookies = parseCookies()
+     
 
 
-  useEffect(() => {
+  useEffect(() => { 
+    const user = cookies.user ? JSON.parse(cookies.user) : null;
+    const userId = user.userId
+
     async function fetchHearings() {
       try {
         const response = await fetch(`http://localhost:10101/hearings/user/${userId}`, {
@@ -49,13 +51,13 @@ export default function HearingsPage() {
       }
     }
     fetchHearings();
-  }, [userId]);
+  }, [cookies]);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
         <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
-        <div>Loading hearings...</div>
+        <div><TerminalLoader text='Loading hearings...' /></div>
       </div>
     );
   }

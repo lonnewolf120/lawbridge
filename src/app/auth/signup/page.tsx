@@ -51,7 +51,7 @@ export default function SignUpPage() {
         }
         else{
         router
-        .push('/auth/dashboard')
+        .push('/auth/cases/dashboard')
         }
       }
       
@@ -62,7 +62,7 @@ export default function SignUpPage() {
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-xl">
+      <div className="w-full max-w-md space-y-8 bg-primary-50 p-8 rounded-lg shadow-xl">
         <Snackbar open={snackopen} autoHideDuration={6000} message="User Signed up" />
         <div className="text-center">
           <h2 className="text-3xl font-bold text-accent-900">Create Account</h2>

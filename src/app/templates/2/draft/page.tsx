@@ -34,7 +34,7 @@ export default function NDA() {
           <Button className="mr-4 bg-blue-500 hover:bg-blue-700 text-white" onClick={downloadPDF}>Download</Button>
           <Button variant="outline" onClick={printNDA}>Print</Button>
         </div>
-        <div id="nda" className="rounded-lg shadow-lg p-6 bg-white">
+        <div id="nda" className="rounded-lg shadow-lg p-6 bg-primary-50">
             <div className="mb-4">
             <h2 className="text-2xl font-bold">Non-Disclosure Agreement</h2>
             <p className="text-border-600">Effective Date: {new Date().toLocaleDateString()}</p>

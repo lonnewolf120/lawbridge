@@ -39,8 +39,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [cookies])
 
   return (
-    <div className="min-h-screen flex flex-col bg-primary-50">
-      <header className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] h-16  px-6 rounded-md shadow-md top-0 z-50 transition-all duration-300 backdrop-blur-md shadow-md ${isScrolled ? 'bg-primary-50/10' : 'bg-white'}`}>
+    <div className="min-h-screen flex flex-col bg-white">
+      <header className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] h-16  
+        px-6 rounded-md shadow-md top-0 z-50 transition-all border border-md border-primary duration-300 backdrop-blur-md shadow-md ${isScrolled ? 'bg-primary-50/10' : 'bg-primary-100'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
@@ -54,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               />
               </Link>
               <Link href="/">
-              <span className="font-serif text-xl">Shalish</span>
+              <span className="font-serif text-xl text-bold">Shalish</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center gap-6 sm:hidden">
@@ -63,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   key={item.href}
                   href={item.href}
                   className={`text-md font-medium transition-colors hover:text-primary hover:border-black hover:text-xl transition duration-300 ${
-                    pathname === item.href ? 'text-primary text-xl' : 'text-muted-foreground'
+                    pathname === item.href ? 'text-primary text-xl text-bold' : (isScrolled ? 'text-slate-800' : 'text-slate-500')
                   }`}
                 >
                   {item.label}
@@ -72,7 +73,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </nav>
             <div className="flex items-center gap-4">
               {cookies.token !== null ?
-              <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
+              <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/cases/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
               </Link>
               :
               <Link href={'/auth/login'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Login</Button>
@@ -112,7 +113,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </nav>
                     <div className="mt-auto">
                      {cookies.token !== null ?
-                     <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
+                     <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/cases/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
                      </Link>
                      :
                      <Link href={'/auth/login'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Login</Button>
