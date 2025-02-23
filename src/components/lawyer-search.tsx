@@ -1,277 +1,274 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react' // Import useEffect
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import Link from 'next/link'
+import { useState, useEffect } from "react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import Link from "next/link"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Lawyer } from '@/types/lawyer'
-import TerminalLoader from './external/TerminalLoader'
-import StatusText from './external/statusText'
+import type { Lawyer } from "@/types/lawyer"
+import { motion, AnimatePresence } from "framer-motion"
+import { Search, Star, DollarSign, Clock, MapPin, Filter } from "lucide-react"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 
 const practiceAreas = [
-  'Criminal Law',
-  'Civil Law',
-  'Family Law',
-  'Corporate Law',
-  'Immigration Law',
-  'Intellectual Property',
-  'Real Estate Law',
-  'Tax Law',
+  "Criminal Law",
+  "Civil Law",
+  "Family Law",
+  "Corporate Law",
+  "Immigration Law",
+  "Intellectual Property",
+  "Real Estate Law",
+  "Tax Law",
 ]
 
 interface LawyerSearchProps {
-  mapLocation: { latitude: number, longitude: number } | null; // Receive mapLocation prop
+  mapLocation: { latitude: number; longitude: number } | null
 }
 
-export default function LawyerSearch({ mapLocation }: LawyerSearchProps) { // Receive mapLocation prop
-  const [searchTerm, setSearchTerm] = useState('')
+export default function LawyerSearch({ mapLocation }: LawyerSearchProps) {
+  const [searchTerm, setSearchTerm] = useState("")
   const [selectedAreas, setSelectedAreas] = useState<string[]>([])
-  const [lawyers, setLawyers] = useState<Lawyer[]>([]) // State to hold fetched lawyers
-  const [loading, setLoading] = useState(false) // Loading state
+  const [lawyers, setLawyers] = useState<Lawyer[]>([])
+  const [loading, setLoading] = useState(false)
   const [minRating, setMinRating] = useState<number | null>(null)
   const [maxFee, setMaxFee] = useState<number | null>(null)
   const [minExperience, setMinExperience] = useState<number | null>(null)
-  const [practiceAreaSearch, setPracticeAreaSearch] = useState('')
-  const baseUrl = process.env.baseUrl || 'http://68.183.246.96:10101'
-  const [radius, setRadius] = useState(50);
-
+  const [practiceAreaSearch, setPracticeAreaSearch] = useState("")
+  const [radius, setRadius] = useState(50)
+  const baseUrl = process.env.baseUrl || "http://68.183.246.96:10101"
 
   const fetchLawyers = async () => {
     setLoading(true)
     try {
       let fetchedLawyers = []
       if (mapLocation) {
-        console.log('Fetching lawyers near:', mapLocation)
-        const res = await fetch(`${baseUrl}/`, {method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },})
-          console.log(res);
         const response = await fetch(`${baseUrl}/lawyers/nearby`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             latitude: mapLocation.latitude,
             longitude: mapLocation.longitude,
             radius: radius,
           }),
         })
-        if (!response.ok) {
-          // throw new Error(`HTTP error! status: ${response.status}`)
-          console.error(`HTTP error! status: ${response.status}`)
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
         const data = await response.json()
         fetchedLawyers = data.lawyers || []
-      } else {
-        // If no map location, fetch all lawyers (or adjust as needed)
-        const response = await fetch('/lawyers')
-        if (!response.ok) {
-          // throw new Error(`HTTP error! status: ${response.status}`)
-          console.error(`HTTP error! status: ${response.status}`)
-        }
-        const data = await response.json()
-        fetchedLawyers = data.lawyers || []
-      }
-      // Transform practice_areas string to array
-      interface TransformedLawyer extends Lawyer {
-        practiceAreas: string[]
-        name: string
-        image: string
-        location: string
       }
 
-      const transformedLawyers: TransformedLawyer[] = fetchedLawyers.map((lawyer: Lawyer) => ({
+      const transformedLawyers = fetchedLawyers.map((lawyer: Lawyer) => ({
         ...lawyer,
-        practiceAreas: lawyer.practice_areas ? lawyer.practice_areas.split(',') : [], // Split string into array
-        name: `${lawyer.first_name} ${lawyer.last_name}`, // Combine first and last name
-        image: lawyer.profile_picture_url || 'https://avatar.iran.liara.run/public/boy', // Use profile_picture_url or default
-        location: lawyer.location || 'Unknown Location', // Use location or default
-        fees: lawyer.fees || 0, // Add fees
-        experienceYears: lawyer.experience || 0, // Add experience years
+        practiceAreas: lawyer.practice_areas ? lawyer.practice_areas.split(",") : [],
+        name: `${lawyer.first_name} ${lawyer.last_name}`,
+        image: lawyer.profile_picture_url || "https://avatar.iran.liara.run/public/boy",
+        location: lawyer.location || "Unknown Location",
+        fees: lawyer.fees || 0,
+        experienceYears: lawyer.experience || 0,
       }))
       setLawyers(transformedLawyers)
     } catch (error) {
       console.error("Could not fetch lawyers:", error)
-      // Handle error, e.g., set an error state to display a message
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchLawyers() // Fetch lawyers on initial load or when mapLocation changes
-  }, [mapLocation]) // Dependency array includes mapLocation
+    if (mapLocation) fetchLawyers()
+  }, [mapLocation, radius])
 
   const filteredLawyers = lawyers.filter((lawyer) => {
     const name = `${lawyer.first_name} ${lawyer.last_name}`
     const nameMatch = name.toLowerCase().includes(searchTerm.toLowerCase())
-    const areaMatch = selectedAreas.length === 0 || selectedAreas.some(area => lawyer.practice_areas!.includes(area))
+    const areaMatch = selectedAreas.length === 0 || selectedAreas.some((area) => lawyer.practice_areas!.includes(area))
     const ratingMatch = minRating === null || lawyer.rating! >= minRating
     const feeMatch = maxFee === null || lawyer.fees! <= maxFee
     const experienceMatch = minExperience === null || lawyer.experience! >= minExperience
-    const practiceAreaTextMatch = practiceAreaSearch === '' || lawyer.practice_areas!.toLowerCase().includes(practiceAreaSearch.toLowerCase())
+    const practiceAreaTextMatch =
+      practiceAreaSearch === "" || lawyer.practice_areas!.toLowerCase().includes(practiceAreaSearch.toLowerCase())
 
     return nameMatch && areaMatch && ratingMatch && feeMatch && experienceMatch && practiceAreaTextMatch
   })
 
-  const handleSearchButtonClick = () => {
-    fetchLawyers() // Re-fetch lawyers when the Search button is clicked (currently refetches based on mapLocation)
-    // In future you might want to send search term and selectedAreas to backend as well for server-side filtering
-  }
-
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle><p className='text-xl'>Search Lawyers</p></CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div>
-              <Label htmlFor="search">Search by name</Label>
-              <Input
-                id="search"
-                placeholder="Enter lawyer name"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
+      <Card className="backdrop-blur-sm bg-white/50">
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle className="text-2xl font-serif">Find Lawyers</CardTitle>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Filter className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Filter Options</SheetTitle>
+                <SheetDescription>Refine your search with these filters</SheetDescription>
+              </SheetHeader>
+              <div className="space-y-4 mt-4">
+                <div>
+                  <Label htmlFor="minRating">Minimum Rating</Label>
+                  <Select onValueChange={(value) => setMinRating(value === "any" ? null : Number.parseFloat(value))}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Any rating" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="any">Any</SelectItem>
+                      <SelectItem value="3">3 stars & up</SelectItem>
+                      <SelectItem value="4">4 stars & up</SelectItem>
+                      <SelectItem value="4.5">4.5 stars & up</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="maxFee">Maximum Fee (per hour)</Label>
+                  <Input
+                    id="maxFee"
+                    type="number"
+                    placeholder="Enter amount"
+                    value={maxFee === null ? "" : maxFee}
+                    onChange={(e) => setMaxFee(e.target.value === "" ? null : Number.parseFloat(e.target.value))}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="minExperience">Minimum Experience (years)</Label>
+                  <Input
+                    id="minExperience"
+                    type="number"
+                    placeholder="Enter years"
+                    value={minExperience === null ? "" : minExperience}
+                    onChange={(e) => setMinExperience(e.target.value === "" ? null : Number.parseFloat(e.target.value))}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="radius">Search Radius (km)</Label>
+                  <Input
+                    id="radius"
+                    type="number"
+                    value={radius}
+                    onChange={(e) => setRadius(Number.parseInt(e.target.value))}
+                  />
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <div className="relative">
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search by name or practice area..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-9"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <Label htmlFor="practiceAreaText">Practice Area</Label>
-              <Input
-                id="practiceAreaText"
-                placeholder="Enter practice area"
-                value={practiceAreaSearch}
-                onChange={(e) => setPracticeAreaSearch(e.target.value)}
-                list="practiceAreasList"
-              />
-              <datalist id="practiceAreasList">
-                {practiceAreas.map((area) => (
-                  <option key={area} value={area} />
-                ))}
-              </datalist>
-            </div>
-
-            <div>
-              <Label htmlFor="minRating">Minimum Rating</Label>
-              <Select onValueChange={(value) => setMinRating(value === "any" ? null : parseFloat(value))}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Any" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any</SelectItem>
-                  <SelectItem value="3">3 stars & up</SelectItem>
-                  <SelectItem value="3.5">3.5 stars & up</SelectItem>
-                  <SelectItem value="4">4 stars & up</SelectItem>
-                  <SelectItem value="4.5">4.5 stars & up</SelectItem>
-                  <SelectItem value="5">5 stars</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="maxFee">Maximum Fees (per hour)</Label>
-              <Input
-                id="maxFee"
-                type="number"
-                placeholder="Enter maximum fee"
-                value={maxFee === null ? '' : maxFee}
-                onChange={(e) => setMaxFee(e.target.value === '' ? null : parseFloat(e.target.value))}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="minExperience">Minimum Experience (years)</Label>
-              <Input
-                id="minExperience"
-                type="number"
-                placeholder="Enter minimum experience"
-                value={minExperience === null ? '' : minExperience}
-                onChange={(e) => setMinExperience(e.target.value === '' ? null : parseFloat(e.target.value))}
-              />
-            </div>
-            <div>
-            <Label htmlFor="radius">Search Radius (km)</Label>
-            <Input
-              id="radius"
-              type="number"
-              value={radius}
-              onChange={(e) => setRadius(parseInt(e.target.value))}
-             className='w-full'
-            />
-            </div>
-          </div>
-          
-                
-          <button className=" inline-flex items-center w-[50%]  relative inline-flex h-10   overflow-hidden 
-          rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-slate-400 
-          focus:ring-offset-2 focus:ring-offset-slate-50">
-
-            {/* <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
-            bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" /> */}
-           {loading? <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
-            bg-[conic-gradient(from_90deg_at_50%_50%,#000000_50%,#FFFFFF_50%,#000000_100%)]" />
-          : <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
-          bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"/>
-          }
-            
-            <span className="inline-flex h-full w-full cursor-pointer 
-            items-center justify-center rounded-full px-3 py-1 
-            text-sm font-medium text-white backdrop-blur-3xl">
-            {loading ? "Searching..." : "Search"}
-            </span>
-          </button>
-
-        {/* <button className={`inline-flex h-12 animate-shimmer items-center ${loading? 'text-primary border-accent' : 'text-secondary border-primary'} justify-center rounded-md border bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium  transition-colors focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-primary-50`}>
-        
-            
-            </button> */}
-          </div>
-        <div className="mt-6">
-          <h3 className="font-semibold mb-2">Results</h3>
-          <ScrollArea className="h-[400px]">
-            {loading && <TerminalLoader text='Loading'/>} {/* Display loading message */}
-            {!loading && filteredLawyers.map((lawyer) => (
-              <Card key={lawyer.lawyer_id} className="mb-4">
-                <CardContent className="p-4">
-                  <div className='flex flex-row items-start'>
-                    <img
-                      src={lawyer.profile_picture_url! || 'https://avatar.iran.liara.run/public'}
-                      alt={lawyer.first_name + ' ' + lawyer.last_name}
-                      className="w-16 h-16 rounded-full object-cover border border-border-300"
-                      onError={(e) => { e.currentTarget.src = 'https://avatar.iran.liara.run/public'; e.currentTarget.alt = 'Default Avatar'; }}
-                    />
-                    <div className='flex flex-col ml-4'>
-                      <h4 className="font-medium text-lg">{lawyer.first_name} {lawyer.last_name}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {lawyer.practice_areas ? lawyer.practice_areas : 'No practice areas listed'}
-                      </p>
-                      <p className="text-sm">Location: {lawyer.location}</p>
-                      <p className="text-sm">Rating: {lawyer.rating}/5</p>
-                      <p className="text-sm">Fees: {lawyer.fees}tk/hour</p>
-                      <p className="text-sm">Experience: {lawyer.experience} years</p>
-                      <Link href={`/lawyer/${lawyer.lawyer_id}`}>
-                        <Button variant="outline" size="sm" className="mt-2 bg-primary-200 hover:bg-primary-500">View Profile</Button>
-                      </Link>
+            <ScrollArea className="h-[500px] pr-4">
+              <AnimatePresence>
+                {loading ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center justify-center h-40"
+                  >
+                    <div className="space-y-2 text-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto" />
+                      <p className="text-sm text-muted-foreground">Searching for lawyers...</p>
                     </div>
+                  </motion.div>
+                ) : (
+                  <div className="space-y-4">
+                    {filteredLawyers.map((lawyer) => (
+                      <motion.div
+                        key={lawyer.lawyer_id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Card className="overflow-hidden">
+                          <CardContent className="p-4">
+                            <div className="flex gap-4">
+                              <div className="relative w-24 h-24">
+                                <img
+                                  src={lawyer.profile_picture_url || "https://avatar.iran.liara.run/public"}
+                                  alt={`${lawyer.first_name} ${lawyer.last_name}`}
+                                  className="w-full h-full object-cover rounded-lg"
+                                />
+                              </div>
+                              <div className="flex-1 space-y-2">
+                                <div className="flex justify-between items-start">
+                                  <h3 className="font-semibold text-lg">
+                                    {lawyer.first_name} {lawyer.last_name}
+                                  </h3>
+                                  <div className="flex items-center gap-1">
+                                    <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                                    <span className="text-sm">{lawyer.rating}/5</span>
+                                  </div>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                  {lawyer.practiceAreas.map((area, index) => (
+                                    <span
+                                      key={index}
+                                      className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs"
+                                    >
+                                      {area}
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="flex gap-4 text-sm text-muted-foreground">
+                                  <div className="flex items-center gap-1">
+                                    <MapPin className="h-4 w-4" />
+                                    <span>{lawyer.location}</span>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <DollarSign className="h-4 w-4" />
+                                    <span>{lawyer.fees}tk/hour</span>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <Clock className="h-4 w-4" />
+                                    <span>{lawyer.experience} years</span>
+                                  </div>
+                                </div>
+                                <Link href={`/lawyer/${lawyer.lawyer_id}`}>
+                                  <Button className="w-full mt-2 bg-primary-600 hover:bg-primary-700 text-white">
+                                    View Profile
+                                  </Button>
+                                </Link>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))}
+                    {!loading && filteredLawyers.length === 0 && (
+                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-8">
+                        <p className="text-lg text-muted-foreground">No lawyers found matching your criteria.</p>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          Try adjusting your filters or selecting a different location.
+                        </p>
+                      </motion.div>
+                    )}
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-            {!loading && filteredLawyers.length === 0 && <div>
-              <StatusText className='w-full' title={`No lawyers found matching your criteria.`}  descriptions={[`Click on a location first to find nearby lawyers if you haven't already.`, 'Try other filters or remove current ones to view available lawyers']}/>
-            </div>} {/* No results message */}
-          </ScrollArea>
-        </div>
-      </CardContent>
-    </Card>
+                )}
+              </AnimatePresence>
+            </ScrollArea>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
   )
 }
+
