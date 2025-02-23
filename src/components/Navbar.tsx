@@ -72,7 +72,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
             <div className="flex items-center gap-4">
-              {cookies.token !== null ?
+              {cookies.token ?
               <Link href={ lawyer!== null ? '/lawyer/dashboard' : '/auth/cases/dashboard'}> <Button className="w-full bg-primary-200 hover:bg-primary-400 text-black text-base">Dashboard</Button>
               </Link>
               :

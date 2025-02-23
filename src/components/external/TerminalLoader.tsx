@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const TerminalLoader = ({text}: {text:string}) => {
   return (
     <StyledWrapper>
-      <div className="terminal-loader">
+      <div className="m-24 terminal-loader">
         <div className="terminal-header">
           <div className="terminal-title">Status</div>
           <div className="terminal-controls">

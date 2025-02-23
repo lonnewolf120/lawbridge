@@ -10,10 +10,10 @@ import {parseCookies} from 'nookies'
 
 
 const lawyers = [
-  { name: "Sadman Shafi", id: 110 },
-  { name: "John Doe", id: 24 },
-  { name: "Jane Doe", id: 31 },
-  { name: "Alice Smith", id: 44 },
+  { name: "Kamal Hannan", id: 1 },
+  { name: "Shoyeb Fakir", id: 2 },
+  { name: "Mostofa Kamal", id: 3 },
+  { name: "Iftekhar Islam", id: 4 },
  
 ]
 
