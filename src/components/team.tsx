@@ -51,9 +51,9 @@ export default function Team() {
                   className="rounded-full relative transform transition-all duration-500 group-hover:scale-105"
                 />
               </div>
-              <h3 className="font-medium text-xl mb-2">{lawyer.name}</h3>
-              <p className="text-sm text-muted-foreground whitespace-pre-line">{lawyer.title}</p>
-              <p className="text-sm text-primary-400">{lawyer.court}</p>
+              <h3 className="font-medium text-xl text-bold bold mb-2">{lawyer.name}</h3>
+              <p className="text-sm text-primary-400 whitespace-pre-line">{lawyer.title}</p>
+              <p className="text-sm text-muted-foreground ">{lawyer.court}</p>
             </motion.div>
           ))}
         </div>
