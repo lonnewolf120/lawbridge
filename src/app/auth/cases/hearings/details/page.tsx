@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Calendar, Clock, MapPin, User, ChevronUp } from "lucide-react"
 import TerminalLoader from "@/components/external/TerminalLoader"
+import { useSearchParams } from "next/navigation"
 
 interface Hearing {
   hearing_id: number;
@@ -24,7 +25,9 @@ interface Hearing {
 }
 
 export default function HearingPage() {
-  const hearing_id = 1
+  //const hearing_id = 1
+   const searchParams = useSearchParams();
+    const hearing_id = searchParams.get('hearingId'); 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -86,7 +89,7 @@ export default function HearingPage() {
               </div>
               <div className="flex items-center space-x-2">
                 <User className="h-4 w-4 text-muted-foreground" />
-                <span>Judge: Hon. {hearingData.judge}</span>
+                <span>Judge: {hearingData.judge}</span>
               </div>
             </div>
           </CardContent>

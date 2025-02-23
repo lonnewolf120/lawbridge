@@ -132,8 +132,8 @@ const caseData = {
       name: "Charge Sheet",
       type: "Legal Document",
       dateAdded: "2024-02-01",
-      addedBy: "Peter Davis",
-      url: "https://templates.easylegaldocs.com/template.php?id=148&format=msword",
+      addedBy: "Itiza Iram",
+      url: "https://www.lawctopus.com/wp-content/uploads/2014/09/Chargesheet.pdf",
     },
     {
       id: 2,
@@ -141,13 +141,16 @@ const caseData = {
       type: "Evidence",
       dateAdded: "2024-02-10",
       addedBy: "Investigation Team",
+      url: "https://stopillegalfishing.com/wp-content/uploads/2020/12/Evidence-log-form-EN.pdf"
     },
     {
       id: 3,
       name: "Motion to Dismiss",
       type: "Legal Document",
       dateAdded: "2024-02-15",
-      addedBy: "Jane Smith",
+      addedBy: "Ahmed Sakib",
+      url:"https://www.citybarjusticecenter.org/wp-content/uploads/2023/05/What-is-a-Motion-to-Dismiss.pdf"
+
     },
   ],
   tags: ["Financial Crime", "Motion Pending", "High Priority"],
@@ -155,7 +158,7 @@ const caseData = {
 
 
 export default function CaseDetailsPage() {
-  const userId = 3;
+  //const userId = 3;
   const searchParams = useSearchParams();
   const caseId = searchParams.get('caseId'); 
   const scrollToTop = () => {
@@ -311,8 +314,8 @@ export default function CaseDetailsPage() {
                       className="h-8 w-8 p-0"
                       onClick={() => {
                         const link = document.createElement("a");
-                        // link.href = doc.url; // Ensure doc.url contains the correct file URL
-                        link.download = doc.name || "document"; // Optional: Set a filename
+                        link.href = doc.url || ""; 
+                        link.download = doc.name || "document";
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
@@ -355,7 +358,7 @@ export default function CaseDetailsPage() {
                     <Badge variant={hearing.status === "Completed" ? "default" : "secondary"}>{hearing.status}</Badge>
                   </TableCell>
                   <TableCell>
-                  <Link href={`/auth/cases/hearings/details`}>
+                  <Link href={`/auth/cases/hearings/details?hearingId=${hearing.hearing_id}`}>
              
              
                     <Button
