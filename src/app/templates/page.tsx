@@ -121,14 +121,14 @@ export default function Home() {
             animate="show"
             className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
           >
-            {items.map((item) => (
-              <motion.div key={item.title} variants={item}>
-                <Link href={item.href}>
+            {items.map((doc) => (
+              <motion.div key={doc.title} variants={item}>
+                <Link href={doc.href}>
                   <Card className="hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
                       <div className="flex items-center gap-4">
-                        <span className="text-3xl">{item.icon}</span>
-                        <span className="text-lg text-primary-600">{item.title}</span>
+                        <span className="text-3xl">{doc.icon}</span>
+                        <span className="text-lg text-primary-600">{doc.title}</span>
                         <ArrowRight className="ml-auto w-5 h-5 text-primary-400" />
                       </div>
                     </CardContent>

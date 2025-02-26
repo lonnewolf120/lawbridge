@@ -219,14 +219,17 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) {
                                   </div>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
-                                  {lawyer.practiceAreas.map((area, index) => (
+                                {lawyer.practice_areas?.split(",").map((area, index) => (
+                                  <span> {area} </span>
+                                ))} 
+                                {/*lawyer.practice_areas.map((area, index) => (
                                     <span
                                       key={index}
                                       className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs"
                                     >
                                       {area}
                                     </span>
-                                  ))}
+                                  ))*/}
                                 </div>
                                 <div className="flex gap-4 text-sm text-muted-foreground">
                                   <div className="flex items-center gap-1">

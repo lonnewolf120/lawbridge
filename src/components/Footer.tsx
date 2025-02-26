@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+
 export default function Footer() {
     return  ( <footer className="bg-gray-900 text-border-400 py-12">
         <div className="max-w-6xl mx-auto px-4">

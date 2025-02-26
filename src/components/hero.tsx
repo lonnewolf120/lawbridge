@@ -73,9 +73,7 @@ export default function Hero() {
                     src={src || "/placeholder.svg"}
                     alt={`Legal image ${index + 1}`}
                     fill
-                    className={`object-cover transition-all duration-1000 ${
-                      index === currentIndex ? "opacity-100 scale-105" : "opacity-0 scale-100"
-                    }`}
+                    className={`object-cover transition-all duration-1000 ${index === currentIndex ? "opacity-100 scale-105" : "opacity-0 scale-100"}`}
                   />
                 </div>
               ))}

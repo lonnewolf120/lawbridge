@@ -7,17 +7,18 @@ import { motion } from "framer-motion"
 import { Download, Printer, Share2 } from "lucide-react"
 import { Snackbar } from '@mui/material'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react"
+
 
 export default function NDA() {
+  const [snackopen, setSnack] = useState(false)
+
   const downloadPDF = async () => {
     const element = document.getElementById("nda")
     if (!element) return
 
     const canvas = await html2canvas(element)
     const data = canvas.toDataURL("image/png")
-    
-  // const [snackMessage, setSnackMessage] = useState('')
-  const [snackopen, setSnack] = useState(false)
 
     const pdf = new jsPDF("p", "mm", "a4")
     const imgProperties = pdf.getImageProperties(data)
@@ -35,7 +36,7 @@ export default function NDA() {
   const shareUrl = () => {
     const url = window.location.href
     navigator.clipboard.writeText(url)
-    setSnack(true)
+    setSnack(true);
   }
 
   return (
@@ -145,4 +146,5 @@ export default function NDA() {
     </div>
   )
 }
+
 
