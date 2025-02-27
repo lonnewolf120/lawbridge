@@ -1,11 +1,12 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-// import { withAuth } from '@/components/with-auth'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { motion } from 'framer-motion'
+import { fadeIn, slideIn, staggerContainer, scaleUp } from "@/lib/animation"
 
 // Dummy data for the case details
 const caseDetails = {
@@ -39,14 +40,28 @@ function CaseDetailsPage() {
   const params = useParams()
   const { caseId } = params
 
-  // In a real application, you would fetch the case details using the caseId
-  // For this example, we're using the dummy data
-
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8">Case Details: {caseDetails.title}</h1>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={staggerContainer}
+      className="container mx-auto py-12 px-4"
+    >
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        className="text-4xl font-bold mb-8"
+      >
+        Case Details: {caseDetails.title}
+      </motion.h1>
       
-      <div className="grid gap-6 md:grid-cols-3 mb-8">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="grid gap-6 md:grid-cols-3 mb-8"
+      >
         <Card>
           <CardHeader>
             <CardTitle>Case Information</CardTitle>
@@ -97,72 +112,89 @@ function CaseDetailsPage() {
             <p>{caseDetails.description}</p>
           </CardContent>
         </Card>
-      </div>
+      </motion.div>
 
       <Tabs defaultValue="notes" className="w-full">
         <TabsList>
-        <TabsTrigger value="notes">Case Notes</TabsTrigger>
+          <TabsTrigger value="notes">Case Notes</TabsTrigger>
           <TabsTrigger value="tasks">Tasks progress</TabsTrigger>
           <TabsTrigger value="documents">Documents</TabsTrigger>
         </TabsList>
         <TabsContent value="notes">
-          <Card>
-            <CardHeader>
-              <CardTitle>Case Notes</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-4">
-                {caseDetails.notes.map((note, index) => (
-                  <li key={index} className="border-b pb-2">
-                    <p className="font-medium">{note.date}</p>
-                    <p>{note.content}</p>
-                  </li>
-                ))}
-              </ul>
-              <Button className="mt-4">Add Note</Button>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Case Notes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4">
+                  {caseDetails.notes.map((note, index) => (
+                    <li key={index} className="border-b pb-2">
+                      <p className="font-medium">{note.date}</p>
+                      <p>{note.content}</p>
+                    </li>
+                  ))}
+                </ul>
+                <Button className="mt-4">Add Note</Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </TabsContent>
         <TabsContent value="tasks">
-          <Card>
-            <CardHeader>
-              <CardTitle>Tasks progress</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-4">
-                {caseDetails.tasks.map((note, index) => (
-                  <li key={index} className="border-b pb-2">
-                    <p className="font-medium">{note.name}</p>
-                    <p>{note.progress}</p>
-                  </li>
-                ))}
-              </ul>
-              <Button className="mt-4">Add task</Button>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Tasks progress</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4">
+                  {caseDetails.tasks.map((task, index) => (
+                    <li key={index} className="border-b pb-2">
+                      <p className="font-medium">{task.name}</p>
+                      <p>{task.progress}%</p>
+                    </li>
+                  ))}
+                </ul>
+                <Button className="mt-4">Add Task</Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </TabsContent>
         <TabsContent value="documents">
-          <Card>
-            <CardHeader>
-              <CardTitle>Case Documents</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                {caseDetails.documents.map((doc, index) => (
-                  <li key={index} className="flex justify-between items-center">
-                    <span>{doc.name}</span>
-                    <span className="text-sm text-muted-foreground">{doc.date}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button className="mt-4">Upload Document</Button>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Case Documents</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {caseDetails.documents.map((doc, index) => (
+                    <li key={index} className="flex justify-between items-center">
+                      <span>{doc.name}</span>
+                      <span className="text-sm text-muted-foreground">{doc.date}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button className="mt-4">Upload Document</Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </TabsContent>
       </Tabs>
-    </div>
+    </motion.div>
   )
 }
 
 export default CaseDetailsPage
-

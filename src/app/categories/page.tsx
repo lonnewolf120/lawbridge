@@ -2,48 +2,55 @@
 import { CategoryCard } from "@/components/course/category-card"
 
 const categories = [
-  {
-    name: "Personal Law",
+ 
+  { 
+    name: "Personal Law", 
     description: "Family matters, inheritance, and individual rights",
     href: "/categories/personal-law",
+    image: "https://via.placeholder.com/150?text=Personal+Law",
     imageId: 1,
-    courseCount: 5,
+    courseCount: 5
   },
-  {
-    name: "Business Law",
-    description: "Master the legal aspects of running a business, from contracts to compliance.",
+  { 
+    name: "Business Law", 
+    description: "Contracts, compliance, and corporate regulations",
     href: "/categories/business-law",
+    image: "https://via.placeholder.com/150?text=Business+Law",
     imageId: 2,
-    courseCount: 5,
+    courseCount: 5
   },
-  {
-    name: "Criminal Law",
-    description: "Understand the justice system, criminal procedures, and defense strategies.",
+  { 
+    name: "Criminal Law", 
+    description: "Justice system, procedures, and defense strategies",
     href: "/categories/criminal-law",
+    image: "https://via.placeholder.com/150?text=Criminal+Law",
     imageId: 3,
-    courseCount: 5,
+    courseCount: 5
   },
-  {
-    name: "Civil Law",
-    description: "Learn about property rights, disputes, and civil case procedures.",
+  { 
+    name: "Civil Law", 
+    description: "Property rights, disputes, and case procedures",
     href: "/categories/civil-law",
-    imageId: 4,
-    courseCount: 5,
+    image: "https://via.placeholder.com/150?text=Civil+Law",
+    imageId:4,
+    courseCount: 5
   },
-  {
-    name: "Legal Writing",
-    description: "Develop skills in drafting legal documents and professional communication.",
+  { 
+    name: "Legal Writing", 
+    description: "Document drafting and professional communication",
     href: "/categories/legal-writing",
+    image: "https://via.placeholder.com/150?text=Legal+Writing",
     imageId: 5,
-    courseCount: 5,
+    courseCount: 5
   },
-  {
-    name: "International Law",
-    description: "Explore global legal frameworks, immigration, and cross-border regulations.",
+  { 
+    name: "International Law", 
+    description: "Global frameworks, immigration, and cross-border regulations",
     href: "/categories/international-law",
+    image: "https://via.placeholder.com/150?text=International+Law",
     imageId: 6,
-    courseCount: 5,
-  },
+    courseCount: 5
+  }
 ]
 
 export default function CategoriesPage() {
@@ -61,6 +68,7 @@ export default function CategoriesPage() {
               name={category.name}
               description={category.description}
               href={category.href}
+              image={category.image}
               imageId={category.imageId}
               courseCount={category.courseCount}
             />

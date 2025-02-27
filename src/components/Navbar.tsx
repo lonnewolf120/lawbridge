@@ -149,7 +149,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </motion.header>
-      <div className="flex-1 mt-20 w-full h-full">{children}</div>
+      <div className="mt-20 w-full h-full">{children}</div>
     </div>
   )
 }

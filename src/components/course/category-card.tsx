@@ -8,11 +8,12 @@ interface CategoryCardProps {
   name: string
   description: string
   href: string
+  image: string
   imageId: number
   courseCount: number
 }
 
-export function CategoryCard({ name, description, href, imageId, courseCount }: CategoryCardProps) {
+export function CategoryCard({ name, description, href, image, imageId, courseCount }: CategoryCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <div className="relative h-48 w-full overflow-hidden">
@@ -20,6 +21,7 @@ export function CategoryCard({ name, description, href, imageId, courseCount }: 
           src={`/placeholder.svg?height=200&width=400&text=Category+${imageId}`}
           alt={name}
           layout="fill"
+          placeholder="blur"
           objectFit="cover"
           className="transition-transform duration-300 group-hover:scale-105"
         />
