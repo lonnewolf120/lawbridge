@@ -70,11 +70,9 @@ const personalLawCourses = [
     ],
   },
 ]
-
 export default function PersonalLawPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      
       <main className="container max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-4xl font-bold mb-4 text-gray-900">Personal Law Courses</h1>
         <p className="text-xl mb-8 text-gray-700">

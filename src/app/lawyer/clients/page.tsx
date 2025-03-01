@@ -3,83 +3,143 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { useEffect , useState} from 'react'
-import { get_req, post_req } from '@/lib/functions'
+import { useEffect, useState } from 'react'
+import { get_req } from '@/lib/functions'
+import TerminalLoader from '@/components/external/TerminalLoader'
+// import { Spinner } from "@/components/ui/spinner" // Assuming you have a Spinner component
 
-// const clients = [
-//   { id: '1', name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', activeCases: 2 },
-//   { id: '2', name: 'Jane Smith', email: 'jane@example.com', phone: '234-567-8901', activeCases: 1 },
-//   { id: '3', name: 'Bob Johnson', email: 'bob@example.com', phone: '345-678-9012', activeCases: 3 },
-//   { id: '4', name: 'Alice Brown', email: 'alice@example.com', phone: '456-789-0123', activeCases: 0 },
-//   { id: '5', name: 'Charlie Davis', email: 'charlie@example.com', phone: '567-890-1234', activeCases: 1 },
-// ]
 interface Client {
   id: number;
   name: string;
   email: string;
   phone: string;
+  client_id: number;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  due_amount: number;
+  status: string;
   // activeCases: number;
 }
 
 export default function ClientListPage() {
-  const [clients, setClients] = useState<Client[]>([])
+  const [clients, setClients] = useState([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     console.log('Fetching clients...')
     const fetchClients = async () => {
-      const response = await get_req('clients/all')
-      const data = await response.json()
-      console.log("Client data:",data)
-      setClients(data.clients)
-     }
-   }, [])
+      try {
+        const response = await get_req('clients/all')
+        const data = await response.json()
+        console.log("Client data:", data)
+        setClients(data)
+      } catch (error) {
+        console.error("Error fetching clients:", error)
+        // Handle error appropriately (e.g., display an error message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchClients()
+  }, [])
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      {/* <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">Client List</h1>
-        <Button>Add New Client</Button>
-      </div> */}
-
+    <div className="flex flex-col gap-4 mx-auto py-12 px-4">
       <Card>
         <CardHeader>
-          <CardTitle>All Clients</CardTitle>
+          <CardTitle>Current Clients</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-                {/* <TableHead>Active Cases</TableHead> */}
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {clients.map((client) => (
-                <TableRow key={client.id}>
-                  <TableCell className="font-medium">{client.name}</TableCell>
-                  <TableCell>{client.email}</TableCell>
-                  <TableCell>{client.phone}</TableCell>
-                  {/* <TableCell>
-                    <Badge variant={client.activeCases > 0 ? 'default' : 'secondary'}>
-                      {client.activeCases}
-                    </Badge>
-                  </TableCell> */}
-                  <TableCell>
-                    <Link href={`/lawyer/clients/${client.id}`}>
-                      <Button variant="link">View Details</Button>
-                    </Link>
-                  </TableCell>
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <TerminalLoader text='Loading clients' />
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Phone</TableHead>
+                  <TableHead>Due payments</TableHead>
+                  {/* <TableHead>Active Cases</TableHead> */}
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {clients.map((client) => (
+                  client['status'] !== 'pending' &&
+                  (<TableRow key={client['client_id']}>
+                    <TableCell className="font-medium">{client['first_name']} {client['last_name']}</TableCell>
+                    <TableCell>{client['email']}</TableCell>
+                    <TableCell>{client['phone_number']}</TableCell>
+                    <TableCell>{client['due_amount']}</TableCell>
+                    <TableCell>{client['status'] ?? 'client'}</TableCell>
+                    {/* <TableCell>
+                      <Badge variant={client.activeCases > 0 ? 'default' : 'secondary'}>
+                        {client.activeCases}
+                      </Badge>
+                    </TableCell> */}
+                    <TableCell>
+                      <Link href={`/lawyer/clients/${client['client_id']}`}>
+                        <Button variant="link">View Details</Button>
+                      </Link>
+                    </TableCell>
+                  </TableRow>)
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Pending Client Requests</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <TerminalLoader text='Loading clients' />
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Phone</TableHead>
+                  <TableHead>Due payments</TableHead>
+                  {/* <TableHead>Active Cases</TableHead> */}
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {clients.map((client) => (
+                  client['status'] === 'pending' &&
+                  (<TableRow key={client['client_id']}>
+                    <TableCell className="font-medium">{client['first_name']} {client['last_name']}</TableCell>
+                    <TableCell>{client['email']}</TableCell>
+                    <TableCell>{client['phone_number']}</TableCell>
+                    <TableCell>{client['due_amount']}</TableCell>
+                    <TableCell>{client['status']}</TableCell>
+                    {/* <TableCell>
+                      <Badge variant={client.activeCases > 0 ? 'default' : 'secondary'}>
+                        {client.activeCases}
+                      </Badge>
+                    </TableCell> */}
+                    <TableCell>
+                      <Link href={`/lawyer/clients/${client['client_id']}`}>
+                        <Button variant="link">View Details</Button>
+                      </Link>
+                    </TableCell>
+                  </TableRow>)
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </CardContent>
       </Card>
     </div>
   )
 }
-

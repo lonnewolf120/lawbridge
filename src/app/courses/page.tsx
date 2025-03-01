@@ -10,7 +10,7 @@ const categories = [
     name: "Personal Law", 
     description: "Family matters, inheritance, and individual rights",
     href: "/categories/personal-law",
-    image: "https://via.placeholder.com/150?text=Personal+Law",
+    image: "/PersonalLaw/PersonalLaw.jpeg",
     imageId: 1,
     courseCount: 5
   },
@@ -18,7 +18,7 @@ const categories = [
     name: "Business Law", 
     description: "Contracts, compliance, and corporate regulations",
     href: "/categories/business-law",
-    image: "https://via.placeholder.com/150?text=Business+Law",
+    image: "/BusinessLaw/BusinessLaw.jpeg",
     imageId: 2,
     courseCount: 5
   },
@@ -26,7 +26,7 @@ const categories = [
     name: "Criminal Law", 
     description: "Justice system, procedures, and defense strategies",
     href: "/categories/criminal-law",
-    image: "https://via.placeholder.com/150?text=Criminal+Law",
+    image: "/CriminalLaw/CriminalLaw.jpeg",
     imageId: 3,
     courseCount: 5
   },
@@ -34,7 +34,7 @@ const categories = [
     name: "Civil Law", 
     description: "Property rights, disputes, and case procedures",
     href: "/categories/civil-law",
-    image: "https://via.placeholder.com/150?text=Civil+Law",
+    image: "/CivilLaw/CivilLaw.jpeg",
     imageId:4,
     courseCount: 5
   },
@@ -42,7 +42,7 @@ const categories = [
     name: "Legal Writing", 
     description: "Document drafting and professional communication",
     href: "/categories/legal-writing",
-    image: "https://via.placeholder.com/150?text=Legal+Writing",
+    image: "/LegalWriting/LegalWriting.jpg",
     imageId: 5,
     courseCount: 5
   },
@@ -50,7 +50,7 @@ const categories = [
     name: "International Law", 
     description: "Global frameworks, immigration, and cross-border regulations",
     href: "/categories/international-law",
-    image: "https://via.placeholder.com/150?text=International+Law",
+    image: "/InternationalLaw/InternationalLaw.jpg",
     imageId: 6,
     courseCount: 5
   }

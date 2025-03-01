@@ -1,7 +1,6 @@
 
 import { CourseCard } from "@/components/course/course-card"
 
-
 const criminalLawCourses = [
   {
     id: "criminal-procedure",

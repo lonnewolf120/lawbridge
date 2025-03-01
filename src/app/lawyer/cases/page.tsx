@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,30 +8,47 @@ import { Badge } from "@/components/ui/badge"
 import { parseCookies } from 'nookies'
 import { motion } from 'framer-motion'
 import { fadeIn, slideIn, staggerContainer, scaleUp } from "@/lib/animation"
+import { get_req } from '@/lib/functions'
+import { useRouter } from 'next/navigation';
 
-const cases = [
-  { id: '1234', client: 'John Doe', type: 'Civil', status: 'Active', nextAction: 'File Motion', dueDate: '2023-07-15' },
-  { id: '5678', client: 'Jane Smith', type: 'Criminal', status: 'On Hold', nextAction: 'Client Meeting', dueDate: '2023-07-20' },
-  { id: '9101', client: 'Bob Johnson', type: 'Family', status: 'Closed', nextAction: 'None', dueDate: 'N/A' },
-  { id: '1121', client: 'Alice Brown', type: 'Corporate', status: 'Active', nextAction: 'Prepare Contract', dueDate: '2023-07-18' },
-  { id: '3141', client: 'Charlie Davis', type: 'Civil', status: 'Active', nextAction: 'Court Hearing', dueDate: '2023-07-25' },
-]
+interface Case {
+  case_id: string; // Changed to case_id to match your data
+  title: string;
+  client_id: string; // Changed to client_id to match your data
+  category: string; // Changed to category to match your data
+  status: string;
+  description: string; // Assuming you want to pass the description as well
+  // ... other properties
+}
 
 function LawyerCasesPage() {
-  const cookies = parseCookies()
-  const token = cookies.token
-  const user = cookies.user ? JSON.parse(cookies.user) : null
-  const lawyer = cookies.lawyer ? JSON.parse(cookies.lawyer) : null
+  const router = useRouter();
+  const cookies = parseCookies();
+  const token = cookies.token;
+  const [cases, setCases] = useState<Case[]>([]); // Type the state with the Case interface
+  const user = cookies.user ? JSON.parse(cookies.user) : null;
+  const lawyer = cookies.lawyer ? JSON.parse(cookies.lawyer) : null;
 
   useEffect(() => {
-    console.log('Fetching cases... for ', lawyer)
+    console.log('Fetching cases... for ', lawyer);
     const fetchCases = async () => {
-      const response = await fetch('/api/cases')
-      const data = await response.json()
-      console.log(data)
-    }
+      try {
+        const response = await get_req('cases');
+        const data = await response.json();
+        console.log("Cases:", data);
+        setCases(data);
+      } catch (error) {
+        console.error("Error fetching cases:", error);
+        // Handle error appropriately (e.g., display an error message)
+      }
+    };
+    fetchCases();
+  }, []);
 
-  }, [])
+  const handleCaseClick = (case_: Case) => {
+    // Use router.push to navigate to the new page, passing the case object as state
+    router.push(`/lawyer/cases/${case_.case_id}?caseData=${encodeURIComponent(JSON.stringify(case_))}`);
+  };
 
   return (
     <motion.div
@@ -71,31 +88,27 @@ function LawyerCasesPage() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Case ID</TableHead>
+                  <TableHead>Case Title</TableHead>
                   <TableHead>Client</TableHead>
                   <TableHead>Type</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Next Action</TableHead>
-                  <TableHead>Due Date</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {cases.map((case_) => (
-                  <TableRow key={case_.id}>
-                    <TableCell>{case_.id}</TableCell>
-                    <TableCell>{case_.client}</TableCell>
-                    <TableCell>{case_.type}</TableCell>
+                  <TableRow key={case_.case_id} onClick={() => handleCaseClick(case_)} style={{ cursor: 'pointer' }}> {/* Added onClick handler */}
+                    <TableCell>{case_.case_id}</TableCell>
+                    <TableCell>{case_.title}</TableCell>
+                    <TableCell>{case_.client_id}</TableCell>
+                    <TableCell>{case_.category ?? '?'}</TableCell>
                     <TableCell>
                       <Badge variant={case_.status === 'Active' ? 'default' : case_.status === 'On Hold' ? 'secondary' : 'outline'}>
                         {case_.status}
                       </Badge>
                     </TableCell>
-                    <TableCell>{case_.nextAction}</TableCell>
-                    <TableCell>{case_.dueDate}</TableCell>
                     <TableCell>
-                      <Link href={`/lawyer/cases/${case_.id}`}>
-                        <Button variant="link">View Details</Button>
-                      </Link>
+                      <Button variant="link">View Details</Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -105,7 +118,7 @@ function LawyerCasesPage() {
         </Card>
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
-export default LawyerCasesPage
+export default LawyerCasesPage;

@@ -1,15 +1,25 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { motion } from 'framer-motion'
 import { fadeIn, slideIn, staggerContainer, scaleUp } from "@/lib/animation"
+import { useEffect, useState } from 'react'
 
-// Dummy data for the case details
-const caseDetails = {
+interface Case {
+  case_id: string;
+  title: string;
+  client_id: string;
+  category: string;
+  status: string;
+  description: string;
+  // ... other properties
+}
+
+const caseDetails2 = {
   id: '1234',
   title: 'Smith vs. Johnson',
   client: 'John Smith',
@@ -37,8 +47,17 @@ const caseDetails = {
 }
 
 function CaseDetailsPage() {
-  const params = useParams()
-  const { caseId } = params
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const { caseId } = params;
+
+  // Retrieve the caseData from the query parameters
+  const caseDataString = searchParams.get('caseData');
+  const caseDetails: Case = caseDataString ? JSON.parse(caseDataString) : null;
+
+  if (!caseDetails) {
+    return <div>Case details not found.</div>;
+  }
 
   return (
     <motion.div
@@ -55,7 +74,7 @@ function CaseDetailsPage() {
       >
         Case Details: {caseDetails.title}
       </motion.h1>
-      
+
       <motion.div
         initial="hidden"
         animate="visible"
@@ -74,15 +93,11 @@ function CaseDetailsPage() {
               </div>
               <div>
                 <dt className="font-medium">Client</dt>
-                <dd>{caseDetails.client}</dd>
-              </div>
-              <div>
-                <dt className="font-medium">Opponent</dt>
-                <dd>{caseDetails.opponent}</dd>
+                <dd>{caseDetails.client_id}</dd>
               </div>
               <div>
                 <dt className="font-medium">Type</dt>
-                <dd>{caseDetails.type}</dd>
+                <dd>{caseDetails.category}</dd>
               </div>
               <div>
                 <dt className="font-medium">Status</dt>
@@ -91,14 +106,6 @@ function CaseDetailsPage() {
                     {caseDetails.status}
                   </Badge>
                 </dd>
-              </div>
-              <div>
-                <dt className="font-medium">Filing Date</dt>
-                <dd>{caseDetails.filingDate}</dd>
-              </div>
-              <div>
-                <dt className="font-medium">Next Hearing</dt>
-                <dd>{caseDetails.nextHearing}</dd>
               </div>
             </dl>
           </CardContent>
@@ -132,7 +139,7 @@ function CaseDetailsPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-4">
-                  {caseDetails.notes.map((note, index) => (
+                  {caseDetails2.notes.map((note, index) => (
                     <li key={index} className="border-b pb-2">
                       <p className="font-medium">{note.date}</p>
                       <p>{note.content}</p>
@@ -156,7 +163,7 @@ function CaseDetailsPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-4">
-                  {caseDetails.tasks.map((task, index) => (
+                  {caseDetails2.tasks.map((task, index) => (
                     <li key={index} className="border-b pb-2">
                       <p className="font-medium">{task.name}</p>
                       <p>{task.progress}%</p>
@@ -180,7 +187,7 @@ function CaseDetailsPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  {caseDetails.documents.map((doc, index) => (
+                  {caseDetails2.documents.map((doc, index) => (
                     <li key={index} className="flex justify-between items-center">
                       <span>{doc.name}</span>
                       <span className="text-sm text-muted-foreground">{doc.date}</span>
@@ -193,8 +200,9 @@ function CaseDetailsPage() {
           </motion.div>
         </TabsContent>
       </Tabs>
+
     </motion.div>
-  )
+  );
 }
 
-export default CaseDetailsPage
+export default CaseDetailsPage;

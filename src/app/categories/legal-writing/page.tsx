@@ -62,6 +62,7 @@ const legalWritingCourses = [
   },
 ]
 
+
 export default function LegalWritingPage() {
   return (
     <div className="min-h-screen bg-slate-50">

@@ -15,7 +15,7 @@ import { motion } from "framer-motion"
 const navItems = [
   { href: "/find-lawyers", label: "Find Lawyers" },
   { href: "/legal-assistant", label: "Legal Assistant" },
-  { href: "/auth/cases", label: "Cases" },
+  // { href: "/auth/cases", label: "Cases" },
   { href: "/courses", label: "Learn" },
   { href: "/templates", label: "Templates" },
   { href: "/blog", label: "Articles" },
@@ -78,14 +78,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
             <div className="flex items-center gap-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="hidden md:block">
                 {cookies.token ? (
                   <Link href={lawyer !== null ? "/lawyer/dashboard" : "/auth/cases/dashboard"}>
-                    <Button className="bg-primary-600 hover:bg-primary-700 text-white font-medium">Dashboard</Button>
+                    <Button className=" bg-primary-600 hover:bg-primary-700 text-white font-medium">Dashboard</Button>
                   </Link>
                 ) : (
                   <Link href="/auth/login">
-                    <Button className="bg-primary-600 hover:bg-primary-700 text-white font-medium">Login</Button>
+                    <Button className=" bg-primary-600 hover:bg-primary-700 text-white font-medium">Login</Button>
                   </Link>
                 )}
               </motion.div>
@@ -105,12 +105,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   >
                     <div className="flex items-center justify-between mb-6">
                       <span className="font-serif text-xl">Shalish</span>
-                      <SheetTrigger asChild>
+                      {/*<SheetTrigger asChild>
                         <Button variant="ghost" className="p-2">
                           <X className="h-6 w-6" />
                           <span className="sr-only">Close menu</span>
                         </Button>
-                      </SheetTrigger>
+                      </SheetTrigger>*/}
                     </div>
                     <nav className="flex flex-col gap-4">
                       {navItems.map((item) => (

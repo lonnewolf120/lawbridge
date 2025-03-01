@@ -18,11 +18,10 @@ export function CategoryCard({ name, description, href, image, imageId, courseCo
     <Card className="flex flex-col h-full overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={`/placeholder.svg?height=200&width=400&text=Category+${imageId}`}
+          src={image}
           alt={name}
-          layout="fill"
-          placeholder="blur"
-          objectFit="cover"
+          width={400}
+          height={200}
           className="transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
