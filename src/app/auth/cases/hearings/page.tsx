@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CalendarDays, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link'
 import { parseCookies } from 'nookies';
-import TerminalLoader from '@/components/external/TerminalLoader';
+import Loader from '@/components/external/Loader';
 
 
 interface Hearing {
@@ -57,7 +57,7 @@ export default function HearingsPage() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 p-8">
         <h1 className="text-3xl font-bold mb-8 text-primary-900">Upcoming Hearings</h1>
-        <div><TerminalLoader text='Loading hearings...' /></div>
+        <div><Loader text='Loading hearings...' /></div>
       </div>
     );
   }

@@ -10,8 +10,10 @@ import Link from "next/link"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import type { Lawyer } from "@/types/lawyer"
 import { motion, AnimatePresence } from "framer-motion"
-import { Search, Star, DollarSign, Clock, MapPin, Filter } from "lucide-react"
+import { Search, Star, DollarSign, EyeIcon, Clock, MapPin, Filter } from "lucide-react"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { parseCookies } from 'nookies';
+
 
 const practiceAreas = [
   "Criminal Law",
@@ -38,7 +40,45 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) {
   const [minExperience, setMinExperience] = useState<number | null>(null)
   const [practiceAreaSearch, setPracticeAreaSearch] = useState("")
   const [radius, setRadius] = useState(50)
-  const baseUrl = process.env.baseUrl || "http://68.183.246.96:10101"
+  const baseUrl = process.env.baseUrl || "http://api.shalish.xyz"
+
+  const fetchAllLawyers = async () => {
+    console.log("Fetching all lawyers...")
+    const cookies = parseCookies()
+    const token = cookies.token
+    setLoading(true)
+    try {
+      let fetchedLawyers = []
+        const response = await fetch(`${baseUrl}/lawyers`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+           }
+        })
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+        const data = await response.json()
+        fetchedLawyers = data.lawyers || []
+      
+
+      const transformedLawyers = fetchedLawyers.map((lawyer: Lawyer) => ({
+        ...lawyer,
+        practiceAreas: lawyer.practice_areas ? lawyer.practice_areas.split(",") : [],
+        name: `${lawyer.first_name} ${lawyer.last_name}`,
+        image: lawyer.profile_picture_url || "https://avatar.iran.liara.run/public/boy",
+        location: lawyer.location || "Unknown Location",
+        fees: lawyer.fees || 0,
+        experienceYears: lawyer.experience || 0,
+      }))
+      setLawyers(transformedLawyers)
+    } catch (error) {
+      console.error("Could not fetch lawyers:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+  useEffect(() => {
+    fetchAllLawyers()
+  }, [])
 
   const fetchLawyers = async () => {
     setLoading(true)
@@ -76,6 +116,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) {
     }
   }
 
+
   useEffect(() => {
     if (mapLocation) fetchLawyers()
   }, [mapLocation, radius])
@@ -98,6 +139,12 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) {
       <Card className="backdrop-blur-sm bg-white/50">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-2xl font-serif">Find Lawyers</CardTitle>
+          <div className="flex p-4">
+          <Button variant="outline" onClick={()=> fetchAllLawyers()}>
+            <EyeIcon className="h-4 w-4" />
+          <p>View All</p>
+          </Button>
+          </div>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
@@ -156,6 +203,7 @@ export default function LawyerSearch({ mapLocation }: LawyerSearchProps) {
               </div>
             </SheetContent>
           </Sheet>
+
         </CardHeader>
         <CardContent>
           <div className="space-y-4">

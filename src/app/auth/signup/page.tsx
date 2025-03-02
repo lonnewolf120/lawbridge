@@ -15,6 +15,7 @@ export default function SignUpPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [nid, setNid] = useState('')
+  const [message, setMessage] = useState('')
   const [barNumber, setBarNumber] = useState('')
   const router = useRouter()
   const [snackopen, setSnack] = useState(false)
@@ -23,7 +24,6 @@ export default function SignUpPage() {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault()
       try {
-        setSnack(true);
       const userData = {
         "user_type":userType,
         "first_name":firstName,
@@ -42,6 +42,8 @@ export default function SignUpPage() {
         if (data.lawyer) {
           setCookie(null, 'lawyer', JSON.stringify(data.lawyer), { path: '/' });
         }
+        setMessage('Signup successful');
+        setSnack(true);
 
         // const cookies = parseCookies();
         // console.log('Cookies:', cookies);
@@ -54,6 +56,12 @@ export default function SignUpPage() {
         .push('/auth/cases/dashboard')
         }
       }
+      else {
+        const data = await res.json();
+        console.log("Signup failed:", data)
+        setMessage(data.message);
+        setSnack(true);
+      }
       
     } catch (error) {
       console.error('Signup failed:', error)
@@ -63,7 +71,10 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-primary-50 p-8 rounded-lg shadow-xl">
-        <Snackbar open={snackopen} autoHideDuration={6000} message="User Signed up" />
+        <Snackbar open={snackopen} autoHideDuration={3000} 
+          onClose={() => setSnack(false)}
+
+        message={message} />
         <div className="text-center">
           <h2 className="text-3xl font-bold text-accent-900">Create Account</h2>
           <p className="mt-2 text-border-600">Join Shalish today</p>

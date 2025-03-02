@@ -281,11 +281,30 @@ export async function get_req(endpoint:string) {
         const data = await res.json();
         return NextResponse.json(data, { status: res.status });
     } catch (error) {
-        console.error("Search lawyers error:", error);
-        return NextResponse.json({ error: 'Failed to search lawyers' }, { status: 500 });
+        console.error(`Failed to get req for endpoint ${endpoint}`, error);
+        return NextResponse.json({ error: `Failed to get req for endpoint ${endpoint}` }, { status: 500 });
     }
 }
 
+
+export async function put_req(body: any,endpoint:string) {
+    const token = parseCookies().token;
+    if(!token ) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    try {
+        const res = await fetch(`${BACKEND_URL}/${endpoint}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+             },
+             body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        return NextResponse.json(data, { status: res.status });
+    } catch (error) {
+        console.error(`Failed PUT req for endpoint ${endpoint}`, error);
+        return NextResponse.json({ error: `Failed PUT req for endpoint ${endpoint}` }, { status: 500 });
+    }
+}
 export async function post_req(body: any, endpoint:string) {
     const token = parseCookies().token;
     if(!token ) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -300,8 +319,8 @@ export async function post_req(body: any, endpoint:string) {
         const data = await res.json();
         return NextResponse.json(data, { status: res.status });
     } catch (error) {
-        console.error("Search lawyers error:", error);
-        return NextResponse.json({ error: 'Failed to search lawyers' }, { status: 500 });
+        console.error(`Failed POST req for endpoint ${endpoint}`, error);
+        return NextResponse.json({ error: `Failed POST req for endpoint ${endpoint}` }, { status: 500 });
     }
 }
 

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useEffect, useState } from 'react'
 import { get_req } from '@/lib/functions'
-import TerminalLoader from '@/components/external/TerminalLoader'
+import Loader from '@/components/external/Loader'
 // import { Spinner } from "@/components/ui/spinner" // Assuming you have a Spinner component
 
 interface Client {
@@ -53,7 +53,7 @@ export default function ClientListPage() {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center">
-              <TerminalLoader text='Loading clients' />
+              <Loader text='Loading clients' />
             </div>
           ) : (
             <Table>
@@ -100,7 +100,7 @@ export default function ClientListPage() {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center">
-              <TerminalLoader text='Loading clients' />
+              <Loader text='Loading clients' />
             </div>
           ) : (
             <Table>

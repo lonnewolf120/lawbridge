@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 // import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Calendar, Clock, MapPin, User, ChevronUp } from "lucide-react"
-import TerminalLoader from "@/components/external/TerminalLoader"
+import Loader from "@/components/external/Loader"
 
 interface Hearing {
   hearing_id: number;
@@ -48,7 +48,7 @@ export default function HearingPage() {
   }, [])
 
   if (!hearingData) {
-    return <TerminalLoader text='Loading hearing information...' />
+    return <Loader text='Loading hearing information...' />
   }
 
   return (

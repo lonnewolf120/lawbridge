@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { ProgressBar } from '@/components/progress-bar-round'
 import { parseCookies } from 'nookies'
-import TerminalLoader from '@/components/external/TerminalLoader'
+import Loader from '@/components/external/Loader'
 
 interface CaseItem {
   case_id: number;
@@ -78,7 +78,7 @@ export default function ProgressPage() {
 
 
 
-  if (loading) return <div className="p-4"><TerminalLoader text='Loading...' /></div>;
+  if (loading) return <div className="p-4"><Loader text='Loading...' /></div>;
   if (error) return <div className="p-4 text-red-600">Error: {error}</div>;
 
   return (
