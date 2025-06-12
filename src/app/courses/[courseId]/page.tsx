@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Nav } from "@/components/nav"
+import Layout from "@/components/Navbar"
 import { BackButton } from "@/components/back-button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -1393,20 +1393,23 @@ function getCourseDetails(courseId: string) {
 
   return courses.find((course) => course.id === courseId)
 }
-
-export default function CourseDetailsPage({ params }: { params: { courseId: string } }) {
+export default function CourseDetailsPage({ params }: { params: Promise<{ courseId: string }> }) {
   const [expandedSection, setExpandedSection] = useState<number | null>(null)
   const [courseDetails, setCourseDetails] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
+  const [courseId, setCourseId] = useState<string | null> (null)
 
   useEffect(() => {
-    const details = getCourseDetails(params.courseId)
-    if (details) {
-      setCourseDetails(details)
-    } else {
-      setError("Course not found")
-    }
-  }, [params.courseId])
+    params.then((resolvedParams) => {
+      const details = getCourseDetails(resolvedParams.courseId)
+      setCourseId(resolvedParams.courseId)
+      if (details) {
+        setCourseDetails(details)
+      } else {
+        setError("Course not found")
+      }
+    })
+  }, [params])
 
   if (error) {
     return <div className="text-center mt-8 text-red-600">{error}</div>
@@ -1418,7 +1421,7 @@ export default function CourseDetailsPage({ params }: { params: { courseId: stri
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Nav />
+      <Layout children={<div></div>} />
       <main className="container max-w-4xl mx-auto py-12 px-4">
         <BackButton />
         <h1 className="text-3xl font-bold mb-6">{courseDetails.title}</h1>
@@ -1465,8 +1468,6 @@ export default function CourseDetailsPage({ params }: { params: { courseId: stri
                     <FileText className="h-4 w-4 mr-2" />
                     {resource.name}
                     <ExternalLink className="h-4 w-4 ml-1" />
-                    {resource.name}
-                    <ExternalLink className="h-4 w-4 ml-1" />
                   </Link>
                 </li>
               ))}
@@ -1474,7 +1475,7 @@ export default function CourseDetailsPage({ params }: { params: { courseId: stri
           </CardContent>
         </Card>
         <div className="mt-8 text-center">
-          <Link href={`/courses/${params.courseId}/enroll`}>
+          <Link href={`/courses/${courseId}/enroll`}>
             <Button size="lg">
               <BookOpen className="mr-2 h-5 w-5" /> Enroll in This Course
             </Button>
@@ -1484,4 +1485,3 @@ export default function CourseDetailsPage({ params }: { params: { courseId: stri
     </div>
   )
 }
-
