@@ -12,11 +12,11 @@ export default function Footer() {
             <div>
               <h4 className="font-medium text-white mb-4">Contact</h4>
               <p className="text-sm">Email: executive@shalish.xyz</p>
-              <p className="text-sm">Phone: +8801311962091</p>
+              <p className="text-sm">2nd Email: iftekharulislam1594@gmail.com</p>
             </div>
             <div>
               <h4 className="font-medium text-white mb-4">Address</h4>
-              <p className="text-sm">123 Legal Street</p>
+              <p className="text-sm">House 688 Road 9 Avenue 6, Mirpur DOHS, Mirpur</p>
               <p className="text-sm">Dhaka, Bangladesh</p>
             </div>
             <div>
