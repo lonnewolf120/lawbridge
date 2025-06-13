@@ -1,5 +1,5 @@
 // // components/ThemeToggle.tsx
-// import { Button } from "@nextui-org/react";
+// import { Button } from "@heroui/react";
 // import { useTheme } from "./Provider";
 
 // export const ThemeToggle = () => {
